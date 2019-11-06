@@ -142,7 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				42D655431EC5466D00BB5656 /* README.md */,
-				42EDDE651E9AE0B10012EDD0 /* AppleMusicSample */,
+				42EDDE651E9AE0B10012EDD0 /* Twister */,
 				42EDDE641E9AE0B10012EDD0 /* Products */,
 				155D714F8BC0A1BAE81C7EE8 /* Configuration */,
 				90F17E30037AA8C923CBC38D /* LICENSE */,
@@ -157,7 +157,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		42EDDE651E9AE0B10012EDD0 /* AppleMusicSample */ = {
+		42EDDE651E9AE0B10012EDD0 /* Twister */ = {
 			isa = PBXGroup;
 			children = (
 				A6646E88237260DD005D3707 /* Keys.swift */,
@@ -169,7 +169,7 @@
 				424BE3EA1EBAEAFE0034DB00 /* Resources */,
 				42EDDE721E9AE0B10012EDD0 /* Info.plist */,
 			);
-			path = AppleMusicSample;
+			path = Twister;
 			sourceTree = "<group>";
 		};
 		90F17E30037AA8C923CBC38D /* LICENSE */ = {

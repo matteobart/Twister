@@ -1,4 +1,12 @@
-# Adding Content to Apple Music
+# Twister
+
+## Setup
+
+To get the code to run, you will need to add your own developer token to the code. Add your developer token to "Twister/Controllers/AppleMusicManager.swift" in the fetchDeveloperFunction().  
+
+To create a developer token, I highly suggest using [this](https://gist.github.com/leemartin/0dac81a74a58f8587270dca9089ddb7f). I have found that other solutions do not produce accurate keys. 
+
+# Left Over From Sample
 
 Demonstrates how to add content from the Apple Music catalog to the iCloud Music Library.
 
