@@ -599,30 +599,20 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="275" height="43.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ig9-nO-IEk">
-                                                                    <rect key="frame" x="225.5" y="15" width="39.5" height="13.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playlist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEw-99-in3">
-                                                                    <rect key="frame" x="10" y="11.5" width="103.5" height="20.5"/>
+                                                                    <rect key="frame" x="10" y="11.5" width="255" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="ig9-nO-IEk" secondAttribute="trailing" constant="10" id="0ra-4X-0J9"/>
-                                                                <constraint firstItem="lEw-99-in3" firstAttribute="leading" secondItem="Qg4-hu-9GZ" secondAttribute="leading" constant="10" id="J6F-q0-sGZ"/>
-                                                                <constraint firstItem="ig9-nO-IEk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lEw-99-in3" secondAttribute="trailing" constant="10" id="KUU-4m-PE4"/>
-                                                                <constraint firstItem="lEw-99-in3" firstAttribute="centerY" secondItem="ig9-nO-IEk" secondAttribute="centerY" id="RLA-y6-AMS"/>
-                                                                <constraint firstItem="ig9-nO-IEk" firstAttribute="centerY" secondItem="Qg4-hu-9GZ" secondAttribute="centerY" id="TxJ-JB-8wM"/>
-                                                                <constraint firstItem="lEw-99-in3" firstAttribute="centerY" secondItem="Qg4-hu-9GZ" secondAttribute="centerY" id="suW-Ja-isY"/>
+                                                                <constraint firstItem="lEw-99-in3" firstAttribute="centerY" secondItem="Qg4-hu-9GZ" secondAttribute="centerY" id="HAP-EQ-EiR"/>
+                                                                <constraint firstAttribute="trailing" secondItem="lEw-99-in3" secondAttribute="trailing" constant="10" id="Xbo-zw-x99"/>
+                                                                <constraint firstItem="lEw-99-in3" firstAttribute="leading" secondItem="Qg4-hu-9GZ" secondAttribute="leading" constant="10" id="bbz-PB-zjB"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
-                                                            <outlet property="creatorNameLabel" destination="ig9-nO-IEk" id="blB-uT-dsq"/>
                                                             <outlet property="playlistNameLabel" destination="lEw-99-in3" id="UlU-Qt-B9p"/>
                                                         </connections>
                                                     </tableViewCell>
@@ -686,7 +676,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xwg-Zu-Q6c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3244" y="993"/>
+            <point key="canvasLocation" x="-3244" y="992.65367316341838"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="DEn-az-zhW">

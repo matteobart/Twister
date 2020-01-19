@@ -16,12 +16,14 @@ class MainViewController: UIViewController {
     @IBOutlet weak var playlistNameTextField: UITextField!
     @IBOutlet weak var availablePlaylistsTableView: UITableView!
     
+    
     let numberOfServices = 2
     var allPlaylists: [[(String, String)]] = [] //a N dimensional array (where N is the number of services eg. spotify)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         playlistNameTextField.delegate = self
+        availablePlaylistsTableView.delegate = self
         availablePlaylistsTableView.dataSource = self
         spotifyManager.authorize()
         
@@ -36,9 +38,6 @@ class MainViewController: UIViewController {
             }
             self.availablePlaylistsTableView.reloadData()
         }
-
-        
-        
         
     }
     
@@ -76,9 +75,9 @@ extension UIViewController: UITextFieldDelegate {
     }
 }
 
-extension MainViewController: UITableViewDataSource {
+extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allPlaylists[1].capacity
+        return allPlaylists[1].count
     }
     
     
@@ -87,9 +86,14 @@ extension MainViewController: UITableViewDataSource {
                                                        for: indexPath) as? PlaylistTableViewCell else {
             return UITableViewCell()
         }
-        cell.creatorNameLabel.text = allPlaylists[1][indexPath.item].1
+        //cell.creatorNameLabel.text = allPlaylists[1][indexPath.item].1
         cell.playlistNameLabel.text = allPlaylists[1][indexPath.item].0
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCell = tableView.cellForRow(at: indexPath) as! PlaylistTableViewCell
+        playlistNameTextField.text = selectedCell.playlistNameLabel.text
     }
     
     

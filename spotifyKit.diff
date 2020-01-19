@@ -1,0 +1,40 @@
+diff --git Pods/SpotifyKit/Sources/SpotifyKit.swift Pods/SpotifyKit/Sources/SpotifyKit.swift
+index 977526e..7fd0d34 100644
+--- Pods/SpotifyKit/Sources/SpotifyKit.swift
++++ Pods/SpotifyKit/Sources/SpotifyKit.swift
+@@ -86,7 +86,7 @@ fileprivate enum SpotifyQuery: String, URLConvertible {
+     case contains  = "me/tracks/contains"
+     
+     static func libraryUrlFor<T>(_ what: T.Type) -> URL? where T: SpotifyLibraryItem {
+-        return URL(string: master.rawValue + me.rawValue + what.type.searchKey.rawValue)
++        return URL(string: master.rawValue + me.rawValue + what.type.searchKey.rawValue + "?limit=50")
+     }
+     
+     static func urlFor<T>(_ what: T.Type,
+@@ -111,7 +111,8 @@ fileprivate enum SpotifyScope: String {
+     case readEmail     = "user-read-email"
+     case libraryModify = "user-library-modify"
+     case libraryRead   = "user-library-read"
+-    
++    case collabPlaylists  = "playlist-read-collaborative"
++    case privatePlaylists = "playlist-read-private"
+     /**
+      Creates a string to pass as parameter value
+      with desired scope keys
+@@ -415,6 +416,7 @@ public class SpotifyManager {
+         
+         if  let application = application,
+             let url = SpotifyQuery.authorize.url?.with(parameters: authorizationParameters(for: application)) {
++            print(url)
+             #if os(OSX)
+                 #if swift(>=4.0)
+                     NSWorkspace.shared.open(url)
+@@ -695,7 +697,7 @@ public class SpotifyManager {
+         return [SpotifyParameter.clientId: application.clientId,
+                 SpotifyParameter.responseType: SpotifyAuthorizationResponseType.code.rawValue,
+                 SpotifyParameter.redirectUri: application.redirectUri,
+-                SpotifyParameter.scope: SpotifyScope.string(with: [.readPrivate, .readEmail, .libraryModify, .libraryRead])]
++                SpotifyParameter.scope: SpotifyScope.string(with: [.readPrivate, .readEmail, .libraryModify, .libraryRead, .collabPlaylists, .privatePlaylists])]
+     }
+     
+     /**
