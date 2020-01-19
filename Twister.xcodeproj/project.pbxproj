@@ -13,7 +13,6 @@
 		4213F0B01EC2E5A40014E741 /* MediaItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4213F0AF1EC2E5A40014E741 /* MediaItemTableViewCell.swift */; };
 		4213F0B21EC383620014E741 /* AuthorizationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4213F0B11EC383620014E741 /* AuthorizationDataSource.swift */; };
 		4213F0B41EC3871B0014E741 /* AuthorizationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4213F0B31EC3871B0014E741 /* AuthorizationTableViewController.swift */; };
-		422843F71EBE9285009306C7 /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422843F61EBE9285009306C7 /* PlaylistTableViewController.swift */; };
 		4249C3FB1EDB8D3000CC40AE /* JSONKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4249C3FA1EDB8D3000CC40AE /* JSONKeys.swift */; };
 		424BE3E01EBAEAA60034DB00 /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424BE3DD1EBAEAA60034DB00 /* AuthorizationManager.swift */; };
 		424BE3E11EBAEAA60034DB00 /* MediaLibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424BE3DE1EBAEAA60034DB00 /* MediaLibraryManager.swift */; };
@@ -23,12 +22,14 @@
 		424BE3F11EBAEAFE0034DB00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 424BE3EC1EBAEAFE0034DB00 /* LaunchScreen.storyboard */; };
 		424BE3F21EBAEAFE0034DB00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 424BE3EE1EBAEAFE0034DB00 /* Main.storyboard */; };
 		424E9D661EBBC9F2006C2C82 /* AppleMusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424E9D651EBBC9F2006C2C82 /* AppleMusicManager.swift */; };
-		425291A61EC21B7A00F9812C /* PlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425291A51EC21B7A00F9812C /* PlaylistTableViewCell.swift */; };
 		4289744B1EC1772A00BCF726 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4289744A1EC1772A00BCF726 /* ImageCacheManager.swift */; };
 		4289744D1EC181B700BCF726 /* MusicPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4289744C1EC181B700BCF726 /* MusicPlayerManager.swift */; };
 		42C9B1991EDF5D7B009A9DE7 /* AppleMusicRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C9B1981EDF5D7B009A9DE7 /* AppleMusicRequestFactory.swift */; };
 		42EDDE671E9AE0B10012EDD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDDE661E9AE0B10012EDD0 /* AppDelegate.swift */; };
 		A6646E89237260DD005D3707 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6646E88237260DD005D3707 /* Keys.swift */; };
+		A6ACCC1623D3BD2C00A55FAE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ACCC1523D3BD2C00A55FAE /* MainViewController.swift */; };
+		A6DCD83623D41AFC0072012F /* PlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCD83523D41AFC0072012F /* PlaylistTableViewCell.swift */; };
+		B4AE488280DB97C3F397044B /* Pods_Adding_Content_to_Apple_Music.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1438A692D73D03DCA96F262 /* Pods_Adding_Content_to_Apple_Music.framework */; };
 		C87F8E071F588A3600EA544D /* RecentlyPlayedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F8E061F588A3500EA544D /* RecentlyPlayedTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +40,6 @@
 		4213F0AF1EC2E5A40014E741 /* MediaItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaItemTableViewCell.swift; sourceTree = "<group>"; };
 		4213F0B11EC383620014E741 /* AuthorizationDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationDataSource.swift; sourceTree = "<group>"; };
 		4213F0B31EC3871B0014E741 /* AuthorizationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationTableViewController.swift; sourceTree = "<group>"; };
-		422843F61EBE9285009306C7 /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
 		4249C3FA1EDB8D3000CC40AE /* JSONKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONKeys.swift; sourceTree = "<group>"; };
 		424BE3DD1EBAEAA60034DB00 /* AuthorizationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationManager.swift; sourceTree = "<group>"; };
 		424BE3DE1EBAEAA60034DB00 /* MediaLibraryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaLibraryManager.swift; sourceTree = "<group>"; };
@@ -49,16 +49,20 @@
 		424BE3ED1EBAEAFE0034DB00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		424BE3EF1EBAEAFE0034DB00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		424E9D651EBBC9F2006C2C82 /* AppleMusicManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleMusicManager.swift; sourceTree = "<group>"; };
-		425291A51EC21B7A00F9812C /* PlaylistTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewCell.swift; sourceTree = "<group>"; };
 		4289744A1EC1772A00BCF726 /* ImageCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		4289744C1EC181B700BCF726 /* MusicPlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayerManager.swift; sourceTree = "<group>"; };
 		42C9B1981EDF5D7B009A9DE7 /* AppleMusicRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicRequestFactory.swift; sourceTree = "<group>"; };
 		42D655431EC5466D00BB5656 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.markdown; };
-		42EDDE631E9AE0B10012EDD0 /* Adding-Content-to-Apple-Music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adding-Content-to-Apple-Music.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		42EDDE631E9AE0B10012EDD0 /* Twister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42EDDE661E9AE0B10012EDD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42EDDE721E9AE0B10012EDD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45B19C0EE7AE36636EF68661 /* Pods-Adding-Content-to-Apple-Music.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adding-Content-to-Apple-Music.debug.xcconfig"; path = "Target Support Files/Pods-Adding-Content-to-Apple-Music/Pods-Adding-Content-to-Apple-Music.debug.xcconfig"; sourceTree = "<group>"; };
+		7A423584CF0C96CBCD6DD920 /* Pods-Adding-Content-to-Apple-Music.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adding-Content-to-Apple-Music.release.xcconfig"; path = "Target Support Files/Pods-Adding-Content-to-Apple-Music/Pods-Adding-Content-to-Apple-Music.release.xcconfig"; sourceTree = "<group>"; };
 		7D4983CD4395E5828F81D4AD /* SampleCode.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		A6646E88237260DD005D3707 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		A6ACCC1523D3BD2C00A55FAE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		A6DCD83523D41AFC0072012F /* PlaylistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlaylistTableViewCell.swift; path = AppleMusicSample/PlaylistTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		B1438A692D73D03DCA96F262 /* Pods_Adding_Content_to_Apple_Music.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Adding_Content_to_Apple_Music.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C87F8E061F588A3500EA544D /* RecentlyPlayedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayedTableViewController.swift; sourceTree = "<group>"; };
 		FF6A8FFC3191918B5D84482D /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4AE488280DB97C3F397044B /* Pods_Adding_Content_to_Apple_Music.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,11 +124,9 @@
 			children = (
 				4213F0B31EC3871B0014E741 /* AuthorizationTableViewController.swift */,
 				424BE3E51EBAEAD40034DB00 /* MediaSearchTableViewController.swift */,
-				422843F61EBE9285009306C7 /* PlaylistTableViewController.swift */,
 				424BE3DF1EBAEAA60034DB00 /* PlayerViewController.swift */,
 				C87F8E061F588A3500EA544D /* RecentlyPlayedTableViewController.swift */,
 				4213F0AF1EC2E5A40014E741 /* MediaItemTableViewCell.swift */,
-				425291A51EC21B7A00F9812C /* PlaylistTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -142,26 +145,30 @@
 			isa = PBXGroup;
 			children = (
 				42D655431EC5466D00BB5656 /* README.md */,
-				42EDDE651E9AE0B10012EDD0 /* Twister */,
+				42EDDE651E9AE0B10012EDD0 /* AppleMusicSample */,
 				42EDDE641E9AE0B10012EDD0 /* Products */,
 				155D714F8BC0A1BAE81C7EE8 /* Configuration */,
 				90F17E30037AA8C923CBC38D /* LICENSE */,
+				95E72D53777562AFDF441007 /* Pods */,
+				75417DE84913A7A1EB3B7761 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		42EDDE641E9AE0B10012EDD0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				42EDDE631E9AE0B10012EDD0 /* Adding-Content-to-Apple-Music.app */,
+				42EDDE631E9AE0B10012EDD0 /* Twister.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		42EDDE651E9AE0B10012EDD0 /* Twister */ = {
+		42EDDE651E9AE0B10012EDD0 /* AppleMusicSample */ = {
 			isa = PBXGroup;
 			children = (
 				A6646E88237260DD005D3707 /* Keys.swift */,
 				42EDDE661E9AE0B10012EDD0 /* AppDelegate.swift */,
+				A6ACCC1523D3BD2C00A55FAE /* MainViewController.swift */,
+				A6DCD83523D41AFC0072012F /* PlaylistTableViewCell.swift */,
 				424BE3DC1EBAEAA60034DB00 /* Controllers */,
 				4213F0A81EC2CDBE0014E741 /* Model */,
 				4249C3F71EDB6AF100CC40AE /* Utility */,
@@ -169,7 +176,15 @@
 				424BE3EA1EBAEAFE0034DB00 /* Resources */,
 				42EDDE721E9AE0B10012EDD0 /* Info.plist */,
 			);
-			path = Twister;
+			path = AppleMusicSample;
+			sourceTree = "<group>";
+		};
+		75417DE84913A7A1EB3B7761 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B1438A692D73D03DCA96F262 /* Pods_Adding_Content_to_Apple_Music.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		90F17E30037AA8C923CBC38D /* LICENSE */ = {
@@ -180,6 +195,15 @@
 			path = LICENSE;
 			sourceTree = "<group>";
 		};
+		95E72D53777562AFDF441007 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				45B19C0EE7AE36636EF68661 /* Pods-Adding-Content-to-Apple-Music.debug.xcconfig */,
+				7A423584CF0C96CBCD6DD920 /* Pods-Adding-Content-to-Apple-Music.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -187,9 +211,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 42EDDE751E9AE0B10012EDD0 /* Build configuration list for PBXNativeTarget "Adding-Content-to-Apple-Music" */;
 			buildPhases = (
+				A45A07021F212F9FAA0B5ACB /* [CP] Check Pods Manifest.lock */,
 				42EDDE5F1E9AE0B10012EDD0 /* Sources */,
 				42EDDE601E9AE0B10012EDD0 /* Frameworks */,
 				42EDDE611E9AE0B10012EDD0 /* Resources */,
+				882983DC6923A70FA4324DFD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -197,7 +223,7 @@
 			);
 			name = "Adding-Content-to-Apple-Music";
 			productName = AppleMusicSample;
-			productReference = 42EDDE631E9AE0B10012EDD0 /* Adding-Content-to-Apple-Music.app */;
+			productReference = 42EDDE631E9AE0B10012EDD0 /* Twister.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -218,7 +244,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 42EDDE5E1E9AE0B10012EDD0 /* Build configuration list for PBXProject "Adding-Content-to-Apple-Music" */;
+			buildConfigurationList = 42EDDE5E1E9AE0B10012EDD0 /* Build configuration list for PBXProject "Twister" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -250,15 +276,59 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		882983DC6923A70FA4324DFD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Adding-Content-to-Apple-Music/Pods-Adding-Content-to-Apple-Music-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SpotifyKit/SpotifyKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SpotifyKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Adding-Content-to-Apple-Music/Pods-Adding-Content-to-Apple-Music-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A45A07021F212F9FAA0B5ACB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Adding-Content-to-Apple-Music-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		42EDDE5F1E9AE0B10012EDD0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6ACCC1623D3BD2C00A55FAE /* MainViewController.swift in Sources */,
 				4213F0B01EC2E5A40014E741 /* MediaItemTableViewCell.swift in Sources */,
+				A6DCD83623D41AFC0072012F /* PlaylistTableViewCell.swift in Sources */,
 				4289744D1EC181B700BCF726 /* MusicPlayerManager.swift in Sources */,
 				424BE3E01EBAEAA60034DB00 /* AuthorizationManager.swift in Sources */,
-				425291A61EC21B7A00F9812C /* PlaylistTableViewCell.swift in Sources */,
 				A6646E89237260DD005D3707 /* Keys.swift in Sources */,
 				4213F0B21EC383620014E741 /* AuthorizationDataSource.swift in Sources */,
 				424BE3E11EBAEAA60034DB00 /* MediaLibraryManager.swift in Sources */,
@@ -271,7 +341,6 @@
 				424BE3E81EBAEAD40034DB00 /* MediaSearchTableViewController.swift in Sources */,
 				4213F0AE1EC2DF410014E741 /* SerializationError.swift in Sources */,
 				42EDDE671E9AE0B10012EDD0 /* AppDelegate.swift in Sources */,
-				422843F71EBE9285009306C7 /* PlaylistTableViewController.swift in Sources */,
 				4213F0B41EC3871B0014E741 /* AuthorizationTableViewController.swift in Sources */,
 				C87F8E071F588A3600EA544D /* RecentlyPlayedTableViewController.swift in Sources */,
 				42C9B1991EDF5D7B009A9DE7 /* AppleMusicRequestFactory.swift in Sources */,
@@ -302,7 +371,6 @@
 /* Begin XCBuildConfiguration section */
 		42EDDE731E9AE0B10012EDD0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D4983CD4395E5828F81D4AD /* SampleCode.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -360,7 +428,6 @@
 		};
 		42EDDE741E9AE0B10012EDD0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D4983CD4395E5828F81D4AD /* SampleCode.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -411,14 +478,15 @@
 		};
 		42EDDE761E9AE0B10012EDD0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D4983CD4395E5828F81D4AD /* SampleCode.xcconfig */;
+			baseConfigurationReference = 45B19C0EE7AE36636EF68661 /* Pods-Adding-Content-to-Apple-Music.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7TST5593AZ;
 				INFOPLIST_FILE = AppleMusicSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MatteoBartalini.Twister;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Twister;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
@@ -427,14 +495,15 @@
 		};
 		42EDDE771E9AE0B10012EDD0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D4983CD4395E5828F81D4AD /* SampleCode.xcconfig */;
+			baseConfigurationReference = 7A423584CF0C96CBCD6DD920 /* Pods-Adding-Content-to-Apple-Music.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7TST5593AZ;
 				INFOPLIST_FILE = AppleMusicSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MatteoBartalini.Twister;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Twister;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
@@ -444,7 +513,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		42EDDE5E1E9AE0B10012EDD0 /* Build configuration list for PBXProject "Adding-Content-to-Apple-Music" */ = {
+		42EDDE5E1E9AE0B10012EDD0 /* Build configuration list for PBXProject "Twister" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				42EDDE731E9AE0B10012EDD0 /* Debug */,
