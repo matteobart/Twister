@@ -12,6 +12,7 @@ class PlaylistTableViewCell: UITableViewCell {
 
     @IBOutlet weak var playlistNameLabel: UILabel!
     @IBOutlet weak var creatorNameLabel: UILabel!
+    var playlistId: String = ""
     
     static let identifier = "PlaylistTableViewCell"
 

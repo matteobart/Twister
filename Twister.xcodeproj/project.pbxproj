@@ -29,6 +29,7 @@
 		A6646E89237260DD005D3707 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6646E88237260DD005D3707 /* Keys.swift */; };
 		A6ACCC1623D3BD2C00A55FAE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ACCC1523D3BD2C00A55FAE /* MainViewController.swift */; };
 		A6DCD83623D41AFC0072012F /* PlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCD83523D41AFC0072012F /* PlaylistTableViewCell.swift */; };
+		A6DCD83823D4F4900072012F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCD83723D4F4900072012F /* SettingsTableViewController.swift */; };
 		B4AE488280DB97C3F397044B /* Pods_Adding_Content_to_Apple_Music.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1438A692D73D03DCA96F262 /* Pods_Adding_Content_to_Apple_Music.framework */; };
 		C87F8E071F588A3600EA544D /* RecentlyPlayedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F8E061F588A3500EA544D /* RecentlyPlayedTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 		A6646E88237260DD005D3707 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		A6ACCC1523D3BD2C00A55FAE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A6DCD83523D41AFC0072012F /* PlaylistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlaylistTableViewCell.swift; path = AppleMusicSample/PlaylistTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		A6DCD83723D4F4900072012F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		B1438A692D73D03DCA96F262 /* Pods_Adding_Content_to_Apple_Music.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Adding_Content_to_Apple_Music.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C87F8E061F588A3500EA544D /* RecentlyPlayedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayedTableViewController.swift; sourceTree = "<group>"; };
 		FF6A8FFC3191918B5D84482D /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				A6646E88237260DD005D3707 /* Keys.swift */,
 				42EDDE661E9AE0B10012EDD0 /* AppDelegate.swift */,
 				A6ACCC1523D3BD2C00A55FAE /* MainViewController.swift */,
+				A6DCD83723D4F4900072012F /* SettingsTableViewController.swift */,
 				A6DCD83523D41AFC0072012F /* PlaylistTableViewCell.swift */,
 				424BE3DC1EBAEAA60034DB00 /* Controllers */,
 				4213F0A81EC2CDBE0014E741 /* Model */,
@@ -344,6 +347,7 @@
 				4213F0B41EC3871B0014E741 /* AuthorizationTableViewController.swift in Sources */,
 				C87F8E071F588A3600EA544D /* RecentlyPlayedTableViewController.swift in Sources */,
 				42C9B1991EDF5D7B009A9DE7 /* AppleMusicRequestFactory.swift in Sources */,
+				A6DCD83823D4F4900072012F /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
