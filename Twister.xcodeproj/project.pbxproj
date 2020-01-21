@@ -27,9 +27,14 @@
 		42C9B1991EDF5D7B009A9DE7 /* AppleMusicRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C9B1981EDF5D7B009A9DE7 /* AppleMusicRequestFactory.swift */; };
 		42EDDE671E9AE0B10012EDD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDDE661E9AE0B10012EDD0 /* AppDelegate.swift */; };
 		A6646E89237260DD005D3707 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6646E88237260DD005D3707 /* Keys.swift */; };
+		A688F02323D68272004F0CBE /* SongReplacerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688F02223D68272004F0CBE /* SongReplacerViewController.swift */; };
 		A6ACCC1623D3BD2C00A55FAE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ACCC1523D3BD2C00A55FAE /* MainViewController.swift */; };
+		A6D5DCD823D682F5004F4373 /* SongReplacerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D5DCD723D682F5004F4373 /* SongReplacerTableViewCell.swift */; };
 		A6DCD83623D41AFC0072012F /* PlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCD83523D41AFC0072012F /* PlaylistTableViewCell.swift */; };
 		A6DCD83823D4F4900072012F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCD83723D4F4900072012F /* SettingsTableViewController.swift */; };
+		A6DCD83A23D606110072012F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCD83923D606110072012F /* Helper.swift */; };
+		A6DCD83C23D636EC0072012F /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCD83B23D636EC0072012F /* ResultsViewController.swift */; };
+		A6DCD83E23D637300072012F /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCD83D23D637300072012F /* SongTableViewCell.swift */; };
 		B4AE488280DB97C3F397044B /* Pods_Adding_Content_to_Apple_Music.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1438A692D73D03DCA96F262 /* Pods_Adding_Content_to_Apple_Music.framework */; };
 		C87F8E071F588A3600EA544D /* RecentlyPlayedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F8E061F588A3500EA544D /* RecentlyPlayedTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -61,9 +66,14 @@
 		7A423584CF0C96CBCD6DD920 /* Pods-Adding-Content-to-Apple-Music.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adding-Content-to-Apple-Music.release.xcconfig"; path = "Target Support Files/Pods-Adding-Content-to-Apple-Music/Pods-Adding-Content-to-Apple-Music.release.xcconfig"; sourceTree = "<group>"; };
 		7D4983CD4395E5828F81D4AD /* SampleCode.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		A6646E88237260DD005D3707 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		A688F02223D68272004F0CBE /* SongReplacerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongReplacerViewController.swift; sourceTree = "<group>"; };
 		A6ACCC1523D3BD2C00A55FAE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		A6D5DCD723D682F5004F4373 /* SongReplacerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongReplacerTableViewCell.swift; sourceTree = "<group>"; };
 		A6DCD83523D41AFC0072012F /* PlaylistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlaylistTableViewCell.swift; path = AppleMusicSample/PlaylistTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		A6DCD83723D4F4900072012F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		A6DCD83923D606110072012F /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		A6DCD83B23D636EC0072012F /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ResultsViewController.swift; path = AppleMusicSample/ResultsViewController.swift; sourceTree = SOURCE_ROOT; };
+		A6DCD83D23D637300072012F /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SongTableViewCell.swift; path = AppleMusicSample/SongTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		B1438A692D73D03DCA96F262 /* Pods_Adding_Content_to_Apple_Music.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Adding_Content_to_Apple_Music.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C87F8E061F588A3500EA544D /* RecentlyPlayedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayedTableViewController.swift; sourceTree = "<group>"; };
 		FF6A8FFC3191918B5D84482D /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -167,11 +177,16 @@
 		42EDDE651E9AE0B10012EDD0 /* AppleMusicSample */ = {
 			isa = PBXGroup;
 			children = (
+				A6D5DCD723D682F5004F4373 /* SongReplacerTableViewCell.swift */,
+				A688F02223D68272004F0CBE /* SongReplacerViewController.swift */,
 				A6646E88237260DD005D3707 /* Keys.swift */,
 				42EDDE661E9AE0B10012EDD0 /* AppDelegate.swift */,
 				A6ACCC1523D3BD2C00A55FAE /* MainViewController.swift */,
 				A6DCD83723D4F4900072012F /* SettingsTableViewController.swift */,
 				A6DCD83523D41AFC0072012F /* PlaylistTableViewCell.swift */,
+				A6DCD83D23D637300072012F /* SongTableViewCell.swift */,
+				A6DCD83B23D636EC0072012F /* ResultsViewController.swift */,
+				A6DCD83923D606110072012F /* Helper.swift */,
 				424BE3DC1EBAEAA60034DB00 /* Controllers */,
 				4213F0A81EC2CDBE0014E741 /* Model */,
 				4249C3F71EDB6AF100CC40AE /* Utility */,
@@ -328,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6ACCC1623D3BD2C00A55FAE /* MainViewController.swift in Sources */,
+				A6DCD83C23D636EC0072012F /* ResultsViewController.swift in Sources */,
 				4213F0B01EC2E5A40014E741 /* MediaItemTableViewCell.swift in Sources */,
 				A6DCD83623D41AFC0072012F /* PlaylistTableViewCell.swift in Sources */,
 				4289744D1EC181B700BCF726 /* MusicPlayerManager.swift in Sources */,
@@ -338,6 +354,9 @@
 				4249C3FB1EDB8D3000CC40AE /* JSONKeys.swift in Sources */,
 				4289744B1EC1772A00BCF726 /* ImageCacheManager.swift in Sources */,
 				4213F0AA1EC2CE250014E741 /* MediaItem.swift in Sources */,
+				A6DCD83E23D637300072012F /* SongTableViewCell.swift in Sources */,
+				A6DCD83A23D606110072012F /* Helper.swift in Sources */,
+				A6D5DCD823D682F5004F4373 /* SongReplacerTableViewCell.swift in Sources */,
 				424BE3E21EBAEAA60034DB00 /* PlayerViewController.swift in Sources */,
 				4213F0AC1EC2DCE40014E741 /* Artwork.swift in Sources */,
 				424E9D661EBBC9F2006C2C82 /* AppleMusicManager.swift in Sources */,
@@ -345,6 +364,7 @@
 				4213F0AE1EC2DF410014E741 /* SerializationError.swift in Sources */,
 				42EDDE671E9AE0B10012EDD0 /* AppDelegate.swift in Sources */,
 				4213F0B41EC3871B0014E741 /* AuthorizationTableViewController.swift in Sources */,
+				A688F02323D68272004F0CBE /* SongReplacerViewController.swift in Sources */,
 				C87F8E071F588A3600EA544D /* RecentlyPlayedTableViewController.swift in Sources */,
 				42C9B1991EDF5D7B009A9DE7 /* AppleMusicRequestFactory.swift in Sources */,
 				A6DCD83823D4F4900072012F /* SettingsTableViewController.swift in Sources */,
@@ -487,7 +507,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7TST5593AZ;
 				INFOPLIST_FILE = AppleMusicSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MatteoBartalini.Twister;
 				PRODUCT_NAME = Twister;
@@ -504,7 +524,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7TST5593AZ;
 				INFOPLIST_FILE = AppleMusicSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MatteoBartalini.Twister;
 				PRODUCT_NAME = Twister;

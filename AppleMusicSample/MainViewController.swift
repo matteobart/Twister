@@ -10,11 +10,6 @@ import UIKit
 import SpotifyKit
 import MediaPlayer
 
-enum StreamingService: String, CaseIterable {
-    case spotify
-    case appleMusic
-}
-
 class MainViewController: UIViewController {
 
     @IBOutlet weak var toSegControl: UISegmentedControl!
@@ -86,81 +81,17 @@ class MainViewController: UIViewController {
         let playlistName = (availablePlaylistsTableView.cellForRow(at: selectedRow) as! PlaylistTableViewCell).playlistNameLabel.text ?? ""
         let fromService = fromSegControl.selectedSegmentIndex == 0 ? StreamingService.appleMusic : StreamingService.spotify
         let toService = toSegControl.selectedSegmentIndex == 0 ? StreamingService.appleMusic : StreamingService.spotify
-        
-        print(playlistId, fromService)
-        
-        var toAdd: [(String, String)] = [] //(trackName, artistName)
-        if fromService == .spotify {
-            spotifyManager.get(SpotifyPlaylist.self, id: playlistId) { (searchItem) in
-                guard let _ = searchItem.collectionTracks else {return}
-                for item in searchItem.collectionTracks! {
-                    print(item.name, "->" ,item.artist.name)
-                    toAdd.append((item.name, item.artist.name))
-                }
-            }
-        } else if fromService == .appleMusic {
-            let myPlaylistQuery = MPMediaQuery.playlists()
-            myPlaylistQuery.addFilterPredicate(MPMediaPropertyPredicate(value: UInt64(playlistId), forProperty: MPMediaPlaylistPropertyPersistentID))
-            let fromPlaylist = (myPlaylistQuery.collections)![0]
-            for item in fromPlaylist.items {
-                print(item.title ?? "", "->", item.artist ?? "")
-                toAdd.append((item.title ?? "" , item.artist ?? "" ))
-            }
-            
-        }
-        
-        if toService == .appleMusic {
-            let playlistUUID = UUID()
-            
-            // Create an instance of `MPMediaPlaylistCreationMetadata`, this represents the metadata to associate with the new playlist.
-            let playlistCreationMetadata = MPMediaPlaylistCreationMetadata(name: playlistNameTextField.text ?? "New Playlist")
-            playlistCreationMetadata.descriptionText = "This playlist was added via the Twister app. This playlist was from \(playlistName) on \(fromService.rawValue). Twisted on \(Date().description)"
+        let newPlaylistName = playlistNameTextField.text ?? "New Playlist"
 
-            // Request the new or existing playlist from the device.
-            MPMediaLibrary.default().getPlaylist(with: playlistUUID, creationMetadata: playlistCreationMetadata) { (playlist, error) in
-                guard error == nil else { return }
-                for item in toAdd {
-                    //let url = URL(string:
-                    let urlQueries = [URLQueryItem(name: "media", value: "music"),
-                                      URLQueryItem(name: "entity", value: "song"),
-                                      URLQueryItem(name: "term", value: item.0),
-                                      URLQueryItem(name: "limit", value: "20")
-                                    ]
-                    var u = URLComponents(string: "https://itunes.apple.com/search")!
-                    u.queryItems = urlQueries
-                    //print(u.description)
-                    let task = URLSession.shared.dataTask(with: u.url!) { (data, response, error) in
-                        guard let data = data else { return }
-                        if let fetchedDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any],
-                            let fetchedArray = fetchedDict!["results"] as? [[String:Any]] {
-                            for dict in fetchedArray {
-                                //print(dict)
-                                if let artist = dict ["artistName"] as? String {
-                                    if (artist == item.1) {
-                                        guard let trackId = dict["trackId"] else { return }
-                                        let str = String(describing: trackId)
-                                        print(str)
-                                        playlist?.addItem(withProductID: str, completionHandler: { (error) in
-                                            guard error == nil else {
-                                                fatalError("An error occurred while adding an item to the playlist: \(error!.localizedDescription)")
-                                            }
-                                            NotificationCenter.default.post(name: MediaLibraryManager.libraryDidUpdate, object: nil)
-                                        })
-                                        return
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    task.resume()
-                    //var req = URLRequest(url: url!)
-                    //let songQuery = MPMediaQuery.songs()
-                    //songQuery.addFilterPredicate(MPMediaPropertyPredicate(value: item.0, forProperty: MPMediaItemPropertyTitle))
-                    //songQuery.addFilterPredicate(MPMediaPropertyPredicate(value: item.1, forProperty: MPMediaItemPropertyArtist))
-                    //print(songQuery.collections)
-                    
-                }
-            }
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "resultsVC") as! ResultsViewController
+        
+        nextViewController.fromService = fromService
+        nextViewController.toService = toService
+        nextViewController.playlistName = playlistName
+        nextViewController.playlistId = playlistId
+        nextViewController.newPlaylistName = newPlaylistName
+        self.present(nextViewController, animated: true) {
         }
     }
 
