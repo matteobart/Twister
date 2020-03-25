@@ -13,17 +13,21 @@ import SpotifyKit
 class ResultsViewController: UIViewController {
 
     @IBOutlet weak var songsTableView: UITableView!
-    var songInformation: [(String, String)] = []
+    
+    var songInformation: [(String, String, String)] = [] // (Song, Artist, Album)
     var songProgress : [Int] = [] //0 in progress, 1 success, 2 failed
     var toService: StreamingService?
     var fromService: StreamingService?
     var playlistId: String?
     var playlistName: String?
     var newPlaylistName: String?
+    var newPlaylistId: UUID?
     
     var songResponse: [[[String:Any]]] = []
     
-    
+    var spotifyTracks: [SpotifyTrack?] = [] //used if creating a spotify playlist
+    var appleIds: [String?] = [] //used if creating an apple music playlist
+
     override func viewDidLoad() {
         super.viewDidLoad()
         songsTableView.delegate = self
@@ -33,6 +37,19 @@ class ResultsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+    }
+    
+    //songId will either be String (if creating apple music) or SpotifyTrack (if creating spotify)
+    func addToPlaylist(songId: Any) {
+        if toService == .appleMusic {
+            guard let newPlaylistId = newPlaylistId else { return }
+            MPMediaLibrary.default().getPlaylist(with: newPlaylistId, creationMetadata: nil) { (playlist, error) in
+                guard error == nil else { return }
+                playlist?.addItem(withProductID: songId as! String, completionHandler: { (error) in
+                    guard error == nil else { return }
+                })
+            }
+        }
     }
     
     func start() {
@@ -48,7 +65,7 @@ class ResultsViewController: UIViewController {
                 guard let _ = searchItem.collectionTracks else {return}
                 for item in searchItem.collectionTracks! {
                     print(item.name, "->" ,item.artist.name)
-                    self.songInformation.append((item.name, item.artist.name))
+                    self.songInformation.append((item.name, item.artist.name, item.album?.name ?? ""))
                     self.songProgress.append(0)
                     self.songResponse.append([])
                     DispatchQueue.main.async { self.songsTableView.reloadData() }
@@ -60,7 +77,7 @@ class ResultsViewController: UIViewController {
             let fromPlaylist = (myPlaylistQuery.collections)![0]
             for item in fromPlaylist.items {
                 print(item.title ?? "", "->", item.artist ?? "")
-                songInformation.append((item.title ?? "" , item.artist ?? "" ))
+                songInformation.append((item.title ?? "" , item.artist ?? "", item.albumTitle ?? "" ))
                 songProgress.append(0)
                 songResponse.append([])
                 DispatchQueue.main.async { self.songsTableView.reloadData() }
@@ -72,6 +89,7 @@ class ResultsViewController: UIViewController {
         
         if toService == .appleMusic {
             let playlistUUID = UUID()
+            newPlaylistId = playlistUUID
             let playlistCreationMetadata = MPMediaPlaylistCreationMetadata(name: newPlaylistName)
             let df = DateFormatter()
             df.dateFormat = "MMM dd, yyyy h:mm a"
@@ -106,8 +124,64 @@ class ResultsViewController: UIViewController {
                     }
                 }
             }
+        } else if toService == .spotify {
+            var spotifyTracks: [SpotifyTrack?] = []
+            for _ in songInformation { spotifyTracks.append(nil) }
+            let group = DispatchGroup()
+            spotifyManager.createPlaylist(playlistName: newPlaylistName) { (id) in
+                guard let id = id else { return }
+                for item in self.songInformation {
+                    let cleanedTitle = item.0.replacingOccurrences(of: "\\([^()]*\\)", with: "", options: [.regularExpression])
+                    print(cleanedTitle)
+                    group.enter()
+                    let searchTerm = (cleanedTitle + " " + item.1).replacingOccurrences(of: "&", with: "and").replacingOccurrences(of: "?", with: "").folding(options: .diacriticInsensitive, locale: nil).addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+                    spotifyManager.find(SpotifyTrack.self, searchTerm) { (tracks) in
+                        let index = self.songInformation.firstIndex { (check) -> Bool in
+                            return check.0 == item.0 && check.1 == item.1
+                        }
+                        guard let tracks = tracks else {
+                            self.songProgress[index!] = 2
+                            return
+                        }
+                        var spotifyReturn: [[String: Any]] = []
+                        for i in 0..<tracks.count {
+                            var result: [String: Any] = [:]
+                            result["artistName"] = tracks[i].artist.name
+                            result["collectionName"] = tracks[i].album?.name ?? ""
+                            result["trackName"] = tracks[i].name
+                            result["trackId"] = tracks[i].uri
+                            spotifyReturn.append(result)
+                        }
+                        self.songResponse[index!] = spotifyReturn
+                        if let track = tracks.first {
+                            spotifyTracks[index!] = track
+                            //semaphore.signal()
+                            print(track.name, "==", cleanedTitle)
+                            self.songProgress[index!] = 1
+ 
+                        } else {
+                            print("Can't find: " + item.0)
+                            spotifyManager.find(SpotifyTrack.self, cleanedTitle + " " + item.1) { (tracks) in
+                                
+                            }
+                            self.songProgress[index!] = 2
+                        }
+                        DispatchQueue.main.async { self.songsTableView.reloadData() }
+                        group.leave()
+                    }
+                    
+                }
+                group.notify(queue: .main) {
+                    spotifyManager.addSongsToPlaylist(playlistId: id, tracks: spotifyTracks.compactMap{ $0 })  { (success) in
+                        if success {
+                            print("lit")
+                        } else {
+                            print("not lit")
+                        }
+                    }
+                }
+            }
         }
-
     }
     
     /*
@@ -162,6 +236,10 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "songVC") as! SongReplacerViewController
             nextViewController.dict = songResponse[indexPath.item]
+            nextViewController.artistName = songInformation[indexPath.item].1
+            nextViewController.songName = songInformation[indexPath.item].0
+            nextViewController.albumName = songInformation[indexPath.item].2
+            nextViewController.resultsVC = self
             self.present(nextViewController, animated: true) { }
 
         }
@@ -171,6 +249,3 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
     
     
 }
-
-
-

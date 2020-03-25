@@ -78,7 +78,6 @@ extension URLSession {
         // Configure the request
         request.allHTTPHeaderFields = headers
         request.httpMethod          = method.rawValue
-
         if let parameters = parameters?.httpCompatible {
             switch method {
             case .GET, .PUT, .DELETE:
@@ -87,11 +86,10 @@ extension URLSession {
                 request.httpBody = parameters.data(using: .utf8)
             }
         }
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, 
+        let task = URLSession.shared.dataTask(with: request) { Data, Response,
             error in
-            guard   let data = data,
-                    let response = response as? HTTPURLResponse,
+            guard   let data = Data,
+                    let response = Response as? HTTPURLResponse,
                     let status = HTTPResponseStatusCode(rawValue: response.statusCode),
                     case .OK(_) = status
             else {

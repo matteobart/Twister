@@ -13,9 +13,13 @@ class SongReplacerViewController: UIViewController {
     @IBOutlet weak var songLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var songTableView: UITableView!
+    @IBOutlet weak var albumLabel: UILabel!
+    
+    var resultsVC: ResultsViewController?
     
     var artistName: String?
     var songName: String?
+    var albumName: String?
     
     var dict: [[String:Any]] = []
     
@@ -23,8 +27,13 @@ class SongReplacerViewController: UIViewController {
         super.viewDidLoad()
         songTableView.dataSource = self
         songTableView.delegate = self
+        songLabel.text = songName
+        artistLabel.text = artistName
+        albumLabel.text = albumName
+        
         // Do any additional setup after loading the view.songVC
     }
+    
         
     /*
     // MARK: - Navigation
@@ -52,13 +61,19 @@ extension SongReplacerViewController: UITableViewDelegate, UITableViewDataSource
         //cell.creatorNameLabel.text = allPlaylists[1][indexPath.item].1
         cell.artistLabel.text = dict[indexPath.item]["artistName"] as? String
         cell.songLabel.text = dict[indexPath.item]["trackName"] as? String
+        cell.albumLabel.text = dict[indexPath.item]["collectionName"] as? String
         cell.songId = String(describing: dict[indexPath.item]["trackId"] as! Int)
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        guard resultsVC != nil else { return }
+        let cell = tableView.cellForRow(at: indexPath) as! SongReplacerTableViewCell
+        guard let songId = cell.songId else { return }
+        resultsVC?.addToPlaylist(songId: songId)
+        dismiss(animated: true) {
+        }
     }
     
     

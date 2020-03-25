@@ -42,6 +42,8 @@ fileprivate struct SpotifyParameter {
     
     // User's library
     static let ids          = "ids"
+    
+    static let playlistName = "name"
 }
 
 /**
@@ -89,9 +91,14 @@ fileprivate enum SpotifyQuery: String, URLConvertible {
         return URL(string: master.rawValue + me.rawValue + what.type.searchKey.rawValue + "?limit=50")
     }
     
+    static func urlForNewPlaylist(user_id: String) -> URL? {
+        let str = master.rawValue + users.rawValue + "/" + user_id + "/" +  SpotifyPlaylist.type.searchKey.rawValue
+        let a = URL.init(string: str)
+        return a
+    }
+    
     static func urlFor<T>(_ what: T.Type,
-                          id: String,
-                          playlistUserId: String? = nil) -> URL? where T: SpotifySearchItem {
+                          id: String) -> URL? where T: SpotifySearchItem {
         switch what.type {
         case .track, .album, .artist, .playlist:
             return URL(string: master.rawValue + what.type.searchKey.rawValue + "/\(id)")
@@ -113,6 +120,8 @@ fileprivate enum SpotifyScope: String {
     case libraryRead   = "user-library-read"
     case collabPlaylists  = "playlist-read-collaborative"
     case privatePlaylists = "playlist-read-private"
+    case writePublicPlaylist = "playlist-modify-public"
+    case writePrivatePlaylist = "playlist-modify-private"
     /**
      Creates a string to pass as parameter value
      with desired scope keys
@@ -351,7 +360,7 @@ public class SpotifyManager {
      */
     public func find<T>(_ what: T.Type,
                         _ keyword: String,
-                        completionHandler: @escaping ([T]) -> Void) where T: SpotifySearchItem {
+                        completionHandler: @escaping ([T]?) -> Void) where T: SpotifySearchItem {
         tokenQuery { token in
             URLSession.shared.request(SpotifyQuery.search,
                                       method: .GET,
@@ -362,6 +371,8 @@ public class SpotifyManager {
                     let results = try? JSONDecoder().decode(SpotifyFindResponse<T>.self,
                                                            from: data).results.items {
                     completionHandler(results)
+                } else {
+                    completionHandler(nil)
                 }
             }
         }
@@ -375,10 +386,14 @@ public class SpotifyManager {
      */
     public func getTrack(title: String,
                          artist: String,
-                         completionHandler: @escaping (SpotifyTrack) -> Void) {
-        find(SpotifyTrack.self, "\(title) \(artist)") { results in
-            if let track = results.first {
+                         completionHandler: @escaping (SpotifyTrack?) -> Void) {
+        find(SpotifyTrack.self,
+             "\(title) \(artist)".folding(options: .diacriticInsensitive, locale: nil).addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        ) { results in
+            if let track = results?.first {
                 completionHandler(track)
+            } else {
+                completionHandler(nil)
             }
         }
     }
@@ -597,6 +612,65 @@ public class SpotifyManager {
         }
     }
     
+    public func createPlaylist(playlistName: String,
+                     completionHandler: @escaping (String?) -> Void) {
+        tokenQuery { (token) in
+            self.myProfile { (user) in
+                self.createPlaylistRequest(playlistName: playlistName, userName: user.id, token: token.accessToken, completionHandler: completionHandler)
+            }
+        }
+    }
+    
+
+    func createPlaylistRequest(playlistName: String, userName: String, token: String, completionHandler: @escaping (String?) -> Void) {
+        let parameters = "{\n    \"name\": \""+playlistName+"\"\n}"
+        let postData = parameters.data(using: .utf8)
+
+        var request = URLRequest(url: URL(string: "https://api.spotify.com/v1/users/"+userName+"/playlists")!,timeoutInterval: Double.infinity)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+
+        request.httpMethod = "POST"
+        request.httpBody = postData
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil || data == nil {
+                completionHandler(nil)
+            } else {
+                print(String(data: data!, encoding: .utf8)!)
+                let a = try! JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                completionHandler(a["id"] as? String)
+            }
+        }
+        task.resume()
+    }
+    
+    public func addSongsToPlaylist(playlistId: String, tracks: [SpotifyTrack], completionHandler: @escaping (Bool) ->Void) {
+        tokenQuery { (token) in
+            var trackUrl = ""
+            for track in tracks {
+                trackUrl += track.uri + ","
+            }
+            trackUrl = trackUrl.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? trackUrl
+            var request = URLRequest(url: URL(string: "https://api.spotify.com/v1/playlists/"+playlistId+"/tracks?uris="+trackUrl)!,timeoutInterval: Double.infinity)
+            //request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("Bearer " + token.accessToken, forHTTPHeaderField: "Authorization")
+
+            request.httpMethod = "POST"
+
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                if error != nil || data == nil {
+                    print(error!)
+                    completionHandler(false)
+                } else {
+                    //print(String(data: data!, encoding: .utf8)!)
+                    completionHandler(true)
+                }
+            }
+            task.resume()
+        }
+    }
+    
     /**
      Saves a track to user's "Your Music" library
      - parameter track: the 'SpotifyTrack' object to save
@@ -697,7 +771,7 @@ public class SpotifyManager {
         return [SpotifyParameter.clientId: application.clientId,
                 SpotifyParameter.responseType: SpotifyAuthorizationResponseType.code.rawValue,
                 SpotifyParameter.redirectUri: application.redirectUri,
-                SpotifyParameter.scope: SpotifyScope.string(with: [.readPrivate, .readEmail, .libraryModify, .libraryRead, .collabPlaylists, .privatePlaylists])]
+                SpotifyParameter.scope: SpotifyScope.string(with: [.readPrivate, .readEmail, .libraryModify, .libraryRead, .collabPlaylists, .privatePlaylists, .writePublicPlaylist, .writePrivatePlaylist])]
     }
     
     /**
@@ -741,12 +815,20 @@ public class SpotifyManager {
             token.accessToken]
     }
     
+    private func contentTypeHeader() -> HTTPRequestHeaders {
+        return ["Content-Type": "application/json"]
+    }
+    
     /**
      Builds parameters for saving a track into user's library
      - return: parameters for track saving
      */
     private func trackIdsParameters(for trackId: String) -> HTTPRequestParameters {
         return [SpotifyParameter.ids: trackId]
+    }
+    
+    private func playlistNameParameter(name: String) -> HTTPRequestParameters {
+        return [SpotifyParameter.playlistName: name]
     }
     
     /**
