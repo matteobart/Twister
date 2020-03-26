@@ -10,11 +10,14 @@ import UIKit
 import MediaPlayer
 import SpotifyKit
 
+
+
 class ResultsViewController: UIViewController {
 
     @IBOutlet weak var songsTableView: UITableView!
+    @IBOutlet weak var createPlaylistButton: UIButton!
     
-    var songInformation: [(String, String, String)] = [] // (Song, Artist, Album)
+    var songInformation: [(name: String, artist: String, album: String)] = []
     var songProgress : [Int] = [] //0 in progress, 1 success, 2 failed
     var toService: StreamingService?
     var fromService: StreamingService?
@@ -23,8 +26,9 @@ class ResultsViewController: UIViewController {
     var newPlaylistName: String?
     var newPlaylistId: UUID?
     
-    var songResponse: [[[String:Any]]] = []
+    var songResponse: [[Song]] = []
     
+    //var toAddSongs: [SongValue?] = []
     var spotifyTracks: [SpotifyTrack?] = [] //used if creating a spotify playlist
     var appleIds: [String?] = [] //used if creating an apple music playlist
 
@@ -32,15 +36,24 @@ class ResultsViewController: UIViewController {
         super.viewDidLoad()
         songsTableView.delegate = self
         songsTableView.dataSource = self
-        start()
+        DispatchQueue.global().async {
+            self.start()
+        }
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
     }
     
-    //songId will either be String (if creating apple music) or SpotifyTrack (if creating spotify)
-    func addToPlaylist(songId: Any) {
+    //song will either be String (if creating apple music) or SpotifyTrack (if creating spotify)
+    func addToPlaylist(song: Song, index: Int) {
+        switch song.value {
+        case .appleId(let id): //toService: appleMusic
+            appleIds[index] = id
+        case .spotifyTrack(let track): //toService: spotify
+            spotifyTracks[index] = track
+        }
+        /*
         if toService == .appleMusic {
             guard let newPlaylistId = newPlaylistId else { return }
             MPMediaLibrary.default().getPlaylist(with: newPlaylistId, creationMetadata: nil) { (playlist, error) in
@@ -49,17 +62,19 @@ class ResultsViewController: UIViewController {
                     guard error == nil else { return }
                 })
             }
-        }
+        } */
     }
     
     func start() {
     //actual logic
+        let group = DispatchGroup()
+        let sam = DispatchSemaphore(value: 1)
+
         guard let toService = toService else { return }
         guard let fromService = fromService else { return }
         guard let playlistId = playlistId else { return }
-        guard let playlistName = playlistName else { return }
-        guard let newPlaylistName = newPlaylistName else { return }
         if fromService == .spotify {
+            sam.wait()
             spotifyManager.get(SpotifyPlaylist.self, id: playlistId) { (searchItem) in
                 print(searchItem)
                 guard let _ = searchItem.collectionTracks else {return}
@@ -70,8 +85,10 @@ class ResultsViewController: UIViewController {
                     self.songResponse.append([])
                     DispatchQueue.main.async { self.songsTableView.reloadData() }
                 }
+                sam.signal()
             }
         } else if fromService == .appleMusic {
+            sam.wait()
             let myPlaylistQuery = MPMediaQuery.playlists()
             myPlaylistQuery.addFilterPredicate(MPMediaPropertyPredicate(value: UInt64(playlistId), forProperty: MPMediaPlaylistPropertyPersistentID))
             let fromPlaylist = (myPlaylistQuery.collections)![0]
@@ -82,108 +99,116 @@ class ResultsViewController: UIViewController {
                 songResponse.append([])
                 DispatchQueue.main.async { self.songsTableView.reloadData() }
             }
+            sam.signal()
             
         }
-        
-        //init the array
+        sam.wait()
         
         if toService == .appleMusic {
+            for _ in songInformation { appleIds.append(nil) }
+            for i in 0..<self.songInformation.count {
+                let tuple = songInformation[i]
+                group.enter()
+                do {
+                    sleep(3) //simply because of itunes rate limiting
+                }
+                sendiTunesRequest(songName: tuple.name, artistName: tuple.artist) { (songId, dict) in
+                    group.leave()
+                    self.appleIds[i] = songId
+                    var possibleSongs: [Song] = []
+                    for item in dict {
+                        possibleSongs.append(Song(name: item["trackName"] as? String ?? "",
+                                                  artist: item["artistName"] as? String ?? "",
+                                                  album: item["collectionName"] as? String ?? "",
+                                                  value: SongValue.appleId(String(describing: item["trackId"] as! Int))))
+                    }
+                    self.songResponse[i] = possibleSongs
+                    if songId != nil {
+                        self.songProgress[i] = 1
+                    } else {
+                        print("WARNING: Apple could not find a perfect match for \(tuple.name)")
+                        self.songProgress[i] = 2
+                    }
+                    DispatchQueue.main.async { self.songsTableView.reloadData() }
+                }
+            }
+        } else if toService == .spotify {
+            for _ in songInformation { spotifyTracks.append(nil) }
+            for index in 0..<songInformation.count {
+                let tuple = songInformation[index]
+                let cleanedTitle = tuple.name.replacingOccurrences(of: "\\([^()]*\\)", with: "", options: [.regularExpression])
+                let searchTerm = (cleanedTitle + " " + tuple.artist).replacingOccurrences(of: "&", with: "and").replacingOccurrences(of: "?", with: "").folding(options: .diacriticInsensitive, locale: nil).addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+                group.enter()
+                spotifyManager.find(SpotifyTrack.self, searchTerm) { (tracks) in
+                    group.leave()
+                    guard let tracks = tracks else {
+                        self.songProgress[index] = 2
+                        return
+                    }
+                    if let track = tracks.first { // may want to change this to match song title + author
+                        self.spotifyTracks[index] = track
+                        self.songProgress[index] = 1
+                    } else {
+                        print("WARNING: Spotify can't find \(tuple.name)")
+                        self.songProgress[index] = 2
+                    }
+                    var possibleSongs: [Song] = []
+                    for track in tracks {
+                        possibleSongs.append(Song(name: track.name, artist: track.artist.name, album: track.album?.name ?? "", value: SongValue.spotifyTrack(track)))
+                    }
+                    self.songResponse[index] = possibleSongs
+
+                    DispatchQueue.main.async { self.songsTableView.reloadData() }
+                }
+                
+            }
+        }
+        group.notify(queue: .main) {
+            self.createPlaylistButton.isUserInteractionEnabled = true
+            self.createPlaylistButton.isEnabled = true
+        }
+    }
+    
+    @IBAction func createPlaylistButtonPressed(_ sender: UIButton) {
+        guard let fromService = fromService else { return }
+        if toService == .appleMusic {
             let playlistUUID = UUID()
-            newPlaylistId = playlistUUID
-            let playlistCreationMetadata = MPMediaPlaylistCreationMetadata(name: newPlaylistName)
+            let playlistMetadata = MPMediaPlaylistCreationMetadata(name: newPlaylistName ?? "New Twisted Playlist")
             let df = DateFormatter()
             df.dateFormat = "MMM dd, yyyy h:mm a"
-            playlistCreationMetadata.descriptionText = "This playlist was added via the Twister app. This playlist was entitled '\(playlistName)' on \(fromService.rawValue.capitalized). Twisted on \(df.string(from: Date()))"
-
-            MPMediaLibrary.default().getPlaylist(with: playlistUUID, creationMetadata: playlistCreationMetadata) { (playlist, error) in
-                guard error == nil else { return }
-                for item in self.songInformation {
-                    do {
-                        sleep(3) //simply because of itunes rate limiting
-                    }
-                    sendiTunesRequest(songName: item.0, artistName: item.1) { (songId, dict) in
-                        let i = self.songInformation.firstIndex { (check) -> Bool in
-                            return check.0 == item.0 && check.1 == item.1
-                        }
-                        self.songResponse[i!] = dict
-                        if songId == nil {
-                            print(item.0, item.1)
-                            self.songProgress[i!] = 2
-                        }
-                        //print(songId)
-                        guard songId != nil else { return }
-                        playlist?.addItem(withProductID: songId!, completionHandler: { (error) in
-                            guard error == nil else {
-                                self.songProgress[i!] = 2
-                                fatalError("An error occurred while adding an item to the playlist: \(error!.localizedDescription)")
+            playlistMetadata.descriptionText = "This playlist was added via the Twister app. This playlist was entitled '\(playlistName ?? "")' from \(fromService.rawValue.capitalized). Twisted on \(df.string(from: Date()))"
+            MPMediaLibrary.default().getPlaylist(with: playlistUUID, creationMetadata: playlistMetadata) { (playlist, error) in
+                guard error == nil else {
+                    print("Playlist could not be created")
+                    return
+                }
+                guard let playlist = playlist else { return }
+                let serialQueue = DispatchQueue(label: "createAppleMusicPlaylist")
+                for songId in self.appleIds.compactMap({ $0 }) {
+                    serialQueue.async { //add to a serial async queue
+                        playlist.addItem(withProductID: songId) { (error) in
+                            if error != nil {
+                                print("ERROR: Could not add \(songId) to the playlist!")
                             }
-                            self.songProgress[i!] = 1
                             NotificationCenter.default.post(name: MediaLibraryManager.libraryDidUpdate, object: nil)
-                        })
-                        DispatchQueue.main.async { self.songsTableView.reloadData() }
+                        }
                     }
                 }
             }
         } else if toService == .spotify {
-            var spotifyTracks: [SpotifyTrack?] = []
-            for _ in songInformation { spotifyTracks.append(nil) }
-            let group = DispatchGroup()
-            spotifyManager.createPlaylist(playlistName: newPlaylistName) { (id) in
-                guard let id = id else { return }
-                for item in self.songInformation {
-                    let cleanedTitle = item.0.replacingOccurrences(of: "\\([^()]*\\)", with: "", options: [.regularExpression])
-                    print(cleanedTitle)
-                    group.enter()
-                    let searchTerm = (cleanedTitle + " " + item.1).replacingOccurrences(of: "&", with: "and").replacingOccurrences(of: "?", with: "").folding(options: .diacriticInsensitive, locale: nil).addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-                    spotifyManager.find(SpotifyTrack.self, searchTerm) { (tracks) in
-                        let index = self.songInformation.firstIndex { (check) -> Bool in
-                            return check.0 == item.0 && check.1 == item.1
-                        }
-                        guard let tracks = tracks else {
-                            self.songProgress[index!] = 2
-                            return
-                        }
-                        var spotifyReturn: [[String: Any]] = []
-                        for i in 0..<tracks.count {
-                            var result: [String: Any] = [:]
-                            result["artistName"] = tracks[i].artist.name
-                            result["collectionName"] = tracks[i].album?.name ?? ""
-                            result["trackName"] = tracks[i].name
-                            result["trackId"] = tracks[i].uri
-                            spotifyReturn.append(result)
-                        }
-                        self.songResponse[index!] = spotifyReturn
-                        if let track = tracks.first {
-                            spotifyTracks[index!] = track
-                            //semaphore.signal()
-                            print(track.name, "==", cleanedTitle)
-                            self.songProgress[index!] = 1
- 
-                        } else {
-                            print("Can't find: " + item.0)
-                            spotifyManager.find(SpotifyTrack.self, cleanedTitle + " " + item.1) { (tracks) in
-                                
-                            }
-                            self.songProgress[index!] = 2
-                        }
-                        DispatchQueue.main.async { self.songsTableView.reloadData() }
-                        group.leave()
-                    }
-                    
+            spotifyManager.createPlaylist(playlistName: newPlaylistName ?? "New Twisted Playlist") { (playlistId) in
+                guard let playlistId = playlistId else {
+                    print("Playlist could not be made")
+                    return
                 }
-                group.notify(queue: .main) {
-                    spotifyManager.addSongsToPlaylist(playlistId: id, tracks: spotifyTracks.compactMap{ $0 })  { (success) in
-                        if success {
-                            print("lit")
-                        } else {
-                            print("not lit")
-                        }
+                spotifyManager.addSongsToPlaylist(playlistId: playlistId, tracks: self.spotifyTracks.compactMap { $0 }) { (success) in
+                    if !success {
+                        print("ERROR: Addings tracks to spotify")
                     }
                 }
             }
         }
     }
-    
     /*
     // MARK: - Navigation
 
@@ -235,10 +260,9 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
         if songProgress[indexPath.item] == 2 {
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "songVC") as! SongReplacerViewController
-            nextViewController.dict = songResponse[indexPath.item]
-            nextViewController.artistName = songInformation[indexPath.item].1
-            nextViewController.songName = songInformation[indexPath.item].0
-            nextViewController.albumName = songInformation[indexPath.item].2
+            nextViewController.index = indexPath.item
+            nextViewController.originalSongData = songInformation[indexPath.item]
+            nextViewController.replacementSongs = songResponse[indexPath.item]
             nextViewController.resultsVC = self
             self.present(nextViewController, animated: true) { }
 

@@ -13,8 +13,6 @@ class SongReplacerTableViewCell: UITableViewCell {
     @IBOutlet weak var songLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var albumLabel: UILabel!
-
-    var songId: String? 
     
     override func awakeFromNib() {
         super.awakeFromNib()

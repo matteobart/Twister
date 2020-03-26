@@ -164,21 +164,21 @@
                                 <rect key="frame" x="16" y="566" width="343" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYg-lm-IU4">
-                                        <rect key="frame" x="0.0" y="11" width="121" height="22"/>
+                                        <rect key="frame" x="0.0" y="2" width="121" height="40"/>
                                         <state key="normal" image="Backward"/>
                                         <connections>
                                             <action selector="handleUserDidPressBackwardButton:" destination="Dw9-du-vlV" eventType="touchUpInside" id="Mtk-uw-vch"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbK-eI-fpe">
-                                        <rect key="frame" x="121" y="9.5" width="101" height="25"/>
+                                        <rect key="frame" x="121" y="0.0" width="101" height="44"/>
                                         <state key="normal" image="Play"/>
                                         <connections>
                                             <action selector="handleUserDidPressPlayPauseButton:" destination="Dw9-du-vlV" eventType="touchUpInside" id="RDF-nO-7Mz"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vlc-jd-cRS">
-                                        <rect key="frame" x="222" y="11" width="121" height="22"/>
+                                        <rect key="frame" x="222" y="2" width="121" height="40"/>
                                         <state key="normal" image="Forward"/>
                                         <connections>
                                             <action selector="handleUserDidPressForwardButton:" destination="Dw9-du-vlV" eventType="touchUpInside" id="vno-6g-fZY"/>
@@ -932,9 +932,12 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7l7-RP-LFS">
+                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7l7-RP-LFS">
                                         <rect key="frame" x="0.0" y="617" width="355" height="30"/>
                                         <state key="normal" title="Create Playlist on Service"/>
+                                        <connections>
+                                            <action selector="createPlaylistButtonPressed:" destination="3bw-A3-5gb" eventType="touchUpInside" id="91K-oX-uyQ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -948,6 +951,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="createPlaylistButton" destination="7l7-RP-LFS" id="6au-Uk-Ho1"/>
                         <outlet property="songsTableView" destination="hSv-t5-7eW" id="JoF-T2-m8a"/>
                     </connections>
                 </viewController>
