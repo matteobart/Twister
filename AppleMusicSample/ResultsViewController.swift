@@ -87,8 +87,9 @@ class ResultsViewController: UIViewController {
         
         if toService == .appleMusic {
             for _ in songInformation { appleIds.append(nil) }
+            DispatchQueue.global().async {
             for i in 0..<self.songInformation.count {
-                let tuple = songInformation[i]
+                let tuple = self.songInformation[i]
                 group.enter()
                 do {
                     sleep(3) //simply because of itunes rate limiting
@@ -112,6 +113,7 @@ class ResultsViewController: UIViewController {
                     }
                     DispatchQueue.main.async { self.songsTableView.reloadData() }
                 }
+            }
             }
         } else if toService == .spotify {
             for _ in songInformation { spotifyTracks.append(nil) }
@@ -161,27 +163,36 @@ class ResultsViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func exitButtonPressed(_ sender: UIButton) {
+        self.dismiss(animated: true) {
+            
+        }
+    }
+    
     @IBAction func createPlaylistButtonPressed(_ sender: UIButton) {
         guard let fromService = fromService else { return }
-        //let group = DispatchGroup()
+        let group = DispatchGroup()
         if toService == .appleMusic {
             let playlistUUID = UUID()
             let playlistMetadata = MPMediaPlaylistCreationMetadata(name: newPlaylistName ?? "New Twisted Playlist")
             let df = DateFormatter()
             df.dateFormat = "MMM dd, yyyy h:mm a"
             playlistMetadata.descriptionText = "This playlist was added via the Twister app. This playlist was entitled '\(playlistName ?? "")' from \(fromService.rawValue.capitalized). Twisted on \(df.string(from: Date()))"
-            //group.enter()
+            group.enter() // A
             MPMediaLibrary.default().getPlaylist(with: playlistUUID, creationMetadata: playlistMetadata) { (playlist, error) in
                 guard error == nil else {
                     print("Playlist could not be created")
-                    //group.leave()
+                    group.leave() // A
                     return
                 }
                 guard let playlist = playlist else { return }
                 let serialQueue = DispatchQueue(label: "createAppleMusicPlaylist")
                 for songId in self.appleIds.compactMap({ $0 }) {
+                    group.enter() // B
                     serialQueue.async { //add to a serial async queue
                         playlist.addItem(withProductID: songId) { (error) in
+                            group.leave() // B
                             if error != nil {
                                 print("ERROR: Could not add \(songId) to the playlist!")
                             }
@@ -189,25 +200,31 @@ class ResultsViewController: UIViewController {
                         }
                     }
                 }
+                group.leave() // A
             }
         } else if toService == .spotify {
+            group.enter() // C
             spotifyManager.createPlaylist(playlistName: newPlaylistName ?? "New Twisted Playlist") { (playlistId) in
                 guard let playlistId = playlistId else {
                     print("Playlist could not be made")
+                    group.leave() // C
                     return
                 }
+                group.enter() // D
                 spotifyManager.addSongsToPlaylist(playlistId: playlistId, tracks: self.spotifyTracks.compactMap { $0 }) { (success) in
+                    group.leave() // D
                     if !success {
                         print("ERROR: Addings tracks to spotify")
                     }
                 }
+                group.leave() // C
             }
         }
-        //group.notify(queue: .main) {
-        //    self.dismiss(animated: true) {
+        group.notify(queue: .main) {
+            self.dismiss(animated: true) {
                 
-        //    }
-        //}
+            }
+        }
     }
     /*
     // MARK: - Navigation
