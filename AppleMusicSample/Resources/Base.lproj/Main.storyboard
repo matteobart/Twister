@@ -936,7 +936,7 @@
                                         <rect key="frame" x="0.0" y="617" width="355" height="30"/>
                                         <state key="normal" title="Create Playlist on Service"/>
                                         <connections>
-                                            <action selector="createPlaylistButtonPressed:" destination="3bw-A3-5gb" eventType="touchUpInside" id="91K-oX-uyQ"/>
+                                            <action selector="createPlaylistButtonPressed:" destination="3bw-A3-5gb" eventType="touchUpInside" id="ffw-aq-78y"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -951,7 +951,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="createPlaylistButton" destination="7l7-RP-LFS" id="6au-Uk-Ho1"/>
+                        <outlet property="createPlaylistButton" destination="7l7-RP-LFS" id="bVR-tl-lpq"/>
                         <outlet property="songsTableView" destination="hSv-t5-7eW" id="JoF-T2-m8a"/>
                     </connections>
                 </viewController>

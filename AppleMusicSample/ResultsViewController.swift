@@ -32,47 +32,21 @@ class ResultsViewController: UIViewController {
     var spotifyTracks: [SpotifyTrack?] = [] //used if creating a spotify playlist
     var appleIds: [String?] = [] //used if creating an apple music playlist
 
+    let sam = DispatchSemaphore(value: 1)
+
     override func viewDidLoad() {
         super.viewDidLoad()
         songsTableView.delegate = self
         songsTableView.dataSource = self
-        DispatchQueue.global().async {
-            self.start()
-        }
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
-    }
-    
-    //song will either be String (if creating apple music) or SpotifyTrack (if creating spotify)
-    func addToPlaylist(song: Song, index: Int) {
-        switch song.value {
-        case .appleId(let id): //toService: appleMusic
-            appleIds[index] = id
-        case .spotifyTrack(let track): //toService: spotify
-            spotifyTracks[index] = track
-        }
-        /*
-        if toService == .appleMusic {
-            guard let newPlaylistId = newPlaylistId else { return }
-            MPMediaLibrary.default().getPlaylist(with: newPlaylistId, creationMetadata: nil) { (playlist, error) in
-                guard error == nil else { return }
-                playlist?.addItem(withProductID: songId as! String, completionHandler: { (error) in
-                    guard error == nil else { return }
-                })
-            }
-        } */
-    }
-    
-    func start() {
-    //actual logic
-        let group = DispatchGroup()
-        let sam = DispatchSemaphore(value: 1)
-
-        guard let toService = toService else { return }
+        super.viewWillAppear(animated)
+        
         guard let fromService = fromService else { return }
         guard let playlistId = playlistId else { return }
+        
         if fromService == .spotify {
             sam.wait()
             spotifyManager.get(SpotifyPlaylist.self, id: playlistId) { (searchItem) in
@@ -85,7 +59,7 @@ class ResultsViewController: UIViewController {
                     self.songResponse.append([])
                     DispatchQueue.main.async { self.songsTableView.reloadData() }
                 }
-                sam.signal()
+                self.sam.signal()
             }
         } else if fromService == .appleMusic {
             sam.wait()
@@ -102,7 +76,14 @@ class ResultsViewController: UIViewController {
             sam.signal()
             
         }
-        sam.wait()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        guard let toService = toService else { return }
+        
+        let group = DispatchGroup()
         
         if toService == .appleMusic {
             for _ in songInformation { appleIds.append(nil) }
@@ -163,23 +144,37 @@ class ResultsViewController: UIViewController {
                 
             }
         }
+        
         group.notify(queue: .main) {
             self.createPlaylistButton.isUserInteractionEnabled = true
             self.createPlaylistButton.isEnabled = true
         }
     }
     
+    //song will either be String (if creating apple music) or SpotifyTrack (if creating spotify)
+    func addToPlaylist(song: Song, index: Int) {
+        switch song.value {
+        case .appleId(let id): //toService: appleMusic
+            appleIds[index] = id
+        case .spotifyTrack(let track): //toService: spotify
+            spotifyTracks[index] = track
+        }
+    }
+    
     @IBAction func createPlaylistButtonPressed(_ sender: UIButton) {
         guard let fromService = fromService else { return }
+        //let group = DispatchGroup()
         if toService == .appleMusic {
             let playlistUUID = UUID()
             let playlistMetadata = MPMediaPlaylistCreationMetadata(name: newPlaylistName ?? "New Twisted Playlist")
             let df = DateFormatter()
             df.dateFormat = "MMM dd, yyyy h:mm a"
             playlistMetadata.descriptionText = "This playlist was added via the Twister app. This playlist was entitled '\(playlistName ?? "")' from \(fromService.rawValue.capitalized). Twisted on \(df.string(from: Date()))"
+            //group.enter()
             MPMediaLibrary.default().getPlaylist(with: playlistUUID, creationMetadata: playlistMetadata) { (playlist, error) in
                 guard error == nil else {
                     print("Playlist could not be created")
+                    //group.leave()
                     return
                 }
                 guard let playlist = playlist else { return }
@@ -208,6 +203,11 @@ class ResultsViewController: UIViewController {
                 }
             }
         }
+        //group.notify(queue: .main) {
+        //    self.dismiss(animated: true) {
+                
+        //    }
+        //}
     }
     /*
     // MARK: - Navigation
