@@ -17,19 +17,19 @@ class SongReplacerViewController: UIViewController {
     
     var resultsVC: ResultsViewController?
     
-    var artistName: String?
-    var songName: String?
-    var albumName: String?
+    var originalSongData: (name: String, artist: String, album: String)?
+    var index: Int? // index of the song from the previous frame
     
-    var dict: [[String:Any]] = []
+    var replacementSongs: [Song] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let originalSongData = originalSongData else { return }
         songTableView.dataSource = self
         songTableView.delegate = self
-        songLabel.text = songName
-        artistLabel.text = artistName
-        albumLabel.text = albumName
+        songLabel.text = originalSongData.name
+        artistLabel.text = originalSongData.artist
+        albumLabel.text = originalSongData.album
         
         // Do any additional setup after loading the view.songVC
     }
@@ -50,7 +50,7 @@ class SongReplacerViewController: UIViewController {
 
 extension SongReplacerViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dict.count
+        return replacementSongs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,21 +58,18 @@ extension SongReplacerViewController: UITableViewDelegate, UITableViewDataSource
                                                        for: indexPath) as? SongReplacerTableViewCell else {
             return UITableViewCell()
         }
-        //cell.creatorNameLabel.text = allPlaylists[1][indexPath.item].1
-        cell.artistLabel.text = dict[indexPath.item]["artistName"] as? String
-        cell.songLabel.text = dict[indexPath.item]["trackName"] as? String
-        cell.albumLabel.text = dict[indexPath.item]["collectionName"] as? String
-        cell.songId = String(describing: dict[indexPath.item]["trackId"] as! Int)
+        cell.artistLabel.text = replacementSongs[indexPath.item].artist
+        cell.songLabel.text = replacementSongs[indexPath.item].name
+        cell.albumLabel.text = replacementSongs[indexPath.item].album
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard resultsVC != nil else { return }
-        let cell = tableView.cellForRow(at: indexPath) as! SongReplacerTableViewCell
-        guard let songId = cell.songId else { return }
-        resultsVC?.addToPlaylist(songId: songId)
+        guard let resultsVC = resultsVC else { return }
+        guard let index = index else { return }
+        resultsVC.addToPlaylist(song: replacementSongs[indexPath.item], index: index)
         dismiss(animated: true) {
+            
         }
     }
     

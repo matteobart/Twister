@@ -164,21 +164,21 @@
                                 <rect key="frame" x="16" y="566" width="343" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYg-lm-IU4">
-                                        <rect key="frame" x="0.0" y="11" width="121" height="22"/>
+                                        <rect key="frame" x="0.0" y="2" width="121" height="40"/>
                                         <state key="normal" image="Backward"/>
                                         <connections>
                                             <action selector="handleUserDidPressBackwardButton:" destination="Dw9-du-vlV" eventType="touchUpInside" id="Mtk-uw-vch"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbK-eI-fpe">
-                                        <rect key="frame" x="121" y="9.5" width="101" height="25"/>
+                                        <rect key="frame" x="121" y="0.0" width="101" height="44"/>
                                         <state key="normal" image="Play"/>
                                         <connections>
                                             <action selector="handleUserDidPressPlayPauseButton:" destination="Dw9-du-vlV" eventType="touchUpInside" id="RDF-nO-7Mz"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vlc-jd-cRS">
-                                        <rect key="frame" x="222" y="11" width="121" height="22"/>
+                                        <rect key="frame" x="222" y="2" width="121" height="40"/>
                                         <state key="normal" image="Forward"/>
                                         <connections>
                                             <action selector="handleUserDidPressForwardButton:" destination="Dw9-du-vlV" eventType="touchUpInside" id="vno-6g-fZY"/>
@@ -874,14 +874,29 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Moa-Su-gKY">
                                 <rect key="frame" x="10" y="10" width="355" height="647"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finding Songs on Service" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0U-FS-atS">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dli-wI-Goe">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="il2-oa-myQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="20.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="7cC-iE-Efm"/>
+                                                </constraints>
+                                                <state key="normal" title="Exit"/>
+                                                <connections>
+                                                    <action selector="exitButtonPressed:" destination="3bw-A3-5gb" eventType="touchUpInside" id="00N-7L-xMi"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finding Songs on Service" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0U-FS-atS">
+                                                <rect key="frame" x="58" y="0.0" width="297" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hSv-t5-7eW">
-                                        <rect key="frame" x="0.0" y="28.5" width="355" height="580.5"/>
+                                        <rect key="frame" x="0.0" y="28.5" width="355" height="570.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SongVC" rowHeight="66" id="bLM-4B-mxH" customClass="SongTableViewCell" customModule="Twister" customModuleProvider="target">
@@ -932,10 +947,16 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7l7-RP-LFS">
-                                        <rect key="frame" x="0.0" y="617" width="355" height="30"/>
+                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7l7-RP-LFS">
+                                        <rect key="frame" x="0.0" y="607" width="355" height="30"/>
                                         <state key="normal" title="Create Playlist on Service"/>
+                                        <connections>
+                                            <action selector="createPlaylistButtonPressed:" destination="3bw-A3-5gb" eventType="touchUpInside" id="ffw-aq-78y"/>
+                                        </connections>
                                     </button>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yVW-Eo-HwO">
+                                        <rect key="frame" x="0.0" y="645" width="355" height="2"/>
+                                    </progressView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -948,6 +969,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="createPlaylistButton" destination="7l7-RP-LFS" id="bVR-tl-lpq"/>
+                        <outlet property="createPlaylistProgressView" destination="yVW-Eo-HwO" id="RPJ-nP-RcY"/>
                         <outlet property="songsTableView" destination="hSv-t5-7eW" id="JoF-T2-m8a"/>
                     </connections>
                 </viewController>

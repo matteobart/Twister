@@ -7,10 +7,29 @@
 //
 
 import Foundation
+import SpotifyKit
 
 enum StreamingService: String, CaseIterable {
     case spotify
     case appleMusic
+}
+
+enum SongValue {
+    case appleId(String)
+    case spotifyTrack(SpotifyTrack)
+}
+
+struct Song {
+    var name: String
+    var artist: String
+    var album: String
+    var value: SongValue
+    init(name: String, artist: String, album: String, value: SongValue) {
+        self.name = name
+        self.artist = artist
+        self.album = album
+        self.value = value
+    }
 }
 
 //will search for a songId given the song name and artist name

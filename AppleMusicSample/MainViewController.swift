@@ -85,6 +85,7 @@ class MainViewController: UIViewController {
 
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "resultsVC") as! ResultsViewController
+        nextViewController.modalPresentationStyle = .fullScreen
         
         nextViewController.fromService = fromService
         nextViewController.toService = toService
