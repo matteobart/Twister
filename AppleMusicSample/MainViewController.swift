@@ -44,17 +44,11 @@ class MainViewController: UIViewController {
         
         //add apple music playlists
         let myPlaylistQuery = MPMediaQuery.playlists()
-        let playlists = myPlaylistQuery.collections
-        for playlist in playlists! {
+        guard let playlists = myPlaylistQuery.collections else { return }
+        for playlist in playlists {
             let playlistName = playlist.value(forProperty: MPMediaPlaylistPropertyName) as! String
             let playlistUUID = String(describing: playlist.value(forProperty: MPMediaPlaylistPropertyPersistentID)!)
             self.allPlaylists[0].append((playlistName, playlistUUID))
-            /*let songs = playlist.items
-            for song in songs {
-                let songTitle = song.title!
-                let artist = song.artist!
-                print("\t\t", songTitle, "->", artist)
-            }*/
         }
     }
     
