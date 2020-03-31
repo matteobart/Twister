@@ -22,7 +22,8 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.item == 0 {
-        
+            authorizationManager.requestCloudServiceAuthorization()
+            authorizationManager.requestMediaLibraryAuthorization()
         } else if indexPath.item == 1 { //deauth spotify
             spotifyManager.deauthorize()
         }

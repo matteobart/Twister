@@ -29,9 +29,6 @@ var mediaLibraryManager: MediaLibraryManager = {
 /// The instance of `AppleMusicManager` which handles making web service calls to Apple Music Web Services.
 var appleMusicManager = AppleMusicManager()
 
-/// The instance of `MusicPlayerManager` which handles media playback.
-var musicPlayerManager = MusicPlayerManager()
-
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -50,14 +47,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        
         /*
         guard let authorizationTableViewController = topViewControllerAtTabBarIndex(0) as? AuthorizationTableViewController else {
             fatalError("Unable to find expected \(AuthorizationTableViewController.self) in at TabBar Index 0")
         }
-        
+        /*
         guard let playlistTableViewController = topViewControllerAtTabBarIndex(1) as? PlaylistTableViewController else {
             fatalError("Unable to find \(PlaylistTableViewController.self) in at TabBar Index 1")
         }
+        */
         
         guard let playerViewController = topViewControllerAtTabBarIndex(2) as? PlayerViewController else {
             fatalError("Unable to find \(PlayerViewController.self) in at TabBar Index 2")
@@ -70,12 +69,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let mediaSearchTableViewController = topViewControllerAtTabBarIndex(4) as? MediaSearchTableViewController else {
             fatalError("Unable to find expected \(MediaSearchTableViewController.self) in at TabBar Index 4")
         }
-        
         authorizationTableViewController.authorizationManager = authorizationManager
-        
-        playlistTableViewController.authorizationManager = authorizationManager
-        playlistTableViewController.mediaLibraryManager = mediaLibraryManager
-        playlistTableViewController.musicPlayerManager = musicPlayerManager
+        //playlistTableViewController.authorizationManager = authorizationManager
+        //playlistTableViewController.mediaLibraryManager = mediaLibraryManager
+        //playlistTableViewController.musicPlayerManager = musicPlayerManager
         
         playerViewController.musicPlayerManager = musicPlayerManager
         
@@ -92,7 +89,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // MARK: Utility Methods
-    /*
     func topViewControllerAtTabBarIndex(_ index: Int) -> UIViewController? {
         
         guard let tabBarController = window?.rootViewController as? UITabBarController,
@@ -101,6 +97,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return navigationController.topViewController
-    }*/
+    }
 }
 
