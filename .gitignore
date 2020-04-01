@@ -4,7 +4,7 @@
 
 # Finder
 .DS_Store
-*/Keys.swift 
+**/Keys.swift 
 # Xcode - User files
 xcuserdata/
 *.xcworkspace
