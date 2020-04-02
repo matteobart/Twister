@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17B0991AD748AEE9AB36E7B7 /* Pods_Twister.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F45034432960FBD7F51ACD /* Pods_Twister.framework */; };
 		4213F0AA1EC2CE250014E741 /* MediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4213F0A91EC2CE250014E741 /* MediaItem.swift */; };
 		4249C3FB1EDB8D3000CC40AE /* JSONKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4249C3FA1EDB8D3000CC40AE /* JSONKeys.swift */; };
 		424BE3E01EBAEAA60034DB00 /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424BE3DD1EBAEAA60034DB00 /* AuthorizationManager.swift */; };
@@ -29,7 +30,6 @@
 		A6D5DCD823D682F5004F4373 /* SongReplacerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D5DCD723D682F5004F4373 /* SongReplacerTableViewCell.swift */; };
 		A6DCD83823D4F4900072012F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCD83723D4F4900072012F /* SettingsTableViewController.swift */; };
 		A6DCD83A23D606110072012F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCD83923D606110072012F /* Models.swift */; };
-		B4AE488280DB97C3F397044B /* Pods_Adding_Content_to_Apple_Music.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1438A692D73D03DCA96F262 /* Pods_Adding_Content_to_Apple_Music.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,9 +46,12 @@
 		42EDDE631E9AE0B10012EDD0 /* Twister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42EDDE661E9AE0B10012EDD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42EDDE721E9AE0B10012EDD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		437D499E43FAB7A6EE0AA4F3 /* Pods-Twister.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twister.debug.xcconfig"; path = "Target Support Files/Pods-Twister/Pods-Twister.debug.xcconfig"; sourceTree = "<group>"; };
 		45B19C0EE7AE36636EF68661 /* Pods-Adding-Content-to-Apple-Music.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adding-Content-to-Apple-Music.debug.xcconfig"; path = "Target Support Files/Pods-Adding-Content-to-Apple-Music/Pods-Adding-Content-to-Apple-Music.debug.xcconfig"; sourceTree = "<group>"; };
+		46F45034432960FBD7F51ACD /* Pods_Twister.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twister.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A423584CF0C96CBCD6DD920 /* Pods-Adding-Content-to-Apple-Music.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adding-Content-to-Apple-Music.release.xcconfig"; path = "Target Support Files/Pods-Adding-Content-to-Apple-Music/Pods-Adding-Content-to-Apple-Music.release.xcconfig"; sourceTree = "<group>"; };
 		7D4983CD4395E5828F81D4AD /* SampleCode.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
+		8D09AB42E99653918C08824C /* Pods-Twister.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twister.release.xcconfig"; path = "Target Support Files/Pods-Twister/Pods-Twister.release.xcconfig"; sourceTree = "<group>"; };
 		A643FE242434176C0065247B /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		A65DCD1F243404A200FCD74D /* Artwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		A65DCD21243405DC00FCD74D /* SerializationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerializationError.swift; sourceTree = "<group>"; };
@@ -61,7 +64,6 @@
 		A6D5DCD723D682F5004F4373 /* SongReplacerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongReplacerTableViewCell.swift; sourceTree = "<group>"; };
 		A6DCD83723D4F4900072012F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		A6DCD83923D606110072012F /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		B1438A692D73D03DCA96F262 /* Pods_Adding_Content_to_Apple_Music.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Adding_Content_to_Apple_Music.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF6A8FFC3191918B5D84482D /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,7 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4AE488280DB97C3F397044B /* Pods_Adding_Content_to_Apple_Music.framework in Frameworks */,
+				17B0991AD748AEE9AB36E7B7 /* Pods_Twister.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +165,7 @@
 		75417DE84913A7A1EB3B7761 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B1438A692D73D03DCA96F262 /* Pods_Adding_Content_to_Apple_Music.framework */,
+				46F45034432960FBD7F51ACD /* Pods_Twister.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -181,6 +183,8 @@
 			children = (
 				45B19C0EE7AE36636EF68661 /* Pods-Adding-Content-to-Apple-Music.debug.xcconfig */,
 				7A423584CF0C96CBCD6DD920 /* Pods-Adding-Content-to-Apple-Music.release.xcconfig */,
+				437D499E43FAB7A6EE0AA4F3 /* Pods-Twister.debug.xcconfig */,
+				8D09AB42E99653918C08824C /* Pods-Twister.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -304,7 +308,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Adding-Content-to-Apple-Music/Pods-Adding-Content-to-Apple-Music-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Twister/Pods-Twister-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SpotifyKit/SpotifyKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -313,7 +317,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Adding-Content-to-Apple-Music/Pods-Adding-Content-to-Apple-Music-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Twister/Pods-Twister-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A45A07021F212F9FAA0B5ACB /* [CP] Check Pods Manifest.lock */ = {
@@ -331,7 +335,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Adding-Content-to-Apple-Music-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Twister-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -504,7 +508,7 @@
 		};
 		42EDDE761E9AE0B10012EDD0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 45B19C0EE7AE36636EF68661 /* Pods-Adding-Content-to-Apple-Music.debug.xcconfig */;
+			baseConfigurationReference = 437D499E43FAB7A6EE0AA4F3 /* Pods-Twister.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7TST5593AZ;
@@ -521,7 +525,7 @@
 		};
 		42EDDE771E9AE0B10012EDD0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7A423584CF0C96CBCD6DD920 /* Pods-Adding-Content-to-Apple-Music.release.xcconfig */;
+			baseConfigurationReference = 8D09AB42E99653918C08824C /* Pods-Twister.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7TST5593AZ;

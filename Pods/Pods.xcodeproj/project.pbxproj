@@ -8,19 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		04D192C4D02FD43975EA0153472197D6 /* SpotifyItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B64576F2AA16D3A57645752979A0F78 /* SpotifyItems.swift */; };
-		086E1103EBB5EDC6ABDD1413784832D5 /* Pods-Adding-Content-to-Apple-Music-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A040AE6D159BAE094CBD60ABEAD944C /* Pods-Adding-Content-to-Apple-Music-dummy.m */; };
 		34F3FA46139F83CCDE8AF85EDD200A91 /* SpotifyKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA185733EAA58DFD7EF742A6B9EC1C0B /* SpotifyKit.swift */; };
-		3E44B2B7F7E16F45ACB8B126933C36F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		46257E071DE6AC5196FE49191E26D78B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		5FFCA7EC6F58DA4F6C29C8892927C899 /* WebCommunications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AB0BAC7495C0E2AA976430DE833F3 /* WebCommunications.swift */; };
 		736EC3299A9771A22DF72ABD691FA90C /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB2695A24DDFD37C667F94EA5E208C /* Keychain.swift */; };
-		8D9994EFD2E338CDF894EEEC8922E9E0 /* Pods-Adding-Content-to-Apple-Music-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E6A313DBFADB692D525DF2E63ECE24 /* Pods-Adding-Content-to-Apple-Music-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A4B1A38AC12BBFE1032B77929DC4CE8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		AACB35ADB8D5E4CA4C51B76B066E36C1 /* Pods-Twister-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CC43CACC0B61B566B2254F8CB1D2FFB /* Pods-Twister-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1E824CBF00F3E5560A94F5921E379CB /* SpotifyKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DE97E4BAB419AB2EDEC14E49D30EF643 /* SpotifyKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E229E72870204C13C23C6FF4CEE36D90 /* Pods-Twister-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B2EF044F922C14450A38A702AADC8A83 /* Pods-Twister-dummy.m */; };
 		EB1CE86497C42A4FE8F90D9323FD9235 /* SpotifyKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E580ED50D5DCC2663C852D8000BC4969 /* SpotifyKit-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0317C136BFC74682ED21051778EB0F49 /* PBXContainerItemProxy */ = {
+		1EBCC8A0B5B983DBE50AACC617C80E26 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -30,28 +30,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		11BD497BDAC4A2FF4B646B8FB551E329 /* Pods-Adding-Content-to-Apple-Music.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Adding-Content-to-Apple-Music.debug.xcconfig"; sourceTree = "<group>"; };
-		14E6A313DBFADB692D525DF2E63ECE24 /* Pods-Adding-Content-to-Apple-Music-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Adding-Content-to-Apple-Music-umbrella.h"; sourceTree = "<group>"; };
+		1CA2FB80BAFF675B5BB4CBD2FF8979F0 /* Pods-Twister-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Twister-Info.plist"; sourceTree = "<group>"; };
 		1D0027DD9EB9C4D2083C0E7DD1CD90B6 /* SpotifyKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SpotifyKit-Info.plist"; sourceTree = "<group>"; };
+		1D0EE32213F9C1CD6CAAC9A778C6EC41 /* Pods-Twister.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Twister.debug.xcconfig"; sourceTree = "<group>"; };
+		234C3D21658D487D2055D8443A17B34F /* Pods_Twister.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twister.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		4F36E402C954A3658DECD05D9F22045C /* Pods-Adding-Content-to-Apple-Music-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Adding-Content-to-Apple-Music-acknowledgements.markdown"; sourceTree = "<group>"; };
-		5F703CE1E3FF2BD937F8B69061AB63E9 /* Pods-Adding-Content-to-Apple-Music-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Adding-Content-to-Apple-Music-acknowledgements.plist"; sourceTree = "<group>"; };
-		876D1A04E773D954AEBD644245FB6899 /* Pods-Adding-Content-to-Apple-Music.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Adding-Content-to-Apple-Music.release.xcconfig"; sourceTree = "<group>"; };
+		3CC43CACC0B61B566B2254F8CB1D2FFB /* Pods-Twister-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Twister-umbrella.h"; sourceTree = "<group>"; };
+		55877679960725ADB7374E4B074A4699 /* Pods-Twister.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Twister.release.xcconfig"; sourceTree = "<group>"; };
+		66446C256A706F548124B17970520E8C /* Pods-Twister-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Twister-frameworks.sh"; sourceTree = "<group>"; };
+		8843CD35B202B53B3757E616279A9DF5 /* Pods-Twister-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Twister-acknowledgements.plist"; sourceTree = "<group>"; };
+		885E0FEF25C44E9F03AFB90B5D88A032 /* Pods-Twister-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Twister-acknowledgements.markdown"; sourceTree = "<group>"; };
 		8F5AB0BAC7495C0E2AA976430DE833F3 /* WebCommunications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebCommunications.swift; path = Sources/WebCommunications.swift; sourceTree = "<group>"; };
-		92FDBA401504D4FEC3E860CE2F75E649 /* Pods-Adding-Content-to-Apple-Music-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Adding-Content-to-Apple-Music-Info.plist"; sourceTree = "<group>"; };
 		97023160394A8C36E98C342069F53213 /* SpotifyKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SpotifyKit.xcconfig; sourceTree = "<group>"; };
 		98F557A75641F62235315901421EC6DA /* SpotifyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SpotifyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A040AE6D159BAE094CBD60ABEAD944C /* Pods-Adding-Content-to-Apple-Music-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Adding-Content-to-Apple-Music-dummy.m"; sourceTree = "<group>"; };
 		9B64576F2AA16D3A57645752979A0F78 /* SpotifyItems.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpotifyItems.swift; path = Sources/SpotifyItems.swift; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A262FF2D756290560E2D130A609EEAB8 /* Pods-Adding-Content-to-Apple-Music.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Adding-Content-to-Apple-Music.modulemap"; sourceTree = "<group>"; };
 		AA185733EAA58DFD7EF742A6B9EC1C0B /* SpotifyKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpotifyKit.swift; path = Sources/SpotifyKit.swift; sourceTree = "<group>"; };
-		B15CAABC0C59D52A4B0F529D53C4028E /* Pods-Adding-Content-to-Apple-Music-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Adding-Content-to-Apple-Music-frameworks.sh"; sourceTree = "<group>"; };
+		B2EF044F922C14450A38A702AADC8A83 /* Pods-Twister-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Twister-dummy.m"; sourceTree = "<group>"; };
 		BEA7DF836E61DEC703AE3BE13787ADB7 /* SpotifyKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SpotifyKit.modulemap; sourceTree = "<group>"; };
+		C584E39252A1A5C7643B14A5C66C2500 /* Pods-Twister.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Twister.modulemap"; sourceTree = "<group>"; };
 		DE97E4BAB419AB2EDEC14E49D30EF643 /* SpotifyKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SpotifyKit-umbrella.h"; sourceTree = "<group>"; };
 		E580ED50D5DCC2663C852D8000BC4969 /* SpotifyKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SpotifyKit-dummy.m"; sourceTree = "<group>"; };
 		E9BB2695A24DDFD37C667F94EA5E208C /* Keychain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Keychain.swift; path = Sources/Keychain.swift; sourceTree = "<group>"; };
-		F3BB22055AD9C4D546D39959381B8622 /* Pods_Adding_Content_to_Apple_Music.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Adding_Content_to_Apple_Music.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F64841F5CDEC7F35FC5EB6B4617FD3B4 /* SpotifyKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SpotifyKit-prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,17 +64,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		783215F0798C3570C2A297F8523A9535 /* Frameworks */ = {
+		BAA2F9B1FDC6EE22B4619B89A02465CD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E44B2B7F7E16F45ACB8B126933C36F8 /* Foundation.framework in Frameworks */,
+				46257E071DE6AC5196FE49191E26D78B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07E9AEACCCACD8C1C23A86DF7DBEDCCC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				234C3D21658D487D2055D8443A17B34F /* Pods_Twister.framework */,
+				98F557A75641F62235315901421EC6DA /* SpotifyKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		0827A195A4A9AA9F620187203F1D4B6F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,38 +92,29 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		2E891D8857A7D3A43DD95DFC0A61EF9E /* Products */ = {
+		0CC4FA3BBB9EA2FE0DDE5F691EE493F4 /* Pods-Twister */ = {
 			isa = PBXGroup;
 			children = (
-				F3BB22055AD9C4D546D39959381B8622 /* Pods_Adding_Content_to_Apple_Music.framework */,
-				98F557A75641F62235315901421EC6DA /* SpotifyKit.framework */,
+				C584E39252A1A5C7643B14A5C66C2500 /* Pods-Twister.modulemap */,
+				885E0FEF25C44E9F03AFB90B5D88A032 /* Pods-Twister-acknowledgements.markdown */,
+				8843CD35B202B53B3757E616279A9DF5 /* Pods-Twister-acknowledgements.plist */,
+				B2EF044F922C14450A38A702AADC8A83 /* Pods-Twister-dummy.m */,
+				66446C256A706F548124B17970520E8C /* Pods-Twister-frameworks.sh */,
+				1CA2FB80BAFF675B5BB4CBD2FF8979F0 /* Pods-Twister-Info.plist */,
+				3CC43CACC0B61B566B2254F8CB1D2FFB /* Pods-Twister-umbrella.h */,
+				1D0EE32213F9C1CD6CAAC9A778C6EC41 /* Pods-Twister.debug.xcconfig */,
+				55877679960725ADB7374E4B074A4699 /* Pods-Twister.release.xcconfig */,
 			);
-			name = Products;
+			name = "Pods-Twister";
+			path = "Target Support Files/Pods-Twister";
 			sourceTree = "<group>";
 		};
-		8FC5ABE7C313F47D6C3124F51CC29D01 /* Targets Support Files */ = {
+		18417526CAF86E30B6C2A1FEC5307306 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				ADFF9945201D3C557DC03B3E261A595E /* Pods-Adding-Content-to-Apple-Music */,
+				0CC4FA3BBB9EA2FE0DDE5F691EE493F4 /* Pods-Twister */,
 			);
 			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		ADFF9945201D3C557DC03B3E261A595E /* Pods-Adding-Content-to-Apple-Music */ = {
-			isa = PBXGroup;
-			children = (
-				A262FF2D756290560E2D130A609EEAB8 /* Pods-Adding-Content-to-Apple-Music.modulemap */,
-				4F36E402C954A3658DECD05D9F22045C /* Pods-Adding-Content-to-Apple-Music-acknowledgements.markdown */,
-				5F703CE1E3FF2BD937F8B69061AB63E9 /* Pods-Adding-Content-to-Apple-Music-acknowledgements.plist */,
-				9A040AE6D159BAE094CBD60ABEAD944C /* Pods-Adding-Content-to-Apple-Music-dummy.m */,
-				B15CAABC0C59D52A4B0F529D53C4028E /* Pods-Adding-Content-to-Apple-Music-frameworks.sh */,
-				92FDBA401504D4FEC3E860CE2F75E649 /* Pods-Adding-Content-to-Apple-Music-Info.plist */,
-				14E6A313DBFADB692D525DF2E63ECE24 /* Pods-Adding-Content-to-Apple-Music-umbrella.h */,
-				11BD497BDAC4A2FF4B646B8FB551E329 /* Pods-Adding-Content-to-Apple-Music.debug.xcconfig */,
-				876D1A04E773D954AEBD644245FB6899 /* Pods-Adding-Content-to-Apple-Music.release.xcconfig */,
-			);
-			name = "Pods-Adding-Content-to-Apple-Music";
-			path = "Target Support Files/Pods-Adding-Content-to-Apple-Music";
 			sourceTree = "<group>";
 		};
 		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
@@ -131,8 +131,8 @@
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				0827A195A4A9AA9F620187203F1D4B6F /* Pods */,
-				2E891D8857A7D3A43DD95DFC0A61EF9E /* Products */,
-				8FC5ABE7C313F47D6C3124F51CC29D01 /* Targets Support Files */,
+				07E9AEACCCACD8C1C23A86DF7DBEDCCC /* Products */,
+				18417526CAF86E30B6C2A1FEC5307306 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -181,17 +181,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BE14D2E291C8D2152F17D86016F614CA /* Headers */ = {
+		D5B8AE4BF115BFEA0B358ED1F082797A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D9994EFD2E338CDF894EEEC8922E9E0 /* Pods-Adding-Content-to-Apple-Music-umbrella.h in Headers */,
+				AACB35ADB8D5E4CA4C51B76B066E36C1 /* Pods-Twister-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		AEDB327636FCD8BC8147C09C1538E6A6 /* Pods-Twister */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9BE250F756F4D18710C51789B8D10B74 /* Build configuration list for PBXNativeTarget "Pods-Twister" */;
+			buildPhases = (
+				D5B8AE4BF115BFEA0B358ED1F082797A /* Headers */,
+				E7BF5644FEE41D066B3CAD2DFBBE3DA8 /* Sources */,
+				BAA2F9B1FDC6EE22B4619B89A02465CD /* Frameworks */,
+				C3AD71F362B77A6EE17DC357A7C1A624 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BF7B08681D9CFF14735E44BFDC26CDF1 /* PBXTargetDependency */,
+			);
+			name = "Pods-Twister";
+			productName = "Pods-Twister";
+			productReference = 234C3D21658D487D2055D8443A17B34F /* Pods_Twister.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		D26288CCBF209EAADF095D6CEFEF0AA4 /* SpotifyKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3E6B1BD39CA56AE91A4467F1A5273E91 /* Build configuration list for PBXNativeTarget "SpotifyKit" */;
@@ -210,25 +229,6 @@
 			productReference = 98F557A75641F62235315901421EC6DA /* SpotifyKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		DF9CCC11EF27BF9CAEB540A15336F487 /* Pods-Adding-Content-to-Apple-Music */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E43D4CD53CCAD93800104C6CBF1CC4B8 /* Build configuration list for PBXNativeTarget "Pods-Adding-Content-to-Apple-Music" */;
-			buildPhases = (
-				BE14D2E291C8D2152F17D86016F614CA /* Headers */,
-				028A9958C92A820AA6292858BF5413E6 /* Sources */,
-				783215F0798C3570C2A297F8523A9535 /* Frameworks */,
-				41D91FCEBD89AE4F61699EE0A84528F4 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A46111CD64C4AE25E97E25D92B148BF1 /* PBXTargetDependency */,
-			);
-			name = "Pods-Adding-Content-to-Apple-Music";
-			productName = "Pods-Adding-Content-to-Apple-Music";
-			productReference = F3BB22055AD9C4D546D39959381B8622 /* Pods_Adding_Content_to_Apple_Music.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -236,12 +236,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1130;
-				TargetAttributes = {
-					D26288CCBF209EAADF095D6CEFEF0AA4 = {
-						LastSwiftMigration = 1140;
-					};
-				};
+				LastUpgradeCheck = 1140;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -252,11 +247,11 @@
 				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 2E891D8857A7D3A43DD95DFC0A61EF9E /* Products */;
+			productRefGroup = 07E9AEACCCACD8C1C23A86DF7DBEDCCC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DF9CCC11EF27BF9CAEB540A15336F487 /* Pods-Adding-Content-to-Apple-Music */,
+				AEDB327636FCD8BC8147C09C1538E6A6 /* Pods-Twister */,
 				D26288CCBF209EAADF095D6CEFEF0AA4 /* SpotifyKit */,
 			);
 		};
@@ -270,7 +265,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		41D91FCEBD89AE4F61699EE0A84528F4 /* Resources */ = {
+		C3AD71F362B77A6EE17DC357A7C1A624 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -280,14 +275,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		028A9958C92A820AA6292858BF5413E6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				086E1103EBB5EDC6ABDD1413784832D5 /* Pods-Adding-Content-to-Apple-Music-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5ED7C2A8957189D777B9AD34D5A6ECE1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -300,50 +287,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E7BF5644FEE41D066B3CAD2DFBBE3DA8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E229E72870204C13C23C6FF4CEE36D90 /* Pods-Twister-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A46111CD64C4AE25E97E25D92B148BF1 /* PBXTargetDependency */ = {
+		BF7B08681D9CFF14735E44BFDC26CDF1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SpotifyKit;
 			target = D26288CCBF209EAADF095D6CEFEF0AA4 /* SpotifyKit */;
-			targetProxy = 0317C136BFC74682ED21051778EB0F49 /* PBXContainerItemProxy */;
+			targetProxy = 1EBCC8A0B5B983DBE50AACC617C80E26 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0803BADED5CD885AFE62E9705F37F431 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97023160394A8C36E98C342069F53213 /* SpotifyKit.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SpotifyKit/SpotifyKit-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SpotifyKit/SpotifyKit-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SpotifyKit/SpotifyKit.modulemap";
-				PRODUCT_MODULE_NAME = SpotifyKit;
-				PRODUCT_NAME = SpotifyKit;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		131356BE54884448CA49C07BEDF4BB2A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -408,9 +371,9 @@
 			};
 			name = Debug;
 		};
-		39213CEC689933F20CD58FBCF99572E5 /* Debug */ = {
+		18C706845CD4CBF9A805FEE932488284 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 11BD497BDAC4A2FF4B646B8FB551E329 /* Pods-Adding-Content-to-Apple-Music.debug.xcconfig */;
+			baseConfigurationReference = 55877679960725ADB7374E4B074A4699 /* Pods-Twister.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -423,46 +386,12 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Adding-Content-to-Apple-Music/Pods-Adding-Content-to-Apple-Music-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-Twister/Pods-Twister-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Adding-Content-to-Apple-Music/Pods-Adding-Content-to-Apple-Music.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		A12C12FEBC92C1C62EFE5C3C33DD006D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 876D1A04E773D954AEBD644245FB6899 /* Pods-Adding-Content-to-Apple-Music.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Adding-Content-to-Apple-Music/Pods-Adding-Content-to-Apple-Music-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Adding-Content-to-Apple-Music/Pods-Adding-Content-to-Apple-Music.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-Twister/Pods-Twister.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -477,7 +406,73 @@
 			};
 			name = Release;
 		};
-		AD1BFF9FFCF08EB141B98B0C76D3CC21 /* Release */ = {
+		788AC347AB8A103D3B8E25E6B375A156 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97023160394A8C36E98C342069F53213 /* SpotifyKit.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SpotifyKit/SpotifyKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SpotifyKit/SpotifyKit-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SpotifyKit/SpotifyKit.modulemap";
+				PRODUCT_MODULE_NAME = SpotifyKit;
+				PRODUCT_NAME = SpotifyKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		83A21CF5CAA9FAB8CCF08F2EA3BCF118 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D0EE32213F9C1CD6CAAC9A778C6EC41 /* Pods-Twister.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Twister/Pods-Twister-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Twister/Pods-Twister.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		84E9249805AA662742836336AD207261 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 97023160394A8C36E98C342069F53213 /* SpotifyKit.xcconfig */;
 			buildSettings = {
@@ -575,8 +570,8 @@
 		3E6B1BD39CA56AE91A4467F1A5273E91 /* Build configuration list for PBXNativeTarget "SpotifyKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0803BADED5CD885AFE62E9705F37F431 /* Debug */,
-				AD1BFF9FFCF08EB141B98B0C76D3CC21 /* Release */,
+				788AC347AB8A103D3B8E25E6B375A156 /* Debug */,
+				84E9249805AA662742836336AD207261 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -590,11 +585,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E43D4CD53CCAD93800104C6CBF1CC4B8 /* Build configuration list for PBXNativeTarget "Pods-Adding-Content-to-Apple-Music" */ = {
+		9BE250F756F4D18710C51789B8D10B74 /* Build configuration list for PBXNativeTarget "Pods-Twister" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				39213CEC689933F20CD58FBCF99572E5 /* Debug */,
-				A12C12FEBC92C1C62EFE5C3C33DD006D /* Release */,
+				83A21CF5CAA9FAB8CCF08F2EA3BCF118 /* Debug */,
+				18C706845CD4CBF9A805FEE932488284 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

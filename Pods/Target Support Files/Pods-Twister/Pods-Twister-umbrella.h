@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_Adding_Content_to_Apple_MusicVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_Adding_Content_to_Apple_MusicVersionString[];
+FOUNDATION_EXPORT double Pods_TwisterVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_TwisterVersionString[];
 
