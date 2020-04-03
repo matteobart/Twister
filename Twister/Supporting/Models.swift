@@ -10,8 +10,8 @@ import Foundation
 import SpotifyKit
 
 enum StreamingService: String, CaseIterable {
-    case spotify
-    case appleMusic
+    case spotify = "Spotify"
+    case appleMusic = "Apple Music"
 }
 
 enum SongValue {

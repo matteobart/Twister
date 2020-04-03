@@ -17,6 +17,7 @@ class ResultsViewController: UIViewController {
     @IBOutlet weak var songsTableView: UITableView!
     @IBOutlet weak var createPlaylistButton: UIButton!
     @IBOutlet weak var createPlaylistProgressView: UIProgressView!
+    @IBOutlet weak var findSongsLabel: UILabel!
     
     var songInformation: [(name: String, artist: String, album: String)] = []
     var songProgress : [Int] = [] //0 in progress, 1 success, 2 failed
@@ -37,6 +38,9 @@ class ResultsViewController: UIViewController {
         super.viewDidLoad()
         songsTableView.delegate = self
         songsTableView.dataSource = self
+        
+        findSongsLabel.text = "Finding Songs on " + fromService!.rawValue.capitalized
+        createPlaylistButton.setTitle("Create Playlist on " + toService!.rawValue.capitalized, for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {

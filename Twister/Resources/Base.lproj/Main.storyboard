@@ -370,6 +370,7 @@
                     <connections>
                         <outlet property="createPlaylistButton" destination="7l7-RP-LFS" id="bVR-tl-lpq"/>
                         <outlet property="createPlaylistProgressView" destination="yVW-Eo-HwO" id="RPJ-nP-RcY"/>
+                        <outlet property="findSongsLabel" destination="a0U-FS-atS" id="9gG-RR-zOW"/>
                         <outlet property="songsTableView" destination="hSv-t5-7eW" id="JoF-T2-m8a"/>
                     </connections>
                 </viewController>
