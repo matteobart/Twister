@@ -26,6 +26,22 @@ class SettingsTableViewController: UITableViewController {
             authorizationManager.requestMediaLibraryAuthorization()
         } else if indexPath.item == 1 { //deauth spotify
             spotifyManager.deauthorize()
+        } else if indexPath.item == 2 { //FAQ
+            let items = [FAQItem(question: "Do you need an account for Apple Music and Spotify?",
+                                 answer: "Yes! You will need an account for both services. However you do not need a premium Spotify account to transfer playlists to or from Spotify."),
+                         FAQItem(question: "Why does the process take so long?",
+                                answer: "iTunes currently limits you to search for 20 songs per minute. This means that if your playlist contains 300 songs this will take 15 minutes to convert to Apple Music. Playlists to Spotify should be near instantaneous."),
+                         FAQItem(question: "Any future streaming services?",
+                                 answer: "Possibly! If you have any recommendations feel free to reach out to us by email at matteodevapps@gmail.com"),
+                         FAQItem(question: "I found a bug! What should I do?",
+                                 answer: "Oh no! Be sure to bring him outside and don't squash him. Let us know by emailing matteodevapps@gmail.com"),
+                         FAQItem(question: "This is a cool app! Can I help out?",
+                                 answer: "If you're a developer or graphic designer or think you can be valuable feel free to check out the code for this app available at www.github.com/matteobart/Twister")
+                
+                
+                        ]
+            let faqView = FAQView(frame: view.frame, title: "FAQ", items: items)
+            view.addSubview(faqView)
         }
     }
     // MARK: - Table view data source

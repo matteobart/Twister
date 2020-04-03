@@ -19,6 +19,7 @@
 		42C9B1991EDF5D7B009A9DE7 /* AppleMusicRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C9B1981EDF5D7B009A9DE7 /* AppleMusicRequestFactory.swift */; };
 		42EDDE671E9AE0B10012EDD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDDE661E9AE0B10012EDD0 /* AppDelegate.swift */; };
 		A643FE252434176C0065247B /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A643FE242434176C0065247B /* Keys.swift */; };
+		A643FE27243654DF0065247B /* FAQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A643FE26243654DF0065247B /* FAQView.swift */; };
 		A65DCD20243404A200FCD74D /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65DCD1F243404A200FCD74D /* Artwork.swift */; };
 		A65DCD22243405DC00FCD74D /* SerializationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65DCD21243405DC00FCD74D /* SerializationError.swift */; };
 		A65DCD252434086100FCD74D /* iTunesRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65DCD242434086100FCD74D /* iTunesRequests.swift */; };
@@ -53,6 +54,7 @@
 		7D4983CD4395E5828F81D4AD /* SampleCode.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		8D09AB42E99653918C08824C /* Pods-Twister.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twister.release.xcconfig"; path = "Target Support Files/Pods-Twister/Pods-Twister.release.xcconfig"; sourceTree = "<group>"; };
 		A643FE242434176C0065247B /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		A643FE26243654DF0065247B /* FAQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQView.swift; sourceTree = "<group>"; };
 		A65DCD1F243404A200FCD74D /* Artwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		A65DCD21243405DC00FCD74D /* SerializationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerializationError.swift; sourceTree = "<group>"; };
 		A65DCD242434086100FCD74D /* iTunesRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesRequests.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				A643FE242434176C0065247B /* Keys.swift */,
 				A6DCD83923D606110072012F /* Models.swift */,
 				A65DCD242434086100FCD74D /* iTunesRequests.swift */,
+				A643FE26243654DF0065247B /* FAQView.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				A6ACCC1623D3BD2C00A55FAE /* MainViewController.swift in Sources */,
 				A65DCD2D2434099500FCD74D /* PlaylistTableViewCell.swift in Sources */,
 				424BE3E01EBAEAA60034DB00 /* AuthorizationManager.swift in Sources */,
+				A643FE27243654DF0065247B /* FAQView.swift in Sources */,
 				424BE3E11EBAEAA60034DB00 /* MediaLibraryManager.swift in Sources */,
 				4249C3FB1EDB8D3000CC40AE /* JSONKeys.swift in Sources */,
 				A65DCD22243405DC00FCD74D /* SerializationError.swift in Sources */,
