@@ -457,6 +457,10 @@ public class SpotifyManager {
         token = nil
     }
     
+    public func isAuthorized() -> Bool {
+        return hasToken
+    }
+    
     /**
      Retrieves the authorization code after the authentication process has succeded
      and completes token saving.

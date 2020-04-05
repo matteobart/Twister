@@ -95,6 +95,16 @@ class AuthorizationManager: NSObject {
         
     }
     
+    // MARK: Authorization Helper Methods
+    
+    func isAuthenticated() -> Bool {
+        return SKCloudServiceController.authorizationStatus() == .authorized && MPMediaLibrary.authorizationStatus() == .authorized;
+    }
+    
+    func isDenied() -> Bool {
+        return SKCloudServiceController.authorizationStatus() == .denied || MPMediaLibrary.authorizationStatus() == .denied
+    }
+    
     // MARK: Authorization Request Methods
     
     func requestCloudServiceAuthorization() {
@@ -113,7 +123,6 @@ class AuthorizationManager: NSObject {
          This prompt will also include the value provided in the application's Info.plist for the `NSAppleMusicUsageDescription` key.
          This usage description should reflect what the application intends to use this access for.
          */
-        
         SKCloudServiceController.requestAuthorization { [weak self] (authorizationStatus) in
             switch authorizationStatus {
             case .authorized:

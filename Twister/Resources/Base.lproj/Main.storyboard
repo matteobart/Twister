@@ -182,7 +182,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Reauthorize Apple Music" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlt-pa-T8E">
-                                                    <rect key="frame" x="16" y="11" width="190" height="21.5"/>
+                                                    <rect key="frame" x="16" y="11" width="325" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -201,8 +201,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="348" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Deauthorize Spotify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5in-y8-hRH">
-                                                    <rect key="frame" x="16" y="11" width="152" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reauthorize Spotify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5in-y8-hRH">
+                                                    <rect key="frame" x="16" y="11" width="324" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -253,10 +253,14 @@
                             <outlet property="delegate" destination="W6R-Pj-c56" id="vNO-2z-VyC"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="authAppleMusicLabel" destination="jlt-pa-T8E" id="WQS-wn-Im0"/>
+                        <outlet property="authSpotifyLabel" destination="5in-y8-hRH" id="eKa-cm-UI9"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xct-uI-zo6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2914" y="926"/>
+            <point key="canvasLocation" x="-2914.4000000000001" y="925.18740629685169"/>
         </scene>
         <!--Results View Controller-->
         <scene sceneID="hSm-ZT-l9c">
