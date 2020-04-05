@@ -466,7 +466,7 @@ public class SpotifyManager {
      and completes token saving.
      - parameter url: the URL with code sent by Spotify after authentication success
      */
-    public func saveToken(from url: URL) {
+    public func saveToken(from url: URL, completionHandler: @escaping (()->())) {
         if  let urlComponents = URLComponents(string: url.absoluteString),
             let queryItems    = urlComponents.queryItems {
             
@@ -475,7 +475,7 @@ public class SpotifyManager {
             
             // Send code to SpotifyKit
             if let authorizationCode = code {
-                saveToken(from: authorizationCode)
+                saveToken(from: authorizationCode, completionHandler: completionHandler)
             }
         }
     }
@@ -484,7 +484,7 @@ public class SpotifyManager {
      Retrieves the token from the authorization code and saves it locally
      - parameter authorizationCode: the code received from Spotify redirected uri
      */
-    public func saveToken(from authorizationCode: String) {
+    public func saveToken(from authorizationCode: String, completionHandler: @escaping (()->())) {
         guard let application = application else { return }
         
         URLSession.shared.request(SpotifyQuery.token,
@@ -503,6 +503,7 @@ public class SpotifyManager {
                     case .preference:
                         token.writeToKeychain()
                     }
+                    completionHandler()
                 }
             }
         }

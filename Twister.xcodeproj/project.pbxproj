@@ -20,6 +20,7 @@
 		42EDDE671E9AE0B10012EDD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDDE661E9AE0B10012EDD0 /* AppDelegate.swift */; };
 		A643FE252434176C0065247B /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A643FE242434176C0065247B /* Keys.swift */; };
 		A643FE27243654DF0065247B /* FAQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A643FE26243654DF0065247B /* FAQView.swift */; };
+		A64A2A6D243A2E0D005D0AC2 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64A2A6C243A2E0D005D0AC2 /* AuthorizationViewController.swift */; };
 		A65DCD20243404A200FCD74D /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65DCD1F243404A200FCD74D /* Artwork.swift */; };
 		A65DCD22243405DC00FCD74D /* SerializationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65DCD21243405DC00FCD74D /* SerializationError.swift */; };
 		A65DCD252434086100FCD74D /* iTunesRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65DCD242434086100FCD74D /* iTunesRequests.swift */; };
@@ -55,6 +56,7 @@
 		8D09AB42E99653918C08824C /* Pods-Twister.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twister.release.xcconfig"; path = "Target Support Files/Pods-Twister/Pods-Twister.release.xcconfig"; sourceTree = "<group>"; };
 		A643FE242434176C0065247B /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		A643FE26243654DF0065247B /* FAQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQView.swift; sourceTree = "<group>"; };
+		A64A2A6C243A2E0D005D0AC2 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		A65DCD1F243404A200FCD74D /* Artwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		A65DCD21243405DC00FCD74D /* SerializationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerializationError.swift; sourceTree = "<group>"; };
 		A65DCD242434086100FCD74D /* iTunesRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesRequests.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 		A65DCD27243408D500FCD74D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A64A2A6C243A2E0D005D0AC2 /* AuthorizationViewController.swift */,
 				A688F02223D68272004F0CBE /* SongReplacerViewController.swift */,
 				A6ACCC1523D3BD2C00A55FAE /* MainViewController.swift */,
 				A6DCD83723D4F4900072012F /* SettingsTableViewController.swift */,
@@ -352,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A64A2A6D243A2E0D005D0AC2 /* AuthorizationViewController.swift in Sources */,
 				A6ACCC1623D3BD2C00A55FAE /* MainViewController.swift in Sources */,
 				A65DCD2D2434099500FCD74D /* PlaylistTableViewCell.swift in Sources */,
 				424BE3E01EBAEAA60034DB00 /* AuthorizationManager.swift in Sources */,

@@ -36,7 +36,7 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.item == 0 {
-            if authorizationManager.isAuthenticated() {
+            if authorizationManager.isAuthenticated() { // apple music
                 let alert = UIAlertController(title: "Apple Music is Authorized", message: "There is nothing to do!", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
                 alert.addAction(okAction)

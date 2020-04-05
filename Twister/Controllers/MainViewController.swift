@@ -17,6 +17,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var playlistNameTextField: UITextField!
     @IBOutlet weak var availablePlaylistsTableView: UITableView!
         
+    var authController: AuthorizationViewController? // ideally this will be able to be removed
+    
     let numberOfServices = 2
     var allPlaylists: [[(String, String)]] = [] //a N dimensional array (where N is the number of services eg. spotify)
     
@@ -25,7 +27,15 @@ class MainViewController: UIViewController {
         playlistNameTextField.delegate = self
         availablePlaylistsTableView.delegate = self
         availablePlaylistsTableView.dataSource = self
-        spotifyManager.authorize()
+        
+        //spotifyManager.authorize()
+        if !spotifyManager.isAuthorized() || !authorizationManager.isAuthenticated() {
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "authVC")
+            nextViewController.modalPresentationStyle = .fullScreen
+            authController = nextViewController as? AuthorizationViewController
+            self.present(nextViewController, animated:true, completion:nil)
+        }
         
         for _ in StreamingService.allCases {
             allPlaylists.append([])
@@ -43,12 +53,15 @@ class MainViewController: UIViewController {
         }
         
         //add apple music playlists
-        let myPlaylistQuery = MPMediaQuery.playlists()
-        guard let playlists = myPlaylistQuery.collections else { return }
-        for playlist in playlists {
-            let playlistName = playlist.value(forProperty: MPMediaPlaylistPropertyName) as! String
-            let playlistUUID = String(describing: playlist.value(forProperty: MPMediaPlaylistPropertyPersistentID)!)
-            self.allPlaylists[0].append((playlistName, playlistUUID))
+        if authorizationManager.isAuthenticated() {
+            let myPlaylistQuery = MPMediaQuery.playlists()
+            guard let playlists = myPlaylistQuery.collections else { return }
+            for playlist in playlists {
+                let playlistName = playlist.value(forProperty: MPMediaPlaylistPropertyName) as! String
+                let playlistUUID = String(describing: playlist.value(forProperty: MPMediaPlaylistPropertyPersistentID)!)
+                self.allPlaylists[0].append((playlistName, playlistUUID))
+            }
+            
         }
     }
     

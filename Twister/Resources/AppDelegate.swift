@@ -38,8 +38,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
-        spotifyManager.saveToken(from: url)
-
+        spotifyManager.saveToken(from: url){ //once the token has been saved
+            for childView in self.window?.rootViewController?.children ?? [] {
+                if let mainVC = childView as? MainViewController {
+                    mainVC.authController?.updateViews()
+                    mainVC.authController?.checkIfDismiss()
+                }
+                if let authVC = childView as? AuthorizationViewController {
+                    authVC.updateViews()
+                }
+            }
+        }
         return true
     }
     
@@ -48,17 +57,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         return true
-    }
-    
-    // MARK: Utility Methods
-    func topViewControllerAtTabBarIndex(_ index: Int) -> UIViewController? {
-        
-        guard let tabBarController = window?.rootViewController as? UITabBarController,
-            let navigationController = tabBarController.viewControllers?[index] as? UINavigationController else {
-                fatalError("Unable to find expected View Controller in Main.storyboard.")
-        }
-        
-        return navigationController.topViewController
     }
 }
 
