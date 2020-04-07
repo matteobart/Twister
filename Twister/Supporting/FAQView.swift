@@ -309,6 +309,16 @@ public struct FAQItem {
     self.attributedAnswer = attributedAnswer
     self.answer = nil
   }
+    
+    public init(question:String, partiallyAttributed: NSMutableAttributedString) {
+        self.question = question
+        self.answer = nil
+        let config = FAQConfiguration()
+        let range = NSRange(location: 0, length: partiallyAttributed.length)
+        partiallyAttributed.addAttribute(.foregroundColor, value: config.answerTextColor as Any, range: range)
+        partiallyAttributed.addAttribute(.font, value: config.answerTextFont as Any, range: range)
+        self.attributedAnswer = partiallyAttributed
+    }
 }
 
 public class FAQConfiguration {
