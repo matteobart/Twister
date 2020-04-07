@@ -10,9 +10,10 @@ import Foundation
 
 //will search for a songId given the song name and artist name
 func sendiTunesRequest(songName: String, artistName: String, completionHandler: @escaping ((String?, [[String:Any]])->Void)) {
+    let searchTerm = (songName + " " + artistName)
     let urlQueries = [URLQueryItem(name: "media", value: "music"),
                       URLQueryItem(name: "entity", value: "song"),
-                      URLQueryItem(name: "term", value: songName), //search by song name
+                      URLQueryItem(name: "term", value: searchTerm), //search by song name
                       URLQueryItem(name: "limit", value: "20")
                     ]
     var u = URLComponents(string: "https://itunes.apple.com/search")!
@@ -24,7 +25,7 @@ func sendiTunesRequest(songName: String, artistName: String, completionHandler: 
             let fetchedArray = fetchedDict["results"] as? [[String:Any]] {
             for dict in fetchedArray {
                 if let artist = dict ["artistName"] as? String {
-                    if (artist == artistName) { //check the artist
+                    if (artist.lowercased() == artistName.lowercased()) { //check the artist
                         if let trackId = dict["trackId"] as? Int {
                             let str = String(describing: trackId)
                             completionHandler(str, fetchedArray);
