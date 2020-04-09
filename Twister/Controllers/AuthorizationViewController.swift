@@ -18,6 +18,12 @@ class AuthorizationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        authSpotifyButton.layer.cornerRadius = 10
+        authSpotifyButton.layer.borderWidth = 1
+        authAppleMusicButton.layer.cornerRadius = 10
+        authAppleMusicButton.layer.borderWidth = 1
+        
         NotificationCenter.default.addObserver(self, selector: #selector(cloudServiceChanged), name: AuthorizationManager.cloudServiceDidUpdateNotification, object: nil)
     }
 
@@ -38,15 +44,23 @@ class AuthorizationViewController: UIViewController {
         if authorizationManager.isAuthenticated() {
             appleMusicStateImageView.image = UIImage(systemName: "checkmark.square.fill")
             authAppleMusicButton.setTitle("Apple Music is Authorized", for: .normal)
+            authAppleMusicButton.backgroundColor = .gray
+            authAppleMusicButton.setTitleColor(.white, for: .normal)
             authAppleMusicButton.isEnabled = false
             authAppleMusicButton.isUserInteractionEnabled = false
         } else if authorizationManager.isDenied() {
             appleMusicStateImageView.image = UIImage(systemName: "exclamationmark.square.fill")
-            authAppleMusicButton.setTitle("Apple Music Access is Denied", for: .normal)
+            appleMusicStateImageView.tintColor = .orange
+            authAppleMusicButton.setTitle("Apple Music is Denied", for: .normal)
+            authAppleMusicButton.backgroundColor = .orange
+            authAppleMusicButton.setTitleColor(.white, for: .normal)
             authAppleMusicButton.isEnabled = true
             authAppleMusicButton.isUserInteractionEnabled = true
         } else {
             appleMusicStateImageView.image = UIImage(systemName: "questionmark.square.fill")
+            appleMusicStateImageView.tintColor = .yellow
+            authAppleMusicButton.backgroundColor = .yellow
+            authAppleMusicButton.setTitleColor(.black, for: .normal)
             authAppleMusicButton.isEnabled = true
             authAppleMusicButton.isUserInteractionEnabled = true
         }
@@ -54,10 +68,15 @@ class AuthorizationViewController: UIViewController {
         if spotifyManager.isAuthorized() {
             spotifyStateImageView.image = UIImage(systemName: "checkmark.square.fill")
             authSpotifyButton.setTitle("Spotify is Authorized", for: .normal)
+            authSpotifyButton.backgroundColor = .gray
+            authSpotifyButton.setTitleColor(.white, for: .normal)
             authSpotifyButton.isEnabled = false
             authSpotifyButton.isUserInteractionEnabled = false
         } else {
             spotifyStateImageView.image = UIImage(systemName: "questionmark.square.fill")
+            spotifyStateImageView.tintColor = .yellow
+            authSpotifyButton.backgroundColor = .yellow
+            authSpotifyButton.setTitleColor(.black, for: .normal)
             authSpotifyButton.isEnabled = true
             authSpotifyButton.isUserInteractionEnabled = true
         }

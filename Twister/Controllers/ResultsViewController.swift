@@ -17,7 +17,6 @@ class ResultsViewController: UIViewController {
     @IBOutlet weak var songsTableView: UITableView!
     @IBOutlet weak var createPlaylistButton: UIButton!
     @IBOutlet weak var createPlaylistProgressView: UIProgressView!
-    @IBOutlet weak var findSongsLabel: UILabel!
     
     var songInformation: [(name: String, artist: String, album: String)] = []
     var songProgress : [Int] = [] //0 in progress, 1 success, 2 failed
@@ -27,6 +26,8 @@ class ResultsViewController: UIViewController {
     var playlistName: String?
     var newPlaylistName: String?
     var newPlaylistId: UUID?
+    
+    var readyToCreatePlaylist = false
     
     var songResponse: [[Song]] = []
     
@@ -39,7 +40,10 @@ class ResultsViewController: UIViewController {
         songsTableView.delegate = self
         songsTableView.dataSource = self
         
-        findSongsLabel.text = "Finding Songs on " + toService!.rawValue.capitalized
+        createPlaylistButton.layer.cornerRadius = 10
+        createPlaylistButton.layer.borderWidth = 1
+        createPlaylistButton.backgroundColor = .gray
+        
         createPlaylistButton.setTitle("Create Playlist on " + toService!.rawValue.capitalized, for: .normal)
     }
     
@@ -150,8 +154,9 @@ class ResultsViewController: UIViewController {
         }
         
         group.notify(queue: .main) {
-            self.createPlaylistButton.isUserInteractionEnabled = true
-            self.createPlaylistButton.isEnabled = true
+            self.createPlaylistButton.backgroundColor = appTint
+            self.readyToCreatePlaylist = true
+            
         }
     }
     
@@ -161,13 +166,14 @@ class ResultsViewController: UIViewController {
     }
     
     
-    @IBAction func exitButtonPressed(_ sender: UIButton) {
-        self.dismiss(animated: true) {
-            
-        }
-    }
-    
     @IBAction func createPlaylistButtonPressed(_ sender: UIButton) {
+        guard readyToCreatePlaylist else {
+            let alert = UIAlertController(title: "Songs are not ready", message: "The songs are still being searched for on " + toService!.rawValue, preferredStyle: .alert)
+            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+            alert.addAction(closeAction)
+            present(alert, animated: true, completion: nil)
+            return
+        }
         var completeCount = 0
         var totalCount = 0
         
@@ -292,6 +298,7 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
             nextViewController.originalSongData = songInformation[indexPath.item]
             nextViewController.replacementSongs = songResponse[indexPath.item]
             nextViewController.resultsVC = self
+            nextViewController.title = "Songs on " + String(describing: toService)
             self.present(nextViewController, animated: true) { }
 
         }

@@ -34,7 +34,12 @@ class SongReplacerViewController: UIViewController {
         // Do any additional setup after loading the view.songVC
     }
     
-        
+    @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true) {
+            
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

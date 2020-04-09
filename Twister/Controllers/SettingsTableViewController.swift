@@ -20,17 +20,19 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
         if authorizationManager.isAuthenticated() {
             authAppleMusicLabel.text = "Apple Music is Authorized"
             appleMusicImageView.image = UIImage(systemName: "checkmark.square.fill")
-            
+            appleMusicImageView.tintColor = appTint
         } else if authorizationManager.isDenied() {
             authAppleMusicLabel.text = "Apple Music is Denied"
             appleMusicImageView.image = UIImage(systemName: "exclamationmark.square.fill")
-            
+            appleMusicImageView.tintColor = .orange
         } else {
             authAppleMusicLabel.text = "Authorize Apple Music"
             appleMusicImageView.image = UIImage(systemName: "questionmark.square.fill")
+            appleMusicImageView.tintColor = .yellow
         }
         authSpotifyLabel.text = spotifyManager.isAuthorized() ? "Deauthorize Spotify" : "Authorize Spotify"
         spotifyImageView.image = spotifyManager.isAuthorized() ? UIImage(systemName: "checkmark.square.fill") : UIImage(systemName: "questionmark.square.fill")
+        spotifyImageView.tintColor = spotifyManager.isAuthorized() ? appTint : .yellow
     }
         
         

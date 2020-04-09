@@ -16,15 +16,15 @@ class MainViewController: UIViewController {
     @IBOutlet weak var fromSegControl: UISegmentedControl!
     @IBOutlet weak var playlistNameTextField: UITextField!
     @IBOutlet weak var availablePlaylistsTableView: UITableView!
-        
+    @IBOutlet weak var twistButton: UIButton!
+
+    @IBOutlet weak var bottomLayoutConstraint: NSLayoutConstraint!
+
+    
     var authController: AuthorizationViewController? // ideally this will be able to be removed
     
     let numberOfServices = 2
     var allPlaylists: [[(String, String)]] = [] //a N dimensional array (where N is the number of services eg. spotify)
-    
-    @IBOutlet weak var bottomLayoutConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var twistButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -57,6 +57,8 @@ class MainViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        twistButton.backgroundColor = .gray
+
         //add spotify playlists
         spotifyManager.library(SpotifyPlaylist.self) { (libraryItems) in
             for item in libraryItems {
@@ -86,15 +88,21 @@ class MainViewController: UIViewController {
         if changedSegControl.selectedSegmentIndex == otherSegContol.selectedSegmentIndex {
             otherSegContol.selectedSegmentIndex = (otherSegContol.selectedSegmentIndex + 1) % otherSegContol.numberOfSegments
             playlistNameTextField.text = ""
+            self.twistButton.backgroundColor = .gray
         }
         availablePlaylistsTableView.reloadData()
         if sender == fromSegControl { //clean interface
             playlistNameTextField.text = ""
+            self.twistButton.backgroundColor = .gray
         }
     }
     @IBAction func twistButtonPressed(_ sender: UIButton) {
         guard let selectedRow = availablePlaylistsTableView.indexPathForSelectedRow else {
             //throw a pop up
+            let alert = UIAlertController(title: "Nothing to Twist", message: "Please choose a playlist from the above list to Twist", preferredStyle: .alert)
+            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+            alert.addAction(closeAction)
+            present(alert, animated: true, completion: nil)
             return
         }
         let playlistId = (availablePlaylistsTableView.cellForRow(at: selectedRow) as! PlaylistTableViewCell).playlistId
@@ -112,8 +120,9 @@ class MainViewController: UIViewController {
         nextViewController.playlistName = playlistName
         nextViewController.playlistId = playlistId
         nextViewController.newPlaylistName = newPlaylistName
-        self.present(nextViewController, animated: true) {
-        }
+        nextViewController.title = "Finding Songs"
+        self.show(nextViewController, sender: nil)
+        //self.present(nextViewController, animated: true) {}
     }
 
 
@@ -177,7 +186,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                                                        for: indexPath) as? PlaylistTableViewCell else {
             return UITableViewCell()
         }
-        //cell.creatorNameLabel.text = allPlaylists[1][indexPath.item].1
         cell.playlistNameLabel.text = allPlaylists[fromSegControl.selectedSegmentIndex][indexPath.item].0
         cell.playlistId = allPlaylists[fromSegControl.selectedSegmentIndex][indexPath.item].1
         return cell
@@ -186,8 +194,10 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath) as! PlaylistTableViewCell
         playlistNameTextField.text = selectedCell.playlistNameLabel.text
+        self.twistButton.backgroundColor = appTint
+        self.twistButton.isEnabled = true
+        self.twistButton.isUserInteractionEnabled = true
     }
-    
     
     
     

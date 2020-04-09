@@ -9,7 +9,7 @@
 import Foundation
 import SpotifyKit
 
-let appTint = UIColor(red: 62, green: 140, blue: 247, alpha: 1)
+let appTint = UIColor(red: 62/255, green: 140/255, blue: 247/255, alpha: 1)
 
 enum StreamingService: String, CaseIterable {
     case spotify = "Spotify"
