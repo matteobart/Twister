@@ -22,13 +22,26 @@ class MainViewController: UIViewController {
     let numberOfServices = 2
     var allPlaylists: [[(String, String)]] = [] //a N dimensional array (where N is the number of services eg. spotify)
     
+    @IBOutlet weak var bottomLayoutConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var twistButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self,
+               selector: #selector(self.keyboardNotification(notification:)),
+               name: UIResponder.keyboardWillChangeFrameNotification,
+               object: nil)
+        
         playlistNameTextField.delegate = self
         availablePlaylistsTableView.delegate = self
         availablePlaylistsTableView.dataSource = self
         
-        //spotifyManager.authorize()
+        twistButton.layer.cornerRadius = 10
+        twistButton.layer.borderWidth = 1
+        
         if !spotifyManager.isAuthorized() || !authorizationManager.isAuthenticated() {
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "authVC")
@@ -103,9 +116,10 @@ class MainViewController: UIViewController {
         }
     }
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
+
+    
+
+    
     /*
     // MARK: - Navigation
 
@@ -118,10 +132,37 @@ class MainViewController: UIViewController {
 
 }
 
-extension UIViewController: UITextFieldDelegate {
+extension MainViewController: UITextFieldDelegate {
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true;
+    }
+    
+    //not required to be here, but related to text field
+    @objc func keyboardNotification(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+            let endFrameY = endFrame?.origin.y ?? 0
+            let duration:TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
+            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
+            let animationCurve:UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
+            if endFrameY >= UIScreen.main.bounds.size.height {
+                self.bottomLayoutConstraint?.constant = 0.0
+            } else {
+                self.bottomLayoutConstraint?.constant = endFrame?.size.height ?? 0.0
+            }
+            UIView.animate(withDuration: duration,
+                                       delay: TimeInterval(0),
+                                       options: animationCurve,
+                                       animations: { self.view.layoutIfNeeded() },
+                                       completion: nil)
+        }
+    }
+    
+    //not required to be here, but related to text field
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
 

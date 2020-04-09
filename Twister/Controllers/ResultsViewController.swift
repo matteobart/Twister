@@ -39,7 +39,7 @@ class ResultsViewController: UIViewController {
         songsTableView.delegate = self
         songsTableView.dataSource = self
         
-        findSongsLabel.text = "Finding Songs on " + fromService!.rawValue.capitalized
+        findSongsLabel.text = "Finding Songs on " + toService!.rawValue.capitalized
         createPlaylistButton.setTitle("Create Playlist on " + toService!.rawValue.capitalized, for: .normal)
     }
     

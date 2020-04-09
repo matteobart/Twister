@@ -34,27 +34,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFL-OJ-UoC">
-                                <rect key="frame" x="337" y="64" width="22" height="22"/>
-                                <state key="normal" image="gear" catalog="system"/>
-                                <connections>
-                                    <segue destination="W6R-Pj-c56" kind="show" id="ZOe-Fo-xjC"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="Mw1-jQ-Cid">
-                                <rect key="frame" x="50" y="118.5" width="275" height="430"/>
+                                <rect key="frame" x="20" y="64" width="335" height="583"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2qx-6W-k0M">
-                                        <rect key="frame" x="0.0" y="0.0" width="275" height="272.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="409"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3EC-1l-YLP">
-                                                <rect key="frame" x="0.0" y="0.0" width="275" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="17"/>
+                                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="iHg-Xz-iDM">
-                                                <rect key="frame" x="0.0" y="28.5" width="275" height="32"/>
+                                                <rect key="frame" x="0.0" y="25" width="335" height="32"/>
                                                 <segments>
                                                     <segment title="Apple Music"/>
                                                     <segment title="Spotify"/>
@@ -64,22 +57,19 @@
                                                 </connections>
                                             </segmentedControl>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1ZO-vV-XU7">
-                                                <rect key="frame" x="0.0" y="67.5" width="275" height="205"/>
+                                                <rect key="frame" x="0.0" y="64" width="335" height="345"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="205" id="oIw-pA-FL9"/>
-                                                </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlaylistTableViewCell" id="ZQ1-UY-taQ" customClass="PlaylistTableViewCell" customModule="Twister" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="275" height="43.5"/>
+                                                        <rect key="frame" x="0.0" y="28" width="335" height="43.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZQ1-UY-taQ" id="Qg4-hu-9GZ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="275" height="43.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playlist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEw-99-in3">
-                                                                    <rect key="frame" x="10" y="11.5" width="255" height="20.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <rect key="frame" x="10" y="13.5" width="315" height="17"/>
+                                                                    <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -99,16 +89,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="M5E-86-dwp">
-                                        <rect key="frame" x="0.0" y="285.5" width="275" height="101.5"/>
+                                        <rect key="frame" x="0.0" y="422" width="335" height="98"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Lf-C6-W4f">
-                                                <rect key="frame" x="0.0" y="0.0" width="275" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="17"/>
+                                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="odA-IF-8KZ">
-                                                <rect key="frame" x="0.0" y="28.5" width="275" height="32"/>
+                                                <rect key="frame" x="0.0" y="25" width="335" height="32"/>
                                                 <segments>
                                                     <segment title="Apple Music"/>
                                                     <segment title="Spotify"/>
@@ -118,38 +108,60 @@
                                                 </connections>
                                             </segmentedControl>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Playlist Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rtk-7b-YNL">
-                                                <rect key="frame" x="0.0" y="67.5" width="275" height="34"/>
+                                                <rect key="frame" x="0.0" y="64" width="335" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYp-LB-ZZB">
-                                        <rect key="frame" x="0.0" y="400" width="275" height="30"/>
-                                        <state key="normal" title="Twist"/>
+                                        <rect key="frame" x="0.0" y="533" width="335" height="50"/>
+                                        <color key="backgroundColor" red="0.24313725489999999" green="0.54901960780000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="SSb-71-Bsy"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
+                                        <state key="normal" title="Twist">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="heavy"/>
+                                        </state>
                                         <connections>
                                             <action selector="twistButtonPressed:" destination="MRI-ag-enu" eventType="touchUpInside" id="evG-LC-OFM"/>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="iHg-Xz-iDM" firstAttribute="height" secondItem="odA-IF-8KZ" secondAttribute="height" id="X6o-tA-IkS"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Mw1-jQ-Cid" firstAttribute="centerX" secondItem="5qc-TH-2WJ" secondAttribute="centerX" id="2xi-hW-QN9"/>
-                            <constraint firstItem="eFL-OJ-UoC" firstAttribute="top" secondItem="lrH-cy-Lj8" secondAttribute="bottom" constant="20" id="F35-ws-2Zd"/>
-                            <constraint firstAttribute="trailing" secondItem="Mw1-jQ-Cid" secondAttribute="trailing" constant="50" id="IEi-yw-RRZ"/>
-                            <constraint firstItem="Mw1-jQ-Cid" firstAttribute="leading" secondItem="5qc-TH-2WJ" secondAttribute="leading" constant="50" id="hJf-7X-kWp"/>
-                            <constraint firstAttribute="trailing" secondItem="eFL-OJ-UoC" secondAttribute="trailing" constant="16" id="u0F-Wl-OAi"/>
-                            <constraint firstItem="Mw1-jQ-Cid" firstAttribute="centerY" secondItem="5qc-TH-2WJ" secondAttribute="centerY" id="w2T-PX-eED"/>
+                            <constraint firstAttribute="trailing" secondItem="Mw1-jQ-Cid" secondAttribute="trailing" constant="20" id="6cH-V1-Pkj"/>
+                            <constraint firstItem="Mw1-jQ-Cid" firstAttribute="top" secondItem="lrH-cy-Lj8" secondAttribute="bottom" constant="20" id="ZnM-oa-8Mt"/>
+                            <constraint firstItem="Mw1-jQ-Cid" firstAttribute="leading" secondItem="5qc-TH-2WJ" secondAttribute="leading" constant="20" id="hpz-gV-tj1"/>
+                            <constraint firstItem="Cft-cE-ckE" firstAttribute="top" secondItem="Mw1-jQ-Cid" secondAttribute="bottom" constant="20" id="oLP-xS-xj7"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Twister" id="AzK-DU-n5r"/>
+                    <navigationItem key="navigationItem" title="Twister" id="AzK-DU-n5r">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="oRn-go-dyo">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eFL-OJ-UoC">
+                                <rect key="frame" x="337" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="gear" catalog="system"/>
+                                <connections>
+                                    <segue destination="W6R-Pj-c56" kind="show" id="ZOe-Fo-xjC"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="availablePlaylistsTableView" destination="1ZO-vV-XU7" id="pqz-Yv-9aZ"/>
+                        <outlet property="bottomLayoutConstraint" destination="oLP-xS-xj7" id="SIj-Um-boI"/>
                         <outlet property="fromSegControl" destination="iHg-Xz-iDM" id="gNa-i8-l2G"/>
                         <outlet property="playlistNameTextField" destination="rtk-7b-YNL" id="vbb-jf-yfn"/>
                         <outlet property="toSegControl" destination="odA-IF-8KZ" id="40l-nA-c3y"/>
+                        <outlet property="twistButton" destination="SYp-LB-ZZB" id="NUl-Rg-UFf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xwg-Zu-Q6c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
