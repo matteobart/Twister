@@ -38,16 +38,19 @@
                                 <rect key="frame" x="20" y="64" width="335" height="583"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2qx-6W-k0M">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="409"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="405"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3EC-1l-YLP">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="YQL-Yb-qxN"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="iHg-Xz-iDM">
-                                                <rect key="frame" x="0.0" y="25" width="335" height="32"/>
+                                                <rect key="frame" x="0.0" y="29" width="335" height="32"/>
                                                 <segments>
                                                     <segment title="Apple Music"/>
                                                     <segment title="Spotify"/>
@@ -57,7 +60,7 @@
                                                 </connections>
                                             </segmentedControl>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1ZO-vV-XU7">
-                                                <rect key="frame" x="0.0" y="64" width="335" height="345"/>
+                                                <rect key="frame" x="0.0" y="68" width="335" height="337"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlaylistTableViewCell" id="ZQ1-UY-taQ" customClass="PlaylistTableViewCell" customModule="Twister" customModuleProvider="target">
@@ -68,7 +71,10 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playlist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEw-99-in3">
-                                                                    <rect key="frame" x="10" y="13.5" width="315" height="17"/>
+                                                                    <rect key="frame" x="10" y="11.5" width="315" height="21"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="21" id="zVt-NA-Xe4"/>
+                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -89,16 +95,19 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="M5E-86-dwp">
-                                        <rect key="frame" x="0.0" y="422" width="335" height="98"/>
+                                        <rect key="frame" x="0.0" y="418" width="335" height="102"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Lf-C6-W4f">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="L7m-rP-fG6"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="odA-IF-8KZ">
-                                                <rect key="frame" x="0.0" y="25" width="335" height="32"/>
+                                                <rect key="frame" x="0.0" y="29" width="335" height="32"/>
                                                 <segments>
                                                     <segment title="Apple Music"/>
                                                     <segment title="Spotify"/>
@@ -108,13 +117,13 @@
                                                 </connections>
                                             </segmentedControl>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Playlist Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rtk-7b-YNL">
-                                                <rect key="frame" x="0.0" y="64" width="335" height="34"/>
+                                                <rect key="frame" x="0.0" y="68" width="335" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYp-LB-ZZB">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYp-LB-ZZB">
                                         <rect key="frame" x="0.0" y="533" width="335" height="50"/>
                                         <color key="backgroundColor" red="0.24313725489999999" green="0.54901960780000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -186,15 +195,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Reauthorize Apple Music" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlt-pa-T8E">
-                                                    <rect key="frame" x="16" y="13" width="325" height="21.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Nz-Yx-D7y">
                                                     <rect key="frame" x="329" y="8" width="30" height="30"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Reauthorize Apple Music" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlt-pa-T8E">
+                                                    <rect key="frame" x="16" y="13" width="305" height="21.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="gHP-uK-iEg"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="5Nz-Yx-D7y" secondAttribute="trailing" constant="16" id="9As-tv-Tav"/>
@@ -211,20 +223,24 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reauthorize Spotify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5in-y8-hRH">
-                                                    <rect key="frame" x="16" y="11" width="324" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ID2-vO-6Lr">
                                                     <rect key="frame" x="329" y="6" width="30" height="30"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reauthorize Spotify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5in-y8-hRH">
+                                                    <rect key="frame" x="16" y="11.5" width="164" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="szX-CJ-NLy"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="5in-y8-hRH" firstAttribute="centerY" secondItem="Fy5-2q-2zm" secondAttribute="centerY" id="PEo-Dg-9PJ"/>
                                                 <constraint firstItem="ID2-vO-6Lr" firstAttribute="centerY" secondItem="Fy5-2q-2zm" secondAttribute="centerY" id="XfE-tJ-djj"/>
                                                 <constraint firstAttribute="trailing" secondItem="ID2-vO-6Lr" secondAttribute="trailing" constant="16" id="k3M-u7-AVU"/>
+                                                <constraint firstItem="5in-y8-hRH" firstAttribute="leading" secondItem="Fy5-2q-2zm" secondAttribute="leading" constant="16" id="mMS-M8-BOs"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -239,14 +255,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="348" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FAQs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wsr-Nj-cmh">
-                                                    <rect key="frame" x="16" y="11" width="41" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FAQs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wsr-Nj-cmh">
+                                                    <rect key="frame" x="16" y="11.5" width="46" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="zb5-dd-4nw"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Wsr-Nj-cmh" firstAttribute="centerY" secondItem="sXs-2w-njJ" secondAttribute="centerY" id="62d-Bs-ME9"/>
+                                                <constraint firstItem="Wsr-Nj-cmh" firstAttribute="leading" secondItem="sXs-2w-njJ" secondAttribute="leading" constant="16" id="7YM-PH-bPD"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="1oa-XX-u6f">
@@ -256,14 +278,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="348" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contact Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAl-WQ-Uhf">
-                                                    <rect key="frame" x="16" y="11" width="86" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAl-WQ-Uhf">
+                                                    <rect key="frame" x="16" y="11.5" width="94" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="PFL-YJ-bc3"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="QAl-WQ-Uhf" firstAttribute="leading" secondItem="NeO-49-1PB" secondAttribute="leading" constant="16" id="k4S-Ps-xOO"/>
+                                                <constraint firstItem="QAl-WQ-Uhf" firstAttribute="centerY" secondItem="NeO-49-1PB" secondAttribute="centerY" id="wsR-5S-mAc"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -284,7 +312,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xct-uI-zo6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2354" y="1175"/>
+            <point key="canvasLocation" x="-2354.4000000000001" y="1174.3628185907048"/>
         </scene>
         <!--Authorization View Controller-->
         <scene sceneID="N8U-Ol-B3e">
@@ -299,16 +327,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Pff-Y0-z4C">
-                                <rect key="frame" x="112" y="20" width="172.5" height="42"/>
+                                <rect key="frame" x="112" y="20" width="172.5" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Twister" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kxn-yt-9eD">
-                                        <rect key="frame" x="0.0" y="0.0" width="172.5" height="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="172.5" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="7b2-2V-BRL"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's get you set up!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vh-9u-LS5">
-                                        <rect key="frame" x="0.0" y="25" width="172.5" height="17"/>
+                                        <rect key="frame" x="0.0" y="29" width="172.5" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="8e8-mH-ZGw"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -321,7 +355,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="g5x-Xy-lV1">
                                         <rect key="frame" x="0.0" y="0.0" width="262" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Z9-jX-btq">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Z9-jX-btq">
                                                 <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
                                                 <color key="backgroundColor" red="0.24313725489999999" green="0.54901960780000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
@@ -347,7 +381,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="IJX-OF-cya">
                                         <rect key="frame" x="0.0" y="58" width="262" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgC-eM-I1R">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgC-eM-I1R">
                                                 <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
                                                 <color key="backgroundColor" red="0.24313725489999999" green="0.54901960780000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
@@ -418,36 +452,49 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="66"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qco-XQ-MM8">
-                                                            <rect key="frame" x="15" y="10" width="99.5" height="23"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdL-Az-Hxw">
-                                                            <rect key="frame" x="15" y="41" width="35.5" height="17"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="I" translatesAutoresizingMaskIntoConstraints="NO" id="Kuz-5L-4M6">
-                                                            <rect key="frame" x="309" y="25" width="16" height="16"/>
-                                                        </imageView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4SM-fe-sV2">
+                                                            <rect key="frame" x="16" y="8" width="96" height="50"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qco-XQ-MM8">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="96" height="24"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="28" id="V0w-fq-zzV"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdL-Az-Hxw">
+                                                                    <rect key="frame" x="0.0" y="32" width="96" height="18"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="18" id="Dzr-y5-Xbo"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
+                                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
                                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="DuF-9b-vAR">
-                                                            <rect key="frame" x="300" y="23" width="20" height="20"/>
+                                                            <rect key="frame" x="302" y="23" width="20" height="20"/>
                                                         </activityIndicatorView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="I" translatesAutoresizingMaskIntoConstraints="NO" id="Kuz-5L-4M6">
+                                                            <rect key="frame" x="297" y="18" width="30" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="AYY-ec-Mhl"/>
+                                                                <constraint firstAttribute="width" constant="30" id="Sa3-Gw-FnT"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="jdL-Az-Hxw" firstAttribute="leading" secondItem="fzg-hz-5SY" secondAttribute="leading" constant="15" id="3QL-eu-qwL"/>
-                                                        <constraint firstItem="DuF-9b-vAR" firstAttribute="top" secondItem="fzg-hz-5SY" secondAttribute="top" constant="23" id="5Av-3a-TY1"/>
-                                                        <constraint firstAttribute="bottom" secondItem="DuF-9b-vAR" secondAttribute="bottom" constant="23" id="PL6-lX-5Cv"/>
-                                                        <constraint firstItem="Qco-XQ-MM8" firstAttribute="leading" secondItem="fzg-hz-5SY" secondAttribute="leading" constant="15" id="YHk-3r-0oc"/>
-                                                        <constraint firstAttribute="bottom" secondItem="jdL-Az-Hxw" secondAttribute="bottom" constant="10" id="eH8-QH-fQ0"/>
-                                                        <constraint firstItem="Qco-XQ-MM8" firstAttribute="top" secondItem="fzg-hz-5SY" secondAttribute="top" constant="10" id="fj4-9F-MZj"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Kuz-5L-4M6" secondAttribute="trailing" constant="10" id="lau-WI-ypE"/>
-                                                        <constraint firstAttribute="trailing" secondItem="DuF-9b-vAR" secondAttribute="trailing" constant="15" id="s38-nS-DkN"/>
+                                                        <constraint firstItem="4SM-fe-sV2" firstAttribute="top" secondItem="fzg-hz-5SY" secondAttribute="top" constant="8" id="ASf-F7-VdE"/>
+                                                        <constraint firstItem="DuF-9b-vAR" firstAttribute="centerY" secondItem="Kuz-5L-4M6" secondAttribute="centerY" id="CZZ-st-Nz4"/>
+                                                        <constraint firstAttribute="bottom" secondItem="4SM-fe-sV2" secondAttribute="bottom" constant="8" id="Dt0-Y7-sIg"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Kuz-5L-4M6" secondAttribute="trailing" constant="8" id="F44-eF-Rkv"/>
+                                                        <constraint firstItem="DuF-9b-vAR" firstAttribute="centerX" secondItem="Kuz-5L-4M6" secondAttribute="centerX" id="HJx-a6-6GM"/>
+                                                        <constraint firstItem="4SM-fe-sV2" firstAttribute="leading" secondItem="fzg-hz-5SY" secondAttribute="leading" constant="16" id="Jdp-7F-z9j"/>
+                                                        <constraint firstItem="Kuz-5L-4M6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4SM-fe-sV2" secondAttribute="trailing" constant="8" id="nCw-DB-JzP"/>
                                                         <constraint firstItem="Kuz-5L-4M6" firstAttribute="centerY" secondItem="fzg-hz-5SY" secondAttribute="centerY" id="y9h-Qv-Gjx"/>
-                                                        <constraint firstItem="jdL-Az-Hxw" firstAttribute="top" secondItem="Qco-XQ-MM8" secondAttribute="bottom" constant="8" id="zkH-8X-DUH"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
@@ -459,7 +506,7 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7l7-RP-LFS">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7l7-RP-LFS">
                                         <rect key="frame" x="0.0" y="567" width="335" height="50"/>
                                         <color key="backgroundColor" red="0.24313725489999999" green="0.54901960780000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -509,40 +556,87 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e8x-rB-AQi">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Songs on Service" id="isw-sy-xeR">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Mcu-dC-3AS">
+                                            <connections>
+                                                <action selector="cancelButtonPressed:" destination="ZB2-wn-FYU" id="A38-eg-Ymw"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8LN-uU-0NY">
-                                <rect key="frame" x="10" y="64.5" width="355" height="592.5"/>
+                                <rect key="frame" x="10" y="54" width="355" height="603"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PkH-e0-bzx">
-                                        <rect key="frame" x="0.0" y="0.0" width="355" height="17"/>
-                                        <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nAf-by-L2E">
-                                        <rect key="frame" x="0.0" y="25" width="355" height="17"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDh-AO-nFI">
+                                        <rect key="frame" x="0.0" y="0.0" width="355" height="67"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phu-Cc-YGJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="173.5" height="17"/>
-                                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCP-Iz-31F">
-                                                <rect key="frame" x="181.5" y="0.0" width="173.5" height="17"/>
-                                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WT0-Gl-5E3">
+                                                <rect key="frame" x="15" y="8" width="113" height="51"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PkH-e0-bzx">
+                                                        <rect key="frame" x="0.0" y="0.0" width="113" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="2Tc-LQ-bQC"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="20"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="We6-wg-JXZ">
+                                                        <rect key="frame" x="0.0" y="33" width="113" height="18"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phu-Cc-YGJ">
+                                                                <rect key="frame" x="0.0" y="0.0" width="45.5" height="18"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="18" id="ATU-73-Io7"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
+                                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62U-PM-Y6s">
+                                                                <rect key="frame" x="52.5" y="0.0" width="7" height="18"/>
+                                                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Album" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCP-Iz-31F">
+                                                                <rect key="frame" x="66.5" y="0.0" width="46.5" height="18"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="18" id="NKR-Wv-9Kb"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
+                                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
-                                    </stackView>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WT0-Gl-5E3" secondAttribute="trailing" constant="16" id="ICg-zn-0vd"/>
+                                            <constraint firstItem="WT0-Gl-5E3" firstAttribute="top" secondItem="hDh-AO-nFI" secondAttribute="top" constant="8" id="SFV-pu-His"/>
+                                            <constraint firstItem="WT0-Gl-5E3" firstAttribute="leading" secondItem="hDh-AO-nFI" secondAttribute="leading" constant="15" id="YkA-DF-HIe"/>
+                                            <constraint firstAttribute="bottom" secondItem="WT0-Gl-5E3" secondAttribute="bottom" constant="8" id="mof-1v-DD4"/>
+                                        </constraints>
+                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find the Best Replacement" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wzm-1J-b7D">
-                                        <rect key="frame" x="0.0" y="50" width="355" height="17"/>
+                                        <rect key="frame" x="0.0" y="75" width="355" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="N6Z-hv-lCl"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NAI-oZ-PJb">
-                                        <rect key="frame" x="0.0" y="75" width="355" height="517.5"/>
+                                        <rect key="frame" x="0.0" y="104" width="355" height="499"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SongCell" rowHeight="66" id="HvS-5s-Ii2" customClass="SongReplacerTableViewCell" customModule="Twister" customModuleProvider="target">
@@ -552,42 +646,55 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="66"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gho-OF-Jzo">
-                                                            <rect key="frame" x="15" y="10" width="113" height="25"/>
-                                                            <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="20"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="FMZ-gY-gXY">
-                                                            <rect key="frame" x="15" y="43" width="109.5" height="15"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gw8-yo-K1c">
+                                                            <rect key="frame" x="16" y="8" width="113" height="50"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9i-Be-fY2">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="42" height="15"/>
-                                                                    <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
-                                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQU-9j-f8r">
-                                                                    <rect key="frame" x="49" y="0.0" width="7" height="15"/>
-                                                                    <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gho-OF-Jzo">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="113" height="25"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="25" id="Ncf-Eh-QnH"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="20"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZb-Ny-sb7">
-                                                                    <rect key="frame" x="63" y="0.0" width="46.5" height="15"/>
-                                                                    <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
-                                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="FMZ-gY-gXY">
+                                                                    <rect key="frame" x="0.0" y="33" width="113" height="17"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9i-Be-fY2">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="45.5" height="17"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="18" id="8Cd-of-mI0"/>
+                                                                            </constraints>
+                                                                            <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
+                                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQU-9j-f8r">
+                                                                            <rect key="frame" x="52.5" y="0.0" width="7" height="17"/>
+                                                                            <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Album" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZb-Ny-sb7">
+                                                                            <rect key="frame" x="66.5" y="0.0" width="46.5" height="17"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="18" id="NzI-Ur-eas"/>
+                                                                            </constraints>
+                                                                            <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
+                                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="gho-OF-Jzo" firstAttribute="leading" secondItem="WhZ-Hf-2da" secondAttribute="leading" constant="15" id="Foe-lN-9k8"/>
-                                                        <constraint firstAttribute="bottom" secondItem="FMZ-gY-gXY" secondAttribute="bottom" constant="8" id="O0g-ON-D8e"/>
-                                                        <constraint firstItem="FMZ-gY-gXY" firstAttribute="top" secondItem="gho-OF-Jzo" secondAttribute="bottom" constant="8" id="UDI-er-tAh"/>
-                                                        <constraint firstItem="FMZ-gY-gXY" firstAttribute="leading" secondItem="WhZ-Hf-2da" secondAttribute="leading" constant="15" id="mcF-qt-rWp"/>
-                                                        <constraint firstItem="gho-OF-Jzo" firstAttribute="top" secondItem="WhZ-Hf-2da" secondAttribute="top" constant="10" id="yN9-U5-lN5"/>
+                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gw8-yo-K1c" secondAttribute="trailing" constant="16" id="G8K-TV-9kr"/>
+                                                        <constraint firstItem="gw8-yo-K1c" firstAttribute="leading" secondItem="WhZ-Hf-2da" secondAttribute="leading" constant="16" id="HJq-5s-F7R"/>
+                                                        <constraint firstItem="gw8-yo-K1c" firstAttribute="top" secondItem="WhZ-Hf-2da" secondAttribute="top" constant="8" id="ftq-MI-XMj"/>
+                                                        <constraint firstAttribute="bottom" secondItem="gw8-yo-K1c" secondAttribute="bottom" constant="8" id="vgA-G8-tFw"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
@@ -600,18 +707,6 @@
                                     </tableView>
                                 </subviews>
                             </stackView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e8x-rB-AQi">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
-                                <items>
-                                    <navigationItem title="Songs on Service" id="isw-sy-xeR">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Mcu-dC-3AS">
-                                            <connections>
-                                                <action selector="cancelButtonPressed:" destination="ZB2-wn-FYU" id="A38-eg-Ymw"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -633,7 +728,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rmL-DY-jbS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2551" y="1872"/>
+            <point key="canvasLocation" x="-2551.1999999999998" y="1871.5142428785609"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.24313725489999999" green="0.54901960780000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

@@ -19,7 +19,7 @@ class ResultsViewController: UIViewController {
     @IBOutlet weak var createPlaylistProgressView: UIProgressView!
     
     var songInformation: [(name: String, artist: String, album: String)] = []
-    var songProgress : [Int] = [] //0 in progress, 1 success, 2 failed
+    var songProgress : [Int] = [] //0 in progress, 1 success, 2 matches, 3 failed
     var toService: StreamingService?
     var fromService: StreamingService?
     var playlistId: String?
@@ -105,9 +105,11 @@ class ResultsViewController: UIViewController {
                     if let songId = songId { // if the correct song is found
                         self.toAddSongs[i] = .appleId(songId)
                         self.songProgress[i] = 1
-                    } else {
-                        print("WARNING: Apple could not find a perfect match for \(tuple.name)")
+                    } else if !dict.isEmpty { // some matches found
                         self.songProgress[i] = 2
+                    } else { //no matches found
+                        print("WARNING: Apple could not find a perfect match for \(tuple.name)")
+                        self.songProgress[i] = 3
                     }
                     var possibleSongs: [Song] = []
                     for item in dict {
@@ -138,7 +140,7 @@ class ResultsViewController: UIViewController {
                         self.songProgress[index] = 1
                     } else {
                         print("WARNING: Spotify can't find \(tuple.name)")
-                        self.songProgress[index] = 2
+                        self.songProgress[index] = 3
                     }
                     var possibleSongs: [Song] = []
                     for track in tracks {
@@ -163,6 +165,8 @@ class ResultsViewController: UIViewController {
     //song will either be String (if creating apple music) or SpotifyTrack (if creating spotify)
     func addToPlaylist(song: Song, index: Int) {
         toAddSongs[index] = song.value
+        songProgress[index] = 1
+        songsTableView.reloadData()
     }
     
     
@@ -276,14 +280,20 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
             cell.activityIndicatorView.stopAnimating()
             cell.activityIndicatorView.isHidden = true
             cell.completionImage.isHidden = false
-            cell.completionImage.image = UIImage(systemName: "checkmark.seal.fill")
+            cell.completionImage.image = UIImage(systemName: "checkmark.square.fill")
             cell.completionImage.tintColor = .systemBlue
-        } else if songProgress[indexPath.item] == 2 { //fail
+        } else if songProgress[indexPath.item] == 2 { //matches
             cell.activityIndicatorView.stopAnimating()
             cell.activityIndicatorView.isHidden = true
             cell.completionImage.isHidden = false
-            cell.completionImage.image = UIImage(systemName: "xmark.seal.fill")
+            cell.completionImage.image = UIImage(systemName: "questionmark.square.fill")
             cell.completionImage.tintColor = .yellow
+        } else if songProgress[indexPath.item] == 3 { //no matches
+            cell.activityIndicatorView.stopAnimating()
+            cell.activityIndicatorView.isHidden = true
+            cell.completionImage.isHidden = false
+            cell.completionImage.image = UIImage(systemName: "exclamationmark.square.fill")
+            cell.completionImage.tintColor = .orange
         }
         return cell
         
@@ -300,7 +310,11 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
             nextViewController.resultsVC = self
             nextViewController.title = "Songs on " + String(describing: toService)
             self.present(nextViewController, animated: true) { }
-
+        } else if songProgress[indexPath.item] == 3 {
+            let alert = UIAlertController(title: "Song not found", message: toService!.rawValue + " could not find any songs that matched this song", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Aw shucks!", style: .default, handler: nil)
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
         }
         
     }
