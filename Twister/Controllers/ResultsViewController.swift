@@ -59,7 +59,7 @@ class ResultsViewController: UIViewController {
         if fromService == .spotify {
             spotifyManager.get(SpotifyPlaylist.self, id: playlistId) { (searchItem) in
                 print(searchItem)
-                guard let _ = searchItem.collectionTracks else {return}
+                guard let _ = searchItem.collectionTracks else {self.sam.signal() ; return}
                 for item in searchItem.collectionTracks! {
                     print(item.name, "->" ,item.artist.name)
                     self.songInformation.append((item.name, item.artist.name, item.album?.name ?? ""))
@@ -82,6 +82,12 @@ class ResultsViewController: UIViewController {
             }
             sam.signal()
             
+        }
+    }
+    
+    func isControllerNotActive () -> Bool {
+        DispatchQueue.main.sync {
+            return self.navigationController?.visibleViewController == nil
         }
     }
     
@@ -110,6 +116,9 @@ class ResultsViewController: UIViewController {
         if toService == .appleMusic {
             DispatchQueue.global().async {
             for i in 0..<self.songInformation.count {
+                if self.isControllerNotActive() {
+                   break
+                }
                 let tuple = self.songInformation[i]
                 do {
                     sleep(3) //simply because of itunes rate limiting

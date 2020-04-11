@@ -12,8 +12,8 @@ import SpotifyKit
 let appTint = UIColor(red: 62/255, green: 140/255, blue: 247/255, alpha: 1)
 
 enum StreamingService: String, CaseIterable {
-    case spotify = "Spotify"
     case appleMusic = "Apple Music"
+    case spotify = "Spotify"
 }
 
 enum SongValue: Equatable {

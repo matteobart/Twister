@@ -23,8 +23,8 @@ class MainViewController: UIViewController {
     
     var authController: AuthorizationViewController? // ideally this will be able to be removed
     
-    let numberOfServices = 2
-    var allPlaylists: [[(String, String)]] = [] //a N dimensional array (where N is the number of services eg. spotify)
+    //let numberOfServices = 2
+    var allPlaylists: [[(String, String)]] = [] //a 2D array (where numCols is the number of services eg. spotify)
     
     
     override func viewDidLoad() {
@@ -50,16 +50,16 @@ class MainViewController: UIViewController {
             self.present(nextViewController, animated:true, completion:nil)
         }
         
-        for _ in StreamingService.allCases {
-            allPlaylists.append([])
-        }
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         twistButton.backgroundColor = .gray
-        allPlaylists[0] = []
-        allPlaylists[1] = []
+        
+        allPlaylists = []
+        for _ in StreamingService.allCases {
+            allPlaylists.append([])
+        }
         
         //add spotify playlists
         spotifyManager.library(SpotifyPlaylist.self) { (libraryItems) in
