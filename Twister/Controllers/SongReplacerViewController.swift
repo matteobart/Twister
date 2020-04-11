@@ -72,9 +72,8 @@ extension SongReplacerViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let resultsVC = resultsVC else { return }
         guard let index = index else { return }
-        resultsVC.addToPlaylist(song: replacementSongs[indexPath.item], index: index)
         dismiss(animated: true) {
-            
+            resultsVC.addToPlaylist(song: self.replacementSongs[indexPath.item], index: index)
         }
     }
     

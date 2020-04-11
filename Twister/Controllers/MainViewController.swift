@@ -113,8 +113,7 @@ class MainViewController: UIViewController {
 
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "resultsVC") as! ResultsViewController
-        nextViewController.modalPresentationStyle = .fullScreen
-        
+
         nextViewController.fromService = fromService
         nextViewController.toService = toService
         nextViewController.playlistName = playlistName
@@ -122,7 +121,6 @@ class MainViewController: UIViewController {
         nextViewController.newPlaylistName = newPlaylistName
         nextViewController.title = "Finding Songs"
         self.show(nextViewController, sender: nil)
-        //self.present(nextViewController, animated: true) {}
     }
 
 

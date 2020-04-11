@@ -17,6 +17,7 @@ class ResultsViewController: UIViewController {
     @IBOutlet weak var songsTableView: UITableView!
     @IBOutlet weak var createPlaylistButton: UIButton!
     @IBOutlet weak var createPlaylistProgressView: UIProgressView!
+    @IBOutlet weak var addedSongLabel: UILabel!
     
     var songInformation: [(name: String, artist: String, album: String)] = []
     var songProgress : [Int] = [] //0 in progress, 1 success, 2 matches, 3 failed
@@ -52,6 +53,8 @@ class ResultsViewController: UIViewController {
         
         guard let fromService = fromService else { return }
         guard let playlistId = playlistId else { return }
+        guard toAddSongs.isEmpty else { return }
+        guard songInformation.isEmpty else { return }
         
         if fromService == .spotify {
             spotifyManager.get(SpotifyPlaylist.self, id: playlistId) { (searchItem) in
@@ -86,7 +89,7 @@ class ResultsViewController: UIViewController {
         super.viewDidAppear(animated)
         
         guard let toService = toService else { return }
-        
+        guard toAddSongs.isEmpty else { return }
         sam.wait() // don't start this one till viewWillAppear is finished
         
         let group = DispatchGroup()
@@ -162,13 +165,24 @@ class ResultsViewController: UIViewController {
         }
     }
     
-    //song will either be String (if creating apple music) or SpotifyTrack (if creating spotify)
     func addToPlaylist(song: Song, index: Int) {
         toAddSongs[index] = song.value
         songProgress[index] = 1
         songsTableView.reloadData()
+        let alert = UIAlertController(title: "Song Added", message: "'\(song.name)' by \(song.artist) has been added to your playlist", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Sounds good to me", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
     
+    func getSongNameFromSongValue(song: SongValue) -> String {
+        for i in 0..<toAddSongs.count {
+            if song == toAddSongs[i] {
+                return songInformation[i].name
+            }
+        }
+        return ""
+    }
     
     @IBAction func createPlaylistButtonPressed(_ sender: UIButton) {
         guard readyToCreatePlaylist else {
@@ -178,10 +192,16 @@ class ResultsViewController: UIViewController {
             present(alert, animated: true, completion: nil)
             return
         }
-        var completeCount = 0
+        let count = Counter()
         var totalCount = 0
         
         guard let fromService = fromService else { return }
+        createPlaylistProgressView.transform = CGAffineTransform(scaleX: 1, y: 2)
+        createPlaylistProgressView.isHidden = false
+        createPlaylistButton.setTitle("Playlist in Progress", for: .normal)
+        createPlaylistButton.isUserInteractionEnabled = false
+        addedSongLabel.text = "Adding Songs to Playlist"
+        addedSongLabel.isHidden = false
         let group = DispatchGroup()
         if toService == .appleMusic {
             let playlistUUID = UUID()
@@ -212,9 +232,10 @@ class ResultsViewController: UIViewController {
                         }()
                         playlist.addItem(withProductID : songId) { (error) in
                             group.leave() // B
-                            completeCount+=1
+                            count.increment()
                             DispatchQueue.main.async {
-                                self.createPlaylistProgressView.progress = Float(completeCount)/Float(totalCount)
+                                self.createPlaylistProgressView.progress = Float(count.value)/Float(totalCount)
+                                self.addedSongLabel.text = "Added '\(                                self.getSongNameFromSongValue(song: songValue))'"
                             }
                             if error != nil {
                                 print("ERROR: Could not add \(songId) to the playlist!")
@@ -244,6 +265,9 @@ class ResultsViewController: UIViewController {
                 }
                 spotifyManager.addSongsToPlaylist(playlistId: playlistId, tracks: tracks.compactMap { $0 }) { (success) in
                     group.leave() // D
+                    DispatchQueue.main.async {
+                        self.createPlaylistProgressView.progress = 1.0
+                    }
                     if !success {
                         print("ERROR: Addings tracks to spotify")
                     }
@@ -252,9 +276,14 @@ class ResultsViewController: UIViewController {
             }
         }
         group.notify(queue: .main) {
-            self.dismiss(animated: true) {
-                
+            let alert = UIAlertController(title: "Playlist Complete", message: "'\(self.playlistName!)' has been created on \(self.toService!.rawValue)", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Sweet!", style: .default) { (_) in
+                self.navigationController?.popViewController(animated: true)
+                self.dismiss(animated: true) {}
             }
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+            
         }
     }
 }

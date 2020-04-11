@@ -16,7 +16,15 @@ enum StreamingService: String, CaseIterable {
     case appleMusic = "Apple Music"
 }
 
-enum SongValue {
+enum SongValue: Equatable {
+    static func == (lhs: SongValue, rhs: SongValue) -> Bool {
+        switch (lhs, rhs) {
+        case let (.appleId(lid), .appleId(rid)): return lid == rid
+        case let (.spotifyTrack(lTrack), .spotifyTrack(rTrack)): return lTrack.id == rTrack.id
+        default: return false
+        }
+    }
+    
     case appleId(String)
     case spotifyTrack(SpotifyTrack)
 }
@@ -31,5 +39,16 @@ struct Song {
         self.artist = artist
         self.album = album
         self.value = value
+    }
+}
+
+class Counter {
+    private var queue = DispatchQueue(label: "your.queue.identifier")
+    private (set) var value: Int = 0
+
+    func increment() {
+        queue.sync {
+            value += 1
+        }
     }
 }
