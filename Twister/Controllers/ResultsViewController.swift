@@ -92,6 +92,17 @@ class ResultsViewController: UIViewController {
         guard toAddSongs.isEmpty else { return }
         sam.wait() // don't start this one till viewWillAppear is finished
         
+        guard !songInformation.isEmpty else { // no songs in playlist
+            let alert = UIAlertController(title: "No Songs Available", message: "'\(playlistName!)' on \(fromService!.rawValue) does not have any songs in it", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Okay", style: .default) { (_) in
+                self.navigationController?.popViewController(animated: true)
+                self.dismiss(animated: true) {}
+            }
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
         let group = DispatchGroup()
 
         for _ in songInformation { toAddSongs.append(nil); group.enter() }
@@ -192,6 +203,30 @@ class ResultsViewController: UIViewController {
             present(alert, animated: true, completion: nil)
             return
         }
+        //check to make sure at least one song is even available
+        if !songProgress.contains(1) && !songProgress.contains(2) {
+            let alert = UIAlertController(title: "No songs to add", message: "No matches were found for your songs. Try a different playlist.", preferredStyle: .alert)
+            let closeAction = UIAlertAction(title: "Okay", style: .cancel) { (_) in
+                self.navigationController?.popViewController(animated: true)
+                self.dismiss(animated: true) {}
+            }
+            alert.addAction(closeAction)
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        if !songProgress.contains(1) && songProgress.contains(2) {
+            let alert = UIAlertController(title: "Please choose replacement songs", message: "No perfect matches were found for your songs. Tap on songs that are yellow to choose from similar songs or try a different playlist.", preferredStyle: .alert)
+            let closeAction = UIAlertAction(title: "Try another playlist", style: .cancel) { (_) in
+                self.navigationController?.popViewController(animated: true)
+                self.dismiss(animated: true) {}
+            }
+            let stayAction = UIAlertAction(title: "Choose replacements", style: .default, handler: nil)
+            alert.addAction(closeAction)
+            alert.addAction(stayAction)
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
         let count = Counter()
         var totalCount = 0
         

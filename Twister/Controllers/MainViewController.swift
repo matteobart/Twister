@@ -58,7 +58,9 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         twistButton.backgroundColor = .gray
-
+        allPlaylists[0] = []
+        allPlaylists[1] = []
+        
         //add spotify playlists
         spotifyManager.library(SpotifyPlaylist.self) { (libraryItems) in
             for item in libraryItems {
