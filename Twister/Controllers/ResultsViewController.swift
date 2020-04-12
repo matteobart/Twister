@@ -33,9 +33,7 @@ class ResultsViewController: UIViewController {
     var songResponse: [[Song]] = []
     
     var toAddSongs: [SongValue?] = []
-
-    let sam = DispatchSemaphore(value: 0) // used for set up
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         songsTableView.delegate = self
@@ -46,11 +44,11 @@ class ResultsViewController: UIViewController {
         createPlaylistButton.backgroundColor = .gray
         
         createPlaylistButton.setTitle("Create Playlist on " + toService!.rawValue.capitalized, for: .normal)
+        
+        setUp()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    func setUp(){
         guard let fromService = fromService else { return }
         guard let playlistId = playlistId else { return }
         guard toAddSongs.isEmpty else { return }
@@ -59,7 +57,7 @@ class ResultsViewController: UIViewController {
         if fromService == .spotify {
             spotifyManager.get(SpotifyPlaylist.self, id: playlistId) { (searchItem) in
                 print(searchItem)
-                guard let _ = searchItem.collectionTracks else {self.sam.signal() ; return}
+                guard let _ = searchItem.collectionTracks else {return}
                 for item in searchItem.collectionTracks! {
                     print(item.name, "->" ,item.artist.name)
                     self.songInformation.append((item.name, item.artist.name, item.album?.name ?? ""))
@@ -67,7 +65,7 @@ class ResultsViewController: UIViewController {
                     self.songResponse.append([])
                     DispatchQueue.main.async { self.songsTableView.reloadData() }
                 }
-                self.sam.signal()
+                self.findSongsOnToService()
             }
         } else if fromService == .appleMusic {
             let myPlaylistQuery = MPMediaQuery.playlists()
@@ -80,24 +78,14 @@ class ResultsViewController: UIViewController {
                 songResponse.append([])
                 DispatchQueue.main.async { self.songsTableView.reloadData() }
             }
-            sam.signal()
-            
+            findSongsOnToService()
         }
     }
     
-    func isControllerNotActive () -> Bool {
-        DispatchQueue.main.sync {
-            return self.navigationController?.visibleViewController == nil
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    func findSongsOnToService(){
         guard let toService = toService else { return }
         guard toAddSongs.isEmpty else { return }
-        sam.wait() // don't start this one till viewWillAppear is finished
-        
+
         guard !songInformation.isEmpty else { // no songs in playlist
             let alert = UIAlertController(title: "No Songs Available", message: "'\(playlistName!)' on \(fromService!.rawValue) does not have any songs in it", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Okay", style: .default) { (_) in
@@ -182,6 +170,13 @@ class ResultsViewController: UIViewController {
             self.createPlaylistButton.backgroundColor = appTint
             self.readyToCreatePlaylist = true
             
+        }
+        
+    }
+    
+    func isControllerNotActive () -> Bool {
+        DispatchQueue.main.sync {
+            return self.navigationController?.visibleViewController == nil
         }
     }
     
