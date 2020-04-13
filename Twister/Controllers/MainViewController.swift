@@ -42,6 +42,18 @@ class MainViewController: UIViewController {
         twistButton.layer.cornerRadius = 10
         twistButton.layer.borderWidth = 1
         
+        twistButton.backgroundColor = .systemGray
+        twistButton.layer.borderColor = UIColor.systemGray.cgColor
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        allPlaylists = []
+        for _ in StreamingService.allCases {
+            allPlaylists.append([])
+        }
+        
         if !spotifyManager.isAuthorized() || !authorizationManager.isAuthenticated() {
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "authVC")
@@ -50,17 +62,9 @@ class MainViewController: UIViewController {
             self.present(nextViewController, animated:true, completion:nil)
         }
         
+        guard spotifyManager.isAuthorized() else { return }
+        guard authorizationManager.isAuthenticated() else { return }
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        twistButton.backgroundColor = .systemGray
-        twistButton.layer.borderColor = UIColor.systemGray.cgColor
-        
-        allPlaylists = []
-        for _ in StreamingService.allCases {
-            allPlaylists.append([])
-        }
         
         //add spotify playlists
         spotifyManager.library(SpotifyPlaylist.self) { (libraryItems) in
