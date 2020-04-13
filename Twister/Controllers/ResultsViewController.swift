@@ -48,6 +48,25 @@ class ResultsViewController: UIViewController {
         setUp()
     }
     
+    func checkForSpotifyPagination(playlist: SpotifyPlaylist, completionHandler: @escaping (()->Void)) {
+        if !playlist.hasAnotherPage {
+            completionHandler()
+        } else {
+            spotifyManager.getNextPageInPlaylist(playlist: playlist) { (nextPlaylist) in
+                guard let nextPlaylist = nextPlaylist else { self.findSongsOnToService(); return }
+                guard let _ = nextPlaylist.collectionTracks else {return}
+                for item in nextPlaylist.collectionTracks! {
+                    print(item.name, "->" ,item.artist.name)
+                    self.songInformation.append((item.name, item.artist.name, item.album?.name ?? ""))
+                    self.songProgress.append(0)
+                    self.songResponse.append([])
+                }
+                DispatchQueue.main.async { self.songsTableView.reloadData(); self.songsTableView.layoutIfNeeded() }
+                self.checkForSpotifyPagination(playlist: nextPlaylist, completionHandler: completionHandler)
+            }
+        }
+    }
+    
     func setUp(){
         guard let fromService = fromService else { return }
         guard let playlistId = playlistId else { return }
@@ -63,9 +82,11 @@ class ResultsViewController: UIViewController {
                     self.songInformation.append((item.name, item.artist.name, item.album?.name ?? ""))
                     self.songProgress.append(0)
                     self.songResponse.append([])
-                    DispatchQueue.main.async { self.songsTableView.reloadData() }
                 }
-                self.findSongsOnToService()
+                DispatchQueue.main.async { self.songsTableView.reloadData() }
+                self.checkForSpotifyPagination(playlist: searchItem) {
+                    self.findSongsOnToService()
+                }
             }
         } else if fromService == .appleMusic {
             let myPlaylistQuery = MPMediaQuery.playlists()
@@ -331,6 +352,15 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songInformation.count
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 66
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 66
+    }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SongTableViewCell.identifier,

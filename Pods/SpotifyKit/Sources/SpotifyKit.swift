@@ -342,14 +342,64 @@ public class SpotifyManager {
                                       method: .GET,
                                       headers: self.authorizationHeader(with: token))
             { result in
-                if  case let .success(data) = result,
-                    let result = try? JSONDecoder().decode(what,
-                                                          from: data) {
-                    completionHandler(result)
+                if  case let .success(data) = result {
+                    do {
+                        let result = try JSONDecoder().decode(what,
+                                                              from: data)
+                            completionHandler(result)
+                        
+                    } catch {
+                        print(error)
+                    }
                 }
             }
         }
     }
+    
+    public func getNextPageInPlaylist (playlist: SpotifyPlaylist, completionHandler: @escaping ((SpotifyPlaylist?)->Void)){
+        guard let next = playlist.tracks.next else { completionHandler(nil); return }
+        tokenQuery { token in
+            URLSession.shared.request(next,
+                                      method: .GET,
+                                      headers: self.authorizationHeader(with: token))
+            { result in
+                if  case let .success(data) = result {
+                    do {
+                        let result = try JSONDecoder().decode(SpotifyPlaylist.Tracks.self,
+                                                              from: data)
+                        let playlist = SpotifyPlaylist(playlist: playlist, tracks: result)
+                        completionHandler(playlist)
+                    } catch {
+                        print(error)
+                    }
+                } else if case let .failure(error) = result {
+                    print(error?.localizedDescription)
+                }
+            }
+        }
+    }
+    /*
+    public func checkForPagnation(playlist: SpotifyPlaylist, completionHandler: ) -> SpotifyPlaylist {
+        guard let next = playlist.tracks.next else { return playlist }
+        tokenQuery { token in
+            URLSession.shared.request(next, parameters: self.authorizationHeader(with: token)) { (result) in
+                    if case let .success(data) = result {
+                    do {
+                        let result = try JSONDecoder().decode(SpotifyPlaylist.self,
+                                                              from: data)
+                        var oldPlaylist = playlist
+                        //oldPlaylist.tracks.addTo(newItems: result.tracks)
+                        oldPlaylist.tracks.items?.append(contentsOf: result.tracks.items ?? [])
+                        oldPlaylist.tracks.total = oldPlaylist.tracks.items?.count ?? 0
+                        oldPlaylist.tracks.next = result.tracks.next
+                        //return self.checkForPagnation(playlist: oldPlaylist)
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+        }
+    }*/
     
     /**
      Finds items on Spotify that match a provided keyword
@@ -585,10 +635,14 @@ public class SpotifyManager {
                                       method: .GET,
                                       headers: self.authorizationHeader(with: token))
             { result in
-                if  case let .success(data) = result,
-                    let results = try? JSONDecoder().decode(SpotifyLibraryResponse<T>.self,
-                                                           from: data).items {
-                    completionHandler(results)
+                if  case let .success(data) = result {
+                    do {
+                        let results = try JSONDecoder().decode(SpotifyLibraryResponse<T>.self,
+                                                           from: data).items
+                        completionHandler(results)
+                    } catch {
+                        print(error)
+                    }
                 }
             }
         }
@@ -621,7 +675,8 @@ public class SpotifyManager {
                      completionHandler: @escaping (String?) -> Void) {
         tokenQuery { (token) in
             self.myProfile { (user) in
-                self.createPlaylistRequest(playlistName: playlistName, userName: user.id, token: token.accessToken, completionHandler: completionHandler)
+                guard let id = user.id else { return }
+                self.createPlaylistRequest(playlistName: playlistName, userName: id, token: token.accessToken, completionHandler: completionHandler)
             }
         }
     }
@@ -654,7 +709,8 @@ public class SpotifyManager {
         tokenQuery { (token) in
             var trackUrl = ""
             for track in tracks {
-                trackUrl += track.uri + ","
+                guard let trackUri = track.uri else { continue }
+                trackUrl += trackUri + ","
             }
             trackUrl = trackUrl.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? trackUrl
             var request = URLRequest(url: URL(string: "https://api.spotify.com/v1/playlists/"+playlistId+"/tracks?uris="+trackUrl)!,timeoutInterval: Double.infinity)
@@ -684,7 +740,8 @@ public class SpotifyManager {
      */
     public func save(track: SpotifyTrack,
                      completionHandler: @escaping (Bool) -> Void) {
-        save(trackId: track.id, completionHandler: completionHandler)
+        guard let trackId = track.id else { return }
+        save(trackId: trackId, completionHandler: completionHandler)
     }
     
     /**
@@ -719,7 +776,8 @@ public class SpotifyManager {
      */
     public func delete(track: SpotifyTrack,
                        completionHandler: @escaping (Bool) -> Void) {
-        delete(trackId: track.id, completionHandler: completionHandler)
+        guard let trackId = track.id else { return }
+        delete(trackId: trackId, completionHandler: completionHandler)
     }
     
     /**
@@ -754,7 +812,8 @@ public class SpotifyManager {
      */
     public func isSaved(track: SpotifyTrack,
                         completionHandler: @escaping (Bool) -> Void) {
-        isSaved(trackId: track.id, completionHandler: completionHandler)
+        guard let trackId = track.id else { return }
+        isSaved(trackId: trackId, completionHandler: completionHandler)
     }
     
     // MARK: Helper functions

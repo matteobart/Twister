@@ -40,8 +40,8 @@ struct SpotifyImage: Decodable {
 // MARK: Items data types
 
 public protocol SpotifyItem: Decodable {
-    var id:   String { get }
-    var uri:  String { get }
+    var id:   String? { get }
+    var uri:  String? { get }
     var name: String { get }
     
     static var type: SpotifyItemType { get }
@@ -55,10 +55,14 @@ public protocol SpotifySearchItem: SpotifyItem { }
 
 public protocol SpotifyLibraryItem: SpotifyItem { }
 
+public protocol SpotifyPagination {
+    var next: String? { get }
+}
+
 public struct SpotifyUser: SpotifySearchItem {
-    public var id:   String
-    public var uri:  String
-    public var name: String { return display_name ?? id }
+    public var id:   String?
+    public var uri:  String?
+    public var name: String { return display_name ?? id ?? uri ?? ""}
     
     public static let type: SpotifyItemType = .user
     
@@ -73,8 +77,8 @@ public struct SpotifyUser: SpotifySearchItem {
 }
 
 public struct SpotifyTrack: SpotifySearchItem, SpotifyLibraryItem {
-    public var id:    String
-    public var uri:   String
+    public var id:    String? // removed songs no longer have ids
+    public var uri:   String?
     public var name:  String
     
     // Simplified track objects don't contain album reference
@@ -99,8 +103,8 @@ public struct SpotifyAlbum: SpotifySearchItem, SpotifyLibraryItem, SpotifyTrackC
         var url: String
     }
     
-    public var id:   String
-    public var uri:  String
+    public var id:   String?
+    public var uri:  String?
     public var name: String
     
     // Track list is contained only in full album objects
@@ -125,19 +129,19 @@ public struct SpotifyAlbum: SpotifySearchItem, SpotifyLibraryItem, SpotifyTrackC
 }
 
 public struct SpotifyPlaylist: SpotifySearchItem, SpotifyLibraryItem, SpotifyTrackCollection {
-    struct Tracks: Decodable {
+    struct Tracks: Decodable, SpotifyPagination {
         struct Item: Decodable {
             var track: SpotifyTrack
         }
         
         var total: Int
-        
+        var next: String?
         // Track list is contained only in full playlist objects
         var items: [Item]?
     }
     
-    public var id:   String
-    public var uri:  String
+    public var id:   String?
+    public var uri:  String?
     public var name: String
     
     var tracks: Tracks
@@ -146,16 +150,27 @@ public struct SpotifyPlaylist: SpotifySearchItem, SpotifyLibraryItem, SpotifyTra
         return tracks.items?.map { $0.track }
     }
     
+    public var hasAnotherPage: Bool {
+        return tracks.next != nil
+    }
+    
     public var count: Int {
         return tracks.total
     }
     
     public static let type: SpotifyItemType = .playlist
+    
+    init(playlist: SpotifyPlaylist, tracks: Tracks){
+        self.id = playlist.id
+        self.uri = playlist.uri
+        self.name = playlist.name
+        self.tracks = tracks
+    }
 }
 
 public struct SpotifyArtist: SpotifySearchItem {
-    public var id:   String
-    public var uri:  String
+    public var id:   String?
+    public var uri:  String?
     public var name: String
     
     public static let type: SpotifyItemType = .artist

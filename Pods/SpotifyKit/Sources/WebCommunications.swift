@@ -97,7 +97,11 @@ extension URLSession {
                 return
             }
             
-            DispatchQueue.main.async { completionHandler(.success(data)) }
+            DispatchQueue.main.async {
+                print(String(data: data, encoding: .utf8))
+                completionHandler(.success(data))
+                
+            }
         }
         
         task.resume()

@@ -64,7 +64,7 @@ class MainViewController: UIViewController {
         //add spotify playlists
         spotifyManager.library(SpotifyPlaylist.self) { (libraryItems) in
             for item in libraryItems {
-                self.allPlaylists[1].append((item.name, item.id))
+                self.allPlaylists[1].append((item.name, item.id ?? ""))
             }
             self.availablePlaylistsTableView.reloadData()
         }
