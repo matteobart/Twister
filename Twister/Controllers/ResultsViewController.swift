@@ -41,7 +41,8 @@ class ResultsViewController: UIViewController {
         
         createPlaylistButton.layer.cornerRadius = 10
         createPlaylistButton.layer.borderWidth = 1
-        createPlaylistButton.backgroundColor = .gray
+        createPlaylistButton.backgroundColor = .systemGray
+        createPlaylistButton.layer.borderColor = UIColor.systemGray.cgColor
         
         createPlaylistButton.setTitle("Create Playlist on " + toService!.rawValue.capitalized, for: .normal)
         
@@ -189,6 +190,7 @@ class ResultsViewController: UIViewController {
         
         group.notify(queue: .main) {
             self.createPlaylistButton.backgroundColor = appTint
+            self.createPlaylistButton.layer.borderColor = appTint.cgColor
             self.readyToCreatePlaylist = true
             
         }
@@ -385,13 +387,13 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
             cell.activityIndicatorView.isHidden = true
             cell.completionImage.isHidden = false
             cell.completionImage.image = UIImage(systemName: "questionmark.square.fill")
-            cell.completionImage.tintColor = .yellow
+            cell.completionImage.tintColor = .systemYellow
         } else if songProgress[indexPath.item] == 3 { //no matches
             cell.activityIndicatorView.stopAnimating()
             cell.activityIndicatorView.isHidden = true
             cell.completionImage.isHidden = false
             cell.completionImage.image = UIImage(systemName: "exclamationmark.square.fill")
-            cell.completionImage.tintColor = .orange
+            cell.completionImage.tintColor = .systemOrange
         }
         return cell
         

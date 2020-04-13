@@ -54,7 +54,8 @@ class MainViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        twistButton.backgroundColor = .gray
+        twistButton.backgroundColor = .systemGray
+        twistButton.layer.borderColor = UIColor.systemGray.cgColor
         
         allPlaylists = []
         for _ in StreamingService.allCases {
@@ -90,12 +91,14 @@ class MainViewController: UIViewController {
         if changedSegControl.selectedSegmentIndex == otherSegContol.selectedSegmentIndex {
             otherSegContol.selectedSegmentIndex = (otherSegContol.selectedSegmentIndex + 1) % otherSegContol.numberOfSegments
             playlistNameTextField.text = ""
-            self.twistButton.backgroundColor = .gray
+            self.twistButton.backgroundColor = .systemGray
+            self.twistButton.layer.borderColor = UIColor.systemGray.cgColor
         }
         availablePlaylistsTableView.reloadData()
         if sender == fromSegControl { //clean interface
             playlistNameTextField.text = ""
-            self.twistButton.backgroundColor = .gray
+            self.twistButton.backgroundColor = .systemGray
+            self.twistButton.layer.borderColor = UIColor.systemGray.cgColor
         }
     }
     @IBAction func twistButtonPressed(_ sender: UIButton) {
@@ -195,6 +198,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         let selectedCell = tableView.cellForRow(at: indexPath) as! PlaylistTableViewCell
         playlistNameTextField.text = selectedCell.playlistNameLabel.text
         self.twistButton.backgroundColor = appTint
+        self.twistButton.layer.borderColor = appTint.cgColor
         self.twistButton.isEnabled = true
         self.twistButton.isUserInteractionEnabled = true
     }

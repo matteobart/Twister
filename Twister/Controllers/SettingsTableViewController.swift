@@ -24,15 +24,15 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
         } else if authorizationManager.isDenied() {
             authAppleMusicLabel.text = "Apple Music is Denied"
             appleMusicImageView.image = UIImage(systemName: "exclamationmark.square.fill")
-            appleMusicImageView.tintColor = .orange
+            appleMusicImageView.tintColor = .systemOrange
         } else {
             authAppleMusicLabel.text = "Authorize Apple Music"
             appleMusicImageView.image = UIImage(systemName: "questionmark.square.fill")
-            appleMusicImageView.tintColor = .yellow
+            appleMusicImageView.tintColor = .systemYellow
         }
         authSpotifyLabel.text = spotifyManager.isAuthorized() ? "Deauthorize Spotify" : "Authorize Spotify"
         spotifyImageView.image = spotifyManager.isAuthorized() ? UIImage(systemName: "checkmark.square.fill") : UIImage(systemName: "questionmark.square.fill")
-        spotifyImageView.tintColor = spotifyManager.isAuthorized() ? appTint : .yellow
+        spotifyImageView.tintColor = spotifyManager.isAuthorized() ? appTint : .systemYellow
     }
         
         
