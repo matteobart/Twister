@@ -24,7 +24,7 @@ class MainViewController: UIViewController {
     var authController: AuthorizationViewController? // ideally this will be able to be removed
     
     //let numberOfServices = 2
-    var allPlaylists: [[(String, String)]] = [] //a 2D array (where numCols is the number of services eg. spotify)
+    var allPlaylists: [[(playlistName: String, playlistId: String)]] = [] //a 2D array (where numCols is the number of services eg. spotify)
     
     
     override func viewDidLoad() {
@@ -193,8 +193,12 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                                                        for: indexPath) as? PlaylistTableViewCell else {
             return UITableViewCell()
         }
-        cell.playlistNameLabel.text = allPlaylists[fromSegControl.selectedSegmentIndex][indexPath.item].0
-        cell.playlistId = allPlaylists[fromSegControl.selectedSegmentIndex][indexPath.item].1
+        let x = fromSegControl.selectedSegmentIndex
+        let y = indexPath.item
+        guard x < allPlaylists.count else { return UITableViewCell() }
+        guard y < allPlaylists[x].count else { return UITableViewCell() }
+        cell.playlistNameLabel.text = allPlaylists[x][y].playlistName
+        cell.playlistId = allPlaylists[x][y].playlistId
         return cell
     }
     

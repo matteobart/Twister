@@ -356,8 +356,30 @@ public class SpotifyManager {
         }
     }
     
+    public func get<T>(_ what: T.Type,
+                       url: String,
+                       completionHandler: @escaping ((T) -> Void)) where T: SpotifyPagingObject {
+        tokenQuery { token in
+            URLSession.shared.request(url,
+                                      method: .GET,
+                                      headers: self.authorizationHeader(with: token))
+            { result in
+                if  case let .success(data) = result {
+                    do {
+                        let result = try JSONDecoder().decode(what,
+                                                              from: data)
+                            completionHandler(result)
+                        
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+        }
+    }
+    
     public func getNextPageInPlaylist (playlist: SpotifyPlaylist, completionHandler: @escaping ((SpotifyPlaylist?)->Void)){
-        guard let next = playlist.tracks.next else { completionHandler(nil); return }
+        guard let next = playlist.tracks?.next else { completionHandler(nil); return }
         tokenQuery { token in
             URLSession.shared.request(next,
                                       method: .GET,
@@ -373,29 +395,33 @@ public class SpotifyManager {
                         print(error)
                     }
                 } else if case let .failure(error) = result {
-                    print(error?.localizedDescription)
+                    print(error?.localizedDescription as Any)
                 }
             }
         }
     }
+    
     /*
-    public func checkForPagnation(playlist: SpotifyPlaylist, completionHandler: ) -> SpotifyPlaylist {
-        guard let next = playlist.tracks.next else { return playlist }
+    public func getNextPage<T> (pagable: T, completionHandler: @escaping ((PageItems?)->Void)) where T: PageItems {
+        guard let next = pagable.nextURL else { completionHandler(nil); return }
         tokenQuery { token in
-            URLSession.shared.request(next, parameters: self.authorizationHeader(with: token)) { (result) in
-                    if case let .success(data) = result {
+            URLSession.shared.request(next,
+                                      method: .GET,
+                                      headers: self.authorizationHeader(with: token))
+            { result in
+                if  case let .success(data) = result {
                     do {
-                        let result = try JSONDecoder().decode(SpotifyPlaylist.self,
+                        let result = try JSONDecoder().decode(<#T##type: Decodable.Protocol##Decodable.Protocol#>, from: <#T##Data#>)
+                        let model : T.Type = pagable.self
+                        let r = try JSONDecoder().decode(pagable.pageType,
                                                               from: data)
-                        var oldPlaylist = playlist
-                        //oldPlaylist.tracks.addTo(newItems: result.tracks)
-                        oldPlaylist.tracks.items?.append(contentsOf: result.tracks.items ?? [])
-                        oldPlaylist.tracks.total = oldPlaylist.tracks.items?.count ?? 0
-                        oldPlaylist.tracks.next = result.tracks.next
-                        //return self.checkForPagnation(playlist: oldPlaylist)
+                        //let playlist = SpotifyPlaylist(playlist: playlist, tracks: result)
+                        completionHandler(playlist)
                     } catch {
                         print(error)
                     }
+                } else if case let .failure(error) = result {
+                    print(error?.localizedDescription as Any)
                 }
             }
         }

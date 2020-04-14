@@ -47,6 +47,19 @@ public protocol SpotifyItem: Decodable {
     static var type: SpotifyItemType { get }
 }
 
+public protocol SpotifyPagingObject: Decodable {
+    associatedtype T;
+    var total: Int { get }
+    var next: String? { get }
+    var previous: String? { get }
+    var items: [T]? { get }
+}
+
+public protocol PageItems {
+    var hasNextPage: Bool { get };
+    var nextURL: String? { get }
+}
+
 public protocol SpotifyTrackCollection {
     var collectionTracks: [SpotifyTrack]? { get }
 }
@@ -128,34 +141,41 @@ public struct SpotifyAlbum: SpotifySearchItem, SpotifyLibraryItem, SpotifyTrackC
     }
 }
 
-public struct SpotifyPlaylist: SpotifySearchItem, SpotifyLibraryItem, SpotifyTrackCollection {
-    struct Tracks: Decodable, SpotifyPagination {
-        struct Item: Decodable {
-            var track: SpotifyTrack
+public struct SpotifyPlaylist:
+SpotifySearchItem, SpotifyTrackCollection, SpotifyLibraryItem, PageItems {
+    public struct Tracks: SpotifyPagingObject {
+        public var total: Int
+        public var next: String?
+        public var previous: String?
+        public var items: [Item]?
+        public typealias T = Item
+        
+        public struct Item: Decodable {
+            public var track: SpotifyTrack
         }
         
-        var total: Int
-        var next: String?
-        // Track list is contained only in full playlist objects
-        var items: [Item]?
     }
     
     public var id:   String?
     public var uri:  String?
     public var name: String
+
+    var tracks: Tracks?
     
-    var tracks: Tracks
-    
+    public var nextURL: String? {
+        return tracks?.next
+    }
+
     public var collectionTracks: [SpotifyTrack]? {
-        return tracks.items?.map { $0.track }
+        return tracks?.items?.map { $0.track }
     }
     
-    public var hasAnotherPage: Bool {
-        return tracks.next != nil
+    public var hasNextPage: Bool {
+        return (tracks?.next ?? nil) != nil
     }
     
     public var count: Int {
-        return tracks.total
+        return tracks?.total ?? 0
     }
     
     public static let type: SpotifyItemType = .playlist
