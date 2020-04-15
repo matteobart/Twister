@@ -24,7 +24,7 @@ class MainViewController: UIViewController {
     var authController: AuthorizationViewController? // ideally this will be able to be removed
     
     //let numberOfServices = 2
-    var allPlaylists: [[(String, String)]] = [] //a 2D array (where numCols is the number of services eg. spotify)
+    var allPlaylists: [[(playlistName: String, playlistId: String)]] = [] //a 2D array (where numCols is the number of services eg. spotify)
     
     
     override func viewDidLoad() {
@@ -49,6 +49,11 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        twistButton.backgroundColor = .systemGray
+        twistButton.layer.borderColor = UIColor.systemGray.cgColor
+        
+        playlistNameTextField.text = ""
+        
         allPlaylists = []
         for _ in StreamingService.allCases {
             allPlaylists.append([])
@@ -67,11 +72,12 @@ class MainViewController: UIViewController {
         
         
         //add spotify playlists
-        spotifyManager.library(SpotifyPlaylist.self) { (libraryItems) in
+        spotifyManager.library(SpotifyPlaylist.self) { (libraryItems, response) in
             for item in libraryItems {
                 self.allPlaylists[1].append((item.name, item.id ?? ""))
             }
             self.availablePlaylistsTableView.reloadData()
+            self.checkForMoreSpotifyPlaylists(nextPage: response.next)
         }
         
         //add apple music playlists
@@ -87,7 +93,17 @@ class MainViewController: UIViewController {
         }
     }
     
-    
+    func checkForMoreSpotifyPlaylists(nextPage: String?) { //CHECK TO SEE IF THIS WORKS!!!
+        if nextPage != nil {
+            spotifyManager.get(SpotifyLibraryResponse<SpotifyPlaylist>.self, url: nextPage!) { (pagingObject) in
+                for item in pagingObject.items ?? [] {
+                    self.allPlaylists[1].append((item.name, item.id ?? ""))
+                }
+                self.availablePlaylistsTableView.reloadData()
+                self.checkForMoreSpotifyPlaylists(nextPage: pagingObject.nextURL)
+            }
+        }
+    }
     
     @IBAction func segContolChanged(_ sender: UISegmentedControl) {
         let changedSegControl = sender
@@ -105,6 +121,7 @@ class MainViewController: UIViewController {
             self.twistButton.layer.borderColor = UIColor.systemGray.cgColor
         }
     }
+    
     @IBAction func twistButtonPressed(_ sender: UIButton) {
         guard let selectedRow = availablePlaylistsTableView.indexPathForSelectedRow else {
             //throw a pop up
@@ -189,12 +206,16 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: PlaylistTableViewCell.identifier,
-                                                       for: indexPath) as? PlaylistTableViewCell else {
-            return UITableViewCell()
-        }
-        cell.playlistNameLabel.text = allPlaylists[fromSegControl.selectedSegmentIndex][indexPath.item].0
-        cell.playlistId = allPlaylists[fromSegControl.selectedSegmentIndex][indexPath.item].1
+        guard let cell = tableView.dequeueReusableCell(
+                    withIdentifier: PlaylistTableViewCell.identifier,
+                    for: indexPath) as? PlaylistTableViewCell
+            else { return UITableViewCell() }
+        let x = fromSegControl.selectedSegmentIndex
+        let y = indexPath.item
+        guard x < allPlaylists.count else { return UITableViewCell() }
+        guard y < allPlaylists[x].count else { return UITableViewCell() }
+        cell.playlistNameLabel.text = allPlaylists[x][y].playlistName
+        cell.playlistId = allPlaylists[x][y].playlistId
         return cell
     }
     
@@ -206,8 +227,4 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         self.twistButton.isEnabled = true
         self.twistButton.isUserInteractionEnabled = true
     }
-    
-    
-    
-    
 }
