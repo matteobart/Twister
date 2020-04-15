@@ -356,50 +356,27 @@ public class SpotifyManager {
         }
     }
     
-    public func getNextPageInPlaylist (playlist: SpotifyPlaylist, completionHandler: @escaping ((SpotifyPlaylist?)->Void)){
-        guard let next = playlist.tracks.next else { completionHandler(nil); return }
+    public func get<T>(_ what: T.Type,
+                       url: String,
+                       completionHandler: @escaping ((T) -> Void)) where T: SpotifyPagingObject {
         tokenQuery { token in
-            URLSession.shared.request(next,
+            URLSession.shared.request(url,
                                       method: .GET,
                                       headers: self.authorizationHeader(with: token))
             { result in
                 if  case let .success(data) = result {
                     do {
-                        let result = try JSONDecoder().decode(SpotifyPlaylist.Tracks.self,
+                        let result = try JSONDecoder().decode(what,
                                                               from: data)
-                        let playlist = SpotifyPlaylist(playlist: playlist, tracks: result)
-                        completionHandler(playlist)
+                            completionHandler(result)
+                        
                     } catch {
                         print(error)
                     }
-                } else if case let .failure(error) = result {
-                    print(error?.localizedDescription)
                 }
             }
         }
     }
-    /*
-    public func checkForPagnation(playlist: SpotifyPlaylist, completionHandler: ) -> SpotifyPlaylist {
-        guard let next = playlist.tracks.next else { return playlist }
-        tokenQuery { token in
-            URLSession.shared.request(next, parameters: self.authorizationHeader(with: token)) { (result) in
-                    if case let .success(data) = result {
-                    do {
-                        let result = try JSONDecoder().decode(SpotifyPlaylist.self,
-                                                              from: data)
-                        var oldPlaylist = playlist
-                        //oldPlaylist.tracks.addTo(newItems: result.tracks)
-                        oldPlaylist.tracks.items?.append(contentsOf: result.tracks.items ?? [])
-                        oldPlaylist.tracks.total = oldPlaylist.tracks.items?.count ?? 0
-                        oldPlaylist.tracks.next = result.tracks.next
-                        //return self.checkForPagnation(playlist: oldPlaylist)
-                    } catch {
-                        print(error)
-                    }
-                }
-            }
-        }
-    }*/
     
     /**
      Finds items on Spotify that match a provided keyword
@@ -629,7 +606,7 @@ public class SpotifyManager {
      // TODO: read more than 20/10 items
      */
     public func library<T>(_ what: T.Type,
-                           completionHandler: @escaping ([T]) -> Void) where T: SpotifyLibraryItem {
+                           completionHandler: @escaping ([T], SpotifyLibraryResponse<T>) -> Void) where T: SpotifyLibraryItem {
         tokenQuery { token in
             URLSession.shared.request(SpotifyQuery.libraryUrlFor(what),
                                       method: .GET,
@@ -638,8 +615,8 @@ public class SpotifyManager {
                 if  case let .success(data) = result {
                     do {
                         let results = try JSONDecoder().decode(SpotifyLibraryResponse<T>.self,
-                                                           from: data).items
-                        completionHandler(results)
+                            from: data)
+                        completionHandler(results.items ?? [], results)
                     } catch {
                         print(error)
                     }

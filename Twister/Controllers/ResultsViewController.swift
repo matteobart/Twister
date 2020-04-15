@@ -49,21 +49,19 @@ class ResultsViewController: UIViewController {
         setUp()
     }
     
-    func checkForSpotifyPagination(playlist: SpotifyPlaylist, completionHandler: @escaping (()->Void)) {
-        if !playlist.hasAnotherPage {
+    func checkForPlaylistPagnation(nextPage: String?, completionHandler: @escaping (()->Void)) {
+        if nextPage == nil {
             completionHandler()
         } else {
-            spotifyManager.getNextPageInPlaylist(playlist: playlist) { (nextPlaylist) in
-                guard let nextPlaylist = nextPlaylist else { self.findSongsOnToService(); return }
-                guard let _ = nextPlaylist.collectionTracks else {return}
-                for item in nextPlaylist.collectionTracks! {
-                    print(item.name, "->" ,item.artist.name)
-                    self.songInformation.append((item.name, item.artist.name, item.album?.name ?? ""))
+            spotifyManager.get(SpotifyPlaylist.Tracks.self, url: nextPage!) { (pagingObject) in
+                for item in pagingObject.items ?? [] {
+                    print(item.track.name, "->" ,item.track.artist.name)
+                    self.songInformation.append((item.track.name, item.track.artist.name, item.track.album?.name ?? ""))
                     self.songProgress.append(0)
                     self.songResponse.append([])
                 }
                 DispatchQueue.main.async { self.songsTableView.reloadData(); self.songsTableView.layoutIfNeeded() }
-                self.checkForSpotifyPagination(playlist: nextPlaylist, completionHandler: completionHandler)
+                self.checkForPlaylistPagnation(nextPage: pagingObject.next, completionHandler: completionHandler)
             }
         }
     }
@@ -85,7 +83,7 @@ class ResultsViewController: UIViewController {
                     self.songResponse.append([])
                 }
                 DispatchQueue.main.async { self.songsTableView.reloadData() }
-                self.checkForSpotifyPagination(playlist: searchItem) {
+                self.checkForPlaylistPagnation(nextPage: searchItem.nextURL) {
                     self.findSongsOnToService()
                 }
             }
