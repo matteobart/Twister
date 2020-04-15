@@ -68,9 +68,6 @@ public protocol SpotifySearchItem: SpotifyItem { }
 
 public protocol SpotifyLibraryItem: SpotifyItem { }
 
-public protocol SpotifyPagination {
-    var next: String? { get }
-}
 
 public struct SpotifyUser: SpotifySearchItem {
     public var id:   String?
@@ -90,6 +87,7 @@ public struct SpotifyUser: SpotifySearchItem {
 }
 
 public struct SpotifyTrack: SpotifySearchItem, SpotifyLibraryItem {
+    
     public var id:    String? // removed songs no longer have ids
     public var uri:   String?
     public var name:  String
@@ -196,7 +194,22 @@ public struct SpotifyArtist: SpotifySearchItem {
     public static let type: SpotifyItemType = .artist
 }
 
-public struct SpotifyLibraryResponse<T> where T: SpotifyLibraryItem {
+public struct SpotifyLibraryResponse<T>: PageItems, SpotifyPagingObject where T: SpotifyLibraryItem {
+    public var total: Int
+    
+    public var previous: String?
+        
+    public var next: String?
+    
+    public var hasNextPage: Bool {
+        return next != nil
+    }
+    
+    public var nextURL: String? {
+        return next
+    }
+    
+    
     struct SavedItem {
         var item: T?
     }
@@ -209,7 +222,7 @@ public struct SpotifyLibraryResponse<T> where T: SpotifyLibraryItem {
     // and the save date
     var wrappedItems: [SavedItem]?
     
-    public var items: [T] {
+    public var items: [T]? {
         if let wrap = wrappedItems {
             return wrap.compactMap { $0.item }
         }
@@ -218,7 +231,7 @@ public struct SpotifyLibraryResponse<T> where T: SpotifyLibraryItem {
             return items
         }
         
-        return []
+        return nil
     }
 }
 
@@ -233,23 +246,28 @@ extension SpotifyLibraryResponse.SavedItem: Decodable {
 extension SpotifyLibraryResponse: Decodable {
     enum Key: String, CodingKey {
         case items
+        case next
+        case total
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Key.self)
         
         switch T.type {
-        case .track, .album:
-            self.init(unwrappedItems: nil,
-                      wrappedItems: try? container.decode([SavedItem].self,
-                                                          forKey: .items))
+        case .track, .album: //should probably fill in the rest of the variables
+            self.init(total: (try? container.decode(Int.self, forKey: .total)) ?? 0,
+                      unwrappedItems: nil,
+                      wrappedItems: try? container.decode([SavedItem].self, forKey: .items))
             
-        case .playlist:
-            self.init(unwrappedItems: try? container.decode([T].self,
-                                                            forKey: .items),
+        case .playlist: //should probably fill in the rest of the variables
+            self.init(total: (try? container.decode(Int.self, forKey: .total)) ?? 0,
+                      next: try? container.decode(String.self, forKey: .next),
+                      unwrappedItems: try? container.decode([T].self, forKey: .items),
                       wrappedItems: nil)
         default:
-            self.init(unwrappedItems: nil, wrappedItems: nil)
+            self.init(total: 0,
+                      unwrappedItems: nil,
+                      wrappedItems: nil)
         }
     }
 }

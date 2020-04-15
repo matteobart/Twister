@@ -378,55 +378,6 @@ public class SpotifyManager {
         }
     }
     
-    public func getNextPageInPlaylist (playlist: SpotifyPlaylist, completionHandler: @escaping ((SpotifyPlaylist?)->Void)){
-        guard let next = playlist.tracks?.next else { completionHandler(nil); return }
-        tokenQuery { token in
-            URLSession.shared.request(next,
-                                      method: .GET,
-                                      headers: self.authorizationHeader(with: token))
-            { result in
-                if  case let .success(data) = result {
-                    do {
-                        let result = try JSONDecoder().decode(SpotifyPlaylist.Tracks.self,
-                                                              from: data)
-                        let playlist = SpotifyPlaylist(playlist: playlist, tracks: result)
-                        completionHandler(playlist)
-                    } catch {
-                        print(error)
-                    }
-                } else if case let .failure(error) = result {
-                    print(error?.localizedDescription as Any)
-                }
-            }
-        }
-    }
-    
-    /*
-    public func getNextPage<T> (pagable: T, completionHandler: @escaping ((PageItems?)->Void)) where T: PageItems {
-        guard let next = pagable.nextURL else { completionHandler(nil); return }
-        tokenQuery { token in
-            URLSession.shared.request(next,
-                                      method: .GET,
-                                      headers: self.authorizationHeader(with: token))
-            { result in
-                if  case let .success(data) = result {
-                    do {
-                        let result = try JSONDecoder().decode(<#T##type: Decodable.Protocol##Decodable.Protocol#>, from: <#T##Data#>)
-                        let model : T.Type = pagable.self
-                        let r = try JSONDecoder().decode(pagable.pageType,
-                                                              from: data)
-                        //let playlist = SpotifyPlaylist(playlist: playlist, tracks: result)
-                        completionHandler(playlist)
-                    } catch {
-                        print(error)
-                    }
-                } else if case let .failure(error) = result {
-                    print(error?.localizedDescription as Any)
-                }
-            }
-        }
-    }*/
-    
     /**
      Finds items on Spotify that match a provided keyword
      - parameter what: the type of the item ('SpotifyTrack', 'SpotifyAlbum'...)
@@ -655,7 +606,7 @@ public class SpotifyManager {
      // TODO: read more than 20/10 items
      */
     public func library<T>(_ what: T.Type,
-                           completionHandler: @escaping ([T]) -> Void) where T: SpotifyLibraryItem {
+                           completionHandler: @escaping ([T], SpotifyLibraryResponse<T>) -> Void) where T: SpotifyLibraryItem {
         tokenQuery { token in
             URLSession.shared.request(SpotifyQuery.libraryUrlFor(what),
                                       method: .GET,
@@ -664,8 +615,8 @@ public class SpotifyManager {
                 if  case let .success(data) = result {
                     do {
                         let results = try JSONDecoder().decode(SpotifyLibraryResponse<T>.self,
-                                                           from: data).items
-                        completionHandler(results)
+                            from: data)
+                        completionHandler(results.items ?? [], results)
                     } catch {
                         print(error)
                     }
