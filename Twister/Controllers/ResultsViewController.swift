@@ -131,25 +131,26 @@ class ResultsViewController: UIViewController {
                 do {
                     sleep(3) //simply because of itunes rate limiting
                 }
-                sendiTunesRequest(songName: tuple.name, artistName: tuple.artist) { (songId, dict) in
+                sendiTunesSongRequest(songName: tuple.name, artistName: tuple.artist) { (songRequest) in
                     group.leave()
-                    if let songId = songId { // if the correct song is found
-                        self.toAddSongs[i] = .appleId(songId)
-                        self.songProgress[i] = 1
-                    } else if !dict.isEmpty { // some matches found
-                        self.songProgress[i] = 2
-                    } else { //no matches found
-                        print("WARNING: Apple could not find a perfect match for \(tuple.name)")
-                        self.songProgress[i] = 3
-                    }
+                    guard let songRequest = songRequest else
+                        { self.songProgress[i] = 3; return }
+                    guard !songRequest.results.isEmpty else
+                        { self.songProgress[i] = 3; return }
+                    self.songProgress[i] = 2;
                     var possibleSongs: [Song] = []
-                    for item in dict {
-                        possibleSongs.append(Song(name: item["trackName"] as? String ?? "",
-                                                  artist: item["artistName"] as? String ?? "",
-                                                  album: item["collectionName"] as? String ?? "",
-                                                  value: SongValue.appleId(String(describing: item["trackId"] as! Int))))
+                    for song in songRequest.results {
+                        possibleSongs.append(song.toSong)
                     }
                     self.songResponse[i] = possibleSongs
+                    for song in possibleSongs {
+                        if tuple.name.isEqualStrippedString(song.name)
+                        && tuple.artist.isPartialMatch(song.artist) {
+                            self.toAddSongs[i] = song.value
+                            self.songProgress[i] = 1;
+                            break
+                        }
+                    }
                     DispatchQueue.main.async { self.songsTableView.reloadData() }
                 }
             }
@@ -163,15 +164,18 @@ class ResultsViewController: UIViewController {
                 spotifyManager.find(SpotifyTrack.self, searchTerm) { (tracks) in
                     group.leave()
                     guard let tracks = tracks else {
-                        self.songProgress[index] = 2
-                        return
-                    }
-                    if let track = tracks.first { // may want to change this to match song title + author
-                        self.toAddSongs[index] = .spotifyTrack(track)
-                        self.songProgress[index] = 1
-                    } else {
                         print("WARNING: Spotify can't find \(tuple.name)")
                         self.songProgress[index] = 3
+                        return
+                    }
+                    self.songProgress[index] = 2
+                    for track in tracks {
+                        if track.artist.name.isEqualStrippedString(tuple.artist)
+                        && track.name.isPartialMatch(tuple.name) {
+                            self.toAddSongs[index] = .spotifyTrack(track)
+                            self.songProgress[index] = 1
+                            break
+                        }
                     }
                     var possibleSongs: [Song] = []
                     for track in tracks {

@@ -674,7 +674,7 @@ public class SpotifyManager {
             if error != nil || data == nil {
                 completionHandler(nil)
             } else {
-                print(String(data: data!, encoding: .utf8)!)
+                //print(String(data: data!, encoding: .utf8)!)
                 let a = try! JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
                 completionHandler(a["id"] as? String)
             }
