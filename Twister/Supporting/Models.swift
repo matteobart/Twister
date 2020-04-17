@@ -42,6 +42,33 @@ struct Song {
     }
 }
 
+extension String {
+    /**
+            Checks if two strings are the same if lowercased and removed all non-alphanumeric character
+     */
+    func isEqualStrippedString(_ to: String) -> Bool {
+        let regex = try! NSRegularExpression(pattern: "[^A-Za-z0-9]", options: [])
+        let toRange = NSMakeRange(0, to.count)
+        let toModString = regex.stringByReplacingMatches(in: to, options: [], range: toRange, withTemplate: "").lowercased()
+        let selfRange = NSMakeRange(0, self.count)
+        let selfModString = regex.stringByReplacingMatches(in: self, options: [], range: selfRange, withTemplate: "").lowercased()
+        return selfModString == toModString
+    }
+    
+    func containsStrippedString(_ to: String) -> Bool {
+        let regex = try! NSRegularExpression(pattern: "[^A-Za-z0-9]", options: [])
+        let toRange = NSMakeRange(0, to.count)
+        let toModString = regex.stringByReplacingMatches(in: to, options: [], range: toRange, withTemplate: "").lowercased()
+        let selfRange = NSMakeRange(0, self.count)
+        let selfModString = regex.stringByReplacingMatches(in: self, options: [], range: selfRange, withTemplate: "").lowercased()
+        return selfModString.contains(toModString)
+    }
+    
+    func isPartialMatch(_ with: String) -> Bool {
+        return self.containsStrippedString(with) || with.containsStrippedString(self)
+    }
+}
+
 class Counter {
     private var queue = DispatchQueue(label: "your.queue.identifier")
     private (set) var value: Int = 0
