@@ -39,14 +39,19 @@ class ResultsViewController: UIViewController {
         songsTableView.delegate = self
         songsTableView.dataSource = self
         
+        
         createPlaylistButton.layer.cornerRadius = 10
         createPlaylistButton.layer.borderWidth = 1
         createPlaylistButton.backgroundColor = .systemGray
         createPlaylistButton.layer.borderColor = UIColor.systemGray.cgColor
         
         createPlaylistButton.setTitle("Create Playlist on " + toService!.rawValue.capitalized, for: .normal)
-        
         setUp()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        songsTableView.unselectSelected()
     }
     
     func checkForPlaylistPagnation(nextPage: String?, completionHandler: @escaping (()->Void)) {
@@ -164,6 +169,11 @@ class ResultsViewController: UIViewController {
                 spotifyManager.find(SpotifyTrack.self, searchTerm) { (tracks) in
                     group.leave()
                     guard let tracks = tracks else {
+                        print("WARNING: Spotify can't find \(tuple.name)")
+                        self.songProgress[index] = 3
+                        return
+                    }
+                    guard !tracks.isEmpty else {
                         print("WARNING: Spotify can't find \(tuple.name)")
                         self.songProgress[index] = 3
                         return
@@ -416,7 +426,11 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
             let alert = UIAlertController(title: "Song not found", message: toService!.rawValue + " could not find any songs that matched this song", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Aw shucks!", style: .default, handler: nil)
             alert.addAction(okAction)
-            present(alert, animated: true, completion: nil)
+            present(alert, animated: true) {
+                self.songsTableView.unselectSelected()
+            }
+        } else {
+            self.songsTableView.unselectSelected()
         }
         
     }

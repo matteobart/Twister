@@ -36,8 +36,12 @@ class SongReplacerViewController: UIViewController {
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true) {
-            
+            //self.resultsVC?.songsTableView.unselectSelected()
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.resultsVC?.songsTableView.unselectSelected()
     }
     
     /*

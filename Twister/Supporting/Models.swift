@@ -69,6 +69,14 @@ extension String {
     }
 }
 
+extension UITableView {
+    func unselectSelected() {
+        if self.indexPathForSelectedRow != nil {
+            self.deselectRow(at: self.indexPathForSelectedRow!, animated: true)
+        }
+    }
+}
+
 class Counter {
     private var queue = DispatchQueue(label: "your.queue.identifier")
     private (set) var value: Int = 0

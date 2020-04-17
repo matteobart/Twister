@@ -93,7 +93,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    func checkForMoreSpotifyPlaylists(nextPage: String?) { //CHECK TO SEE IF THIS WORKS!!!
+    func checkForMoreSpotifyPlaylists(nextPage: String?) {
         if nextPage != nil {
             spotifyManager.get(SpotifyLibraryResponse<SpotifyPlaylist>.self, url: nextPage!) { (pagingObject) in
                 for item in pagingObject.items ?? [] {

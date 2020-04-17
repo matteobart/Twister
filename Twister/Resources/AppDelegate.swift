@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     authVC.updateViews()
                 }
                 if let settingsVC = childView as? SettingsTableViewController {
-                    settingsVC.unselectSelected()
+                    settingsVC.tableView.unselectSelected()
                     settingsVC.updateLabels()
                 }
             }

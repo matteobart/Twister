@@ -46,7 +46,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
     @objc func cloudServiceChanged() {
         DispatchQueue.main.async {
             self.updateLabels()
-            self.unselectSelected()
+            self.tableView.unselectSelected()
         }
     }
     
@@ -84,7 +84,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
                 }
             }
             updateLabels()
-            unselectSelected()
+            tableView.unselectSelected()
         } else if indexPath.section == 0 && indexPath.item == 1 { // spotify
             if spotifyManager.isAuthorized() {
                 let alert = UIAlertController(title: "Deauthorize Spotify", message: "Are you sure you would like to deauthorize Spotify?", preferredStyle: .alert)
@@ -96,7 +96,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
                 alert.addAction(closeAction)
                 alert.addAction(openAction)
                 present(alert, animated: true, completion: nil)
-                unselectSelected()
+                tableView.unselectSelected()
             } else {
                 spotifyManager.authorize()
             }
@@ -132,12 +132,6 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
         }
     }
     
-    func unselectSelected() {
-        if tableView?.indexPathForSelectedRow != nil {
-            tableView.deselectRow(at: tableView!.indexPathForSelectedRow!, animated: true)
-        }
-    }
-    
     func sendEmail() {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
@@ -152,7 +146,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
     }
 
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        unselectSelected()
+        tableView.unselectSelected()
         controller.dismiss(animated: true)
     }
 }
