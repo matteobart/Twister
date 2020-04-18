@@ -113,15 +113,27 @@ fileprivate enum SpotifyQuery: String, URLConvertible {
  during authorization phase
  // TODO: test this more
  */
-fileprivate enum SpotifyScope: String {
-    case readPrivate   = "user-read-private"
-    case readEmail     = "user-read-email"
-    case libraryModify = "user-library-modify"
-    case libraryRead   = "user-library-read"
-    case collabPlaylists  = "playlist-read-collaborative"
-    case privatePlaylists = "playlist-read-private"
-    case writePublicPlaylist = "playlist-modify-public"
-    case writePrivatePlaylist = "playlist-modify-private"
+// Read more about them here: https://developer.spotify.com/documentation/general/guides/scope
+public enum SpotifyScope: String {
+    case imageUpload =              "ugc-image-upload"
+    case readPlaybackState =        "user-read-playback-state"
+    case modifyPlaybackState =      "user-modify-playback-state"
+    case readCurrentlyPlaying =     "user-read-currently-playing"
+    case streaming =                "streaming"
+    case remoteControl =            "app-remote-control"
+    case readEmail =                "user-read-email"
+    case readPrivate =              "user-read-private"
+    case readCollabPlaylists =      "playlist-read-collaborative"
+    case modifyPublicPlaylists =    "playlist-modify-public"
+    case readPrivatePlaylists =     "playlist-read-private"
+    case modifyPrivatePlaylists =   "playlist-modify-private"
+    case modifyLibrary =            "user-library-modify"
+    case readLibrary =              "user-library-read"
+    case readTop =                  "user-top-read"
+    case readPlaybackPosition =     "user-read-playback-position"
+    case readRecentlyPlayed =       "user-read-recently-played"
+    case readFollow =               "user-follow-read"
+    case modifyFollow =             "user-follow-modify"
     /**
      Creates a string to pass as parameter value
      with desired scope keys
@@ -458,6 +470,25 @@ public class SpotifyManager {
         
         if  let application = application,
             let url = SpotifyQuery.authorize.url?.with(parameters: authorizationParameters(for: application)) {
+            print(url)
+            #if os(OSX)
+                #if swift(>=4.0)
+                    NSWorkspace.shared.open(url)
+                #else
+                    NSWorkspace.shared().open(url)
+                #endif
+            #else
+                UIApplication.shared.open(url)
+            #endif
+        }
+    }
+    
+    public func authorize(with scopes: [SpotifyScope]) {
+        // Only proceed with authorization if we have no token
+        guard !hasToken else { return }
+        
+        if  let application = application,
+            let url = SpotifyQuery.authorize.url?.with(parameters: authorizationParameters(for: application, with: scopes)) {
             print(url)
             #if os(OSX)
                 #if swift(>=4.0)
@@ -809,10 +840,28 @@ public class SpotifyManager {
      Builds authorization parameters
      */
     private func authorizationParameters(for application: SpotifyDeveloperApplication) -> HTTPRequestParameters {
+        return authorizationParameters(for: application, with:
+                [.readPrivate,
+                 .readEmail,
+                 .modifyLibrary,
+                 .readLibrary,
+                 .readCollabPlaylists,
+                 .readPrivatePlaylists,
+                 .modifyPublicPlaylists,
+                 .modifyPrivatePlaylists
+                ])
+            
+    }
+    
+    private func authorizationParameters(
+                for application: SpotifyDeveloperApplication,
+                with scopes: [SpotifyScope]) -> HTTPRequestParameters {
         return [SpotifyParameter.clientId: application.clientId,
                 SpotifyParameter.responseType: SpotifyAuthorizationResponseType.code.rawValue,
                 SpotifyParameter.redirectUri: application.redirectUri,
-                SpotifyParameter.scope: SpotifyScope.string(with: [.readPrivate, .readEmail, .libraryModify, .libraryRead, .collabPlaylists, .privatePlaylists, .writePublicPlaylist, .writePrivatePlaylist])]
+                SpotifyParameter.scope: SpotifyScope.string(with:
+                    scopes)
+        ]
     }
     
     /**
