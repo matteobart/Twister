@@ -153,7 +153,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Twister" id="AzK-DU-n5r">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="oRn-go-dyo">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="oRn-go-dyo">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eFL-OJ-UoC">
                                 <rect key="frame" x="337" y="11" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -195,11 +195,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Nz-Yx-D7y">
-                                                    <rect key="frame" x="329" y="8" width="30" height="30"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Nz-Yx-D7y">
+                                                    <rect key="frame" x="329" y="8.5" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="IS8-4y-khI"/>
+                                                        <constraint firstAttribute="height" constant="30" id="WsN-bT-fEn"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Reauthorize Apple Music" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlt-pa-T8E">
-                                                    <rect key="frame" x="16" y="13" width="305" height="21.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reauthorize Apple Music" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlt-pa-T8E">
+                                                    <rect key="frame" x="16" y="13" width="207.5" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="gHP-uK-iEg"/>
                                                     </constraints>
@@ -210,6 +214,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="5Nz-Yx-D7y" secondAttribute="trailing" constant="16" id="9As-tv-Tav"/>
+                                                <constraint firstItem="5Nz-Yx-D7y" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jlt-pa-T8E" secondAttribute="trailing" constant="15" id="H2t-EX-Bf3"/>
                                                 <constraint firstItem="jlt-pa-T8E" firstAttribute="centerY" secondItem="dfi-ej-rfo" secondAttribute="centerY" id="O3C-CD-TmE"/>
                                                 <constraint firstItem="jlt-pa-T8E" firstAttribute="leading" secondItem="dfi-ej-rfo" secondAttribute="leading" constant="16" id="dJo-bz-Avd"/>
                                                 <constraint firstItem="5Nz-Yx-D7y" firstAttribute="centerY" secondItem="dfi-ej-rfo" secondAttribute="centerY" id="kZb-Nd-6lr"/>
@@ -223,8 +228,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ID2-vO-6Lr">
-                                                    <rect key="frame" x="329" y="6" width="30" height="30"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ID2-vO-6Lr">
+                                                    <rect key="frame" x="329" y="7" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="7Gw-qD-NR8"/>
+                                                        <constraint firstAttribute="width" constant="30" id="bU0-ml-ySP"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reauthorize Spotify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5in-y8-hRH">
                                                     <rect key="frame" x="16" y="11.5" width="164" height="21"/>
@@ -238,6 +247,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="5in-y8-hRH" firstAttribute="centerY" secondItem="Fy5-2q-2zm" secondAttribute="centerY" id="PEo-Dg-9PJ"/>
+                                                <constraint firstItem="ID2-vO-6Lr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5in-y8-hRH" secondAttribute="trailing" constant="15" id="SvG-l3-mgW"/>
                                                 <constraint firstItem="ID2-vO-6Lr" firstAttribute="centerY" secondItem="Fy5-2q-2zm" secondAttribute="centerY" id="XfE-tJ-djj"/>
                                                 <constraint firstAttribute="trailing" secondItem="ID2-vO-6Lr" secondAttribute="trailing" constant="16" id="k3M-u7-AVU"/>
                                                 <constraint firstItem="5in-y8-hRH" firstAttribute="leading" secondItem="Fy5-2q-2zm" secondAttribute="leading" constant="16" id="mMS-M8-BOs"/>
@@ -266,6 +276,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Wsr-Nj-cmh" secondAttribute="trailing" constant="15" id="5H2-m1-AIn"/>
                                                 <constraint firstItem="Wsr-Nj-cmh" firstAttribute="centerY" secondItem="sXs-2w-njJ" secondAttribute="centerY" id="62d-Bs-ME9"/>
                                                 <constraint firstItem="Wsr-Nj-cmh" firstAttribute="leading" secondItem="sXs-2w-njJ" secondAttribute="leading" constant="16" id="7YM-PH-bPD"/>
                                             </constraints>
@@ -289,6 +300,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QAl-WQ-Uhf" secondAttribute="trailing" constant="15" id="71A-tZ-BZD"/>
                                                 <constraint firstItem="QAl-WQ-Uhf" firstAttribute="leading" secondItem="NeO-49-1PB" secondAttribute="leading" constant="16" id="k4S-Ps-xOO"/>
                                                 <constraint firstItem="QAl-WQ-Uhf" firstAttribute="centerY" secondItem="NeO-49-1PB" secondAttribute="centerY" id="wsR-5S-mAc"/>
                                             </constraints>
@@ -326,8 +338,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Pff-Y0-z4C">
-                                <rect key="frame" x="112" y="20" width="172.5" height="50"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Pff-Y0-z4C">
+                                <rect key="frame" x="101.5" y="20" width="172.5" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Twister" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kxn-yt-9eD">
                                         <rect key="frame" x="0.0" y="0.0" width="172.5" height="21"/>
@@ -359,8 +371,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
                                                 <color key="backgroundColor" red="0.24313725489999999" green="0.54901960780000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="lvr-Yi-eKl"/>
-                                                    <constraint firstAttribute="width" constant="200" id="w3T-8X-Edj"/>
+                                                    <constraint firstAttribute="width" secondItem="8Z9-jX-btq" secondAttribute="height" multiplier="4:1" id="e9K-3f-U4Q"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="lvr-Yi-eKl"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="w3T-8X-Edj"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
                                                 <state key="normal" title="Authorize Apple Music">
@@ -385,8 +398,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
                                                 <color key="backgroundColor" red="0.24313725489999999" green="0.54901960780000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="Pzh-bF-tCE"/>
-                                                    <constraint firstAttribute="width" constant="200" id="jM3-sN-Ihc"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Pzh-bF-tCE"/>
+                                                    <constraint firstAttribute="width" secondItem="cgC-eM-I1R" secondAttribute="height" multiplier="4:1" id="h00-HR-qi2"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="jM3-sN-Ihc"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
                                                 <state key="normal" title="Authorize Spotify">

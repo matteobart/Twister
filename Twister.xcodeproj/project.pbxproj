@@ -277,10 +277,9 @@
 			};
 			buildConfigurationList = 42EDDE5E1E9AE0B10012EDD0 /* Build configuration list for PBXProject "Twister" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);

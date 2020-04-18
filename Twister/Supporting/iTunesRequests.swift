@@ -21,7 +21,7 @@ func sendiTunesRequest(songName: String, artistName: String, completionHandler: 
     let task = URLSession.shared.dataTask(with: u.url!) { (data, response, error) in
         //print(response.debugDescription)
         guard let data = data else { return }
-        print(String(data: data, encoding: .utf8))
+        print(String(data: data, encoding: .utf8) as Any)
         if let fetchedDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any],
             let fetchedArray = fetchedDict["results"] as? [[String:Any]] {
             for dict in fetchedArray {
