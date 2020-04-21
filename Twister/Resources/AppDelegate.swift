@@ -10,9 +10,9 @@ import SpotifyKit
 
 let spotifyManager = SpotifyManager(with:
     SpotifyManager.SpotifyDeveloperApplication(
-        clientId:     spotifyClientId,
+        clientId: spotifyClientId,
         clientSecret: spotifyClientSecret,
-        redirectUri:  spotifyRedirectId
+        redirectUri: spotifyRedirectId
     )
 )
 
@@ -29,16 +29,12 @@ var mediaLibraryManager: MediaLibraryManager = {
 /// The instance of `AppleMusicManager` which handles making web service calls to Apple Music Web Services.
 var appleMusicManager = AppleMusicManager()
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
     // MARK: Properties
-    
     var window: UIWindow?
-    
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
-        spotifyManager.saveToken(from: url){ //once the token has been saved
+        spotifyManager.saveToken(from: url) { //once the token has been saved
             for childView in self.window?.rootViewController?.children ?? [] {
                 if let mainVC = childView as? MainViewController {
                     mainVC.authController?.updateViews()
@@ -55,12 +51,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return true
     }
-    
     // MARK: Application Life Cycle Methods
-    
-    func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    func application(
+                _ application: UIApplication,
+                didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         return true
     }
 }
-

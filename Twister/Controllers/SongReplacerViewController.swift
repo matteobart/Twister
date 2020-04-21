@@ -14,36 +14,28 @@ class SongReplacerViewController: UIViewController {
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var songTableView: UITableView!
     @IBOutlet weak var albumLabel: UILabel!
-    
     var resultsVC: ResultsViewController?
-    
-    var originalSongData: (name: String, artist: String, album: String)?
+    var songInformation: SongInformation?
     var index: Int? // index of the song from the previous frame
-    
     var replacementSongs: [Song] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let originalSongData = originalSongData else { return }
+        guard let originalSongData = songInformation else { return }
         songTableView.dataSource = self
         songTableView.delegate = self
         songLabel.text = originalSongData.name
         artistLabel.text = originalSongData.artist
         albumLabel.text = originalSongData.album
-        
         // Do any additional setup after loading the view.songVC
     }
-    
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true) {
             //self.resultsVC?.songsTableView.unselectSelected()
         }
     }
-    
     override func viewWillDisappear(_ animated: Bool) {
         self.resultsVC?.songsTableView.unselectSelected()
     }
-    
     /*
     // MARK: - Navigation
 
@@ -56,12 +48,10 @@ class SongReplacerViewController: UIViewController {
 
 }
 
-
 extension SongReplacerViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return replacementSongs.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SongReplacerTableViewCell.identifier,
                                                        for: indexPath) as? SongReplacerTableViewCell else {
@@ -72,7 +62,6 @@ extension SongReplacerViewController: UITableViewDelegate, UITableViewDataSource
         cell.albumLabel.text = replacementSongs[indexPath.item].album
         return cell
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let resultsVC = resultsVC else { return }
         guard let index = index else { return }
@@ -80,7 +69,4 @@ extension SongReplacerViewController: UITableViewDelegate, UITableViewDataSource
             resultsVC.addToPlaylist(song: self.replacementSongs[indexPath.item], index: index)
         }
     }
-    
-    
-    
 }

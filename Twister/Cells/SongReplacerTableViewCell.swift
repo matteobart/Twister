@@ -9,11 +9,9 @@ import UIKit
 
 class SongReplacerTableViewCell: UITableViewCell {
     static let identifier = "SongCell"
-    
     @IBOutlet weak var songLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var albumLabel: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

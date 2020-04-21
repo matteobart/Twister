@@ -24,46 +24,61 @@ enum SongValue: Equatable {
         default: return false
         }
     }
-    
     case appleId(String)
     case spotifyTrack(SpotifyTrack)
 }
-
-struct Song {
+struct SongInformation {
     var name: String
     var artist: String
     var album: String
+}
+
+struct Song {
+    var name: String {
+        return information.name
+    }
+    var artist: String {
+        return information.artist
+    }
+    var album: String {
+        return information.album
+    }
     var value: SongValue
+    var information: SongInformation
     init(name: String, artist: String, album: String, value: SongValue) {
-        self.name = name
-        self.artist = artist
-        self.album = album
+        self.information = SongInformation(name: name, artist: artist, album: album)
         self.value = value
     }
 }
 
 extension String {
     /**
+                Returns a stripped version of the string
+                Stripped: only alphanumeric (no spaces, symbols) and lowercased
+                    
+     */
+    func strip() -> String {
+        do {
+            let regex = try NSRegularExpression(pattern: "[^A-Za-z0-9]", options: [])
+            let toRange = NSRange(location: 0, length: self.count)
+            return regex.stringByReplacingMatches(in: self,
+                                                  options: [],
+                                                  range: toRange,
+                                                  withTemplate: "").lowercased()
+        } catch {
+            print(error)
+            return self
+        }
+    }
+     /**
             Checks if two strings are the same if lowercased and removed all non-alphanumeric character
      */
-    func isEqualStrippedString(_ to: String) -> Bool {
-        let regex = try! NSRegularExpression(pattern: "[^A-Za-z0-9]", options: [])
-        let toRange = NSMakeRange(0, to.count)
-        let toModString = regex.stringByReplacingMatches(in: to, options: [], range: toRange, withTemplate: "").lowercased()
-        let selfRange = NSMakeRange(0, self.count)
-        let selfModString = regex.stringByReplacingMatches(in: self, options: [], range: selfRange, withTemplate: "").lowercased()
-        return selfModString == toModString
+    func isEqualStrippedString(_ other: String) -> Bool {
+        return self.strip() == other.strip()
     }
-    
-    func containsStrippedString(_ to: String) -> Bool {
-        let regex = try! NSRegularExpression(pattern: "[^A-Za-z0-9]", options: [])
-        let toRange = NSMakeRange(0, to.count)
-        let toModString = regex.stringByReplacingMatches(in: to, options: [], range: toRange, withTemplate: "").lowercased()
-        let selfRange = NSMakeRange(0, self.count)
-        let selfModString = regex.stringByReplacingMatches(in: self, options: [], range: selfRange, withTemplate: "").lowercased()
-        return selfModString.contains(toModString)
+    func containsStrippedString(_ other: String) -> Bool {
+        return self.strip().contains(other.strip())
     }
-    
     func isPartialMatch(_ with: String) -> Bool {
         return self.containsStrippedString(with) || with.containsStrippedString(self)
     }

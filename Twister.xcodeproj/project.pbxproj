@@ -28,6 +28,7 @@
 		A65DCD2B2434098300FCD74D /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65DCD292434098300FCD74D /* ResultsViewController.swift */; };
 		A65DCD2D2434099500FCD74D /* PlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65DCD2C2434099500FCD74D /* PlaylistTableViewCell.swift */; };
 		A688F02323D68272004F0CBE /* SongReplacerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688F02223D68272004F0CBE /* SongReplacerViewController.swift */; };
+		A6988DA7244DD7DB00D6DF03 /* FAQHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6988DA6244DD7D900D6DF03 /* FAQHelper.swift */; };
 		A6ACCC1623D3BD2C00A55FAE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ACCC1523D3BD2C00A55FAE /* MainViewController.swift */; };
 		A6D5DCD823D682F5004F4373 /* SongReplacerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D5DCD723D682F5004F4373 /* SongReplacerTableViewCell.swift */; };
 		A6DCD83823D4F4900072012F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCD83723D4F4900072012F /* SettingsTableViewController.swift */; };
@@ -64,6 +65,7 @@
 		A65DCD292434098300FCD74D /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		A65DCD2C2434099500FCD74D /* PlaylistTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewCell.swift; sourceTree = "<group>"; };
 		A688F02223D68272004F0CBE /* SongReplacerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongReplacerViewController.swift; sourceTree = "<group>"; };
+		A6988DA6244DD7D900D6DF03 /* FAQHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQHelper.swift; sourceTree = "<group>"; };
 		A6ACCC1523D3BD2C00A55FAE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A6D5DCD723D682F5004F4373 /* SongReplacerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongReplacerTableViewCell.swift; sourceTree = "<group>"; };
 		A6DCD83723D4F4900072012F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				A6DCD83923D606110072012F /* Models.swift */,
 				A65DCD242434086100FCD74D /* iTunesRequests.swift */,
 				A643FE26243654DF0065247B /* FAQView.swift */,
+				A6988DA6244DD7D900D6DF03 /* FAQHelper.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				42EDDE601E9AE0B10012EDD0 /* Frameworks */,
 				42EDDE611E9AE0B10012EDD0 /* Resources */,
 				882983DC6923A70FA4324DFD /* [CP] Embed Pods Frameworks */,
+				A6988DA5244A91C300D6DF03 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -347,6 +351,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A6988DA5244A91C300D6DF03 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -354,6 +375,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6988DA7244DD7DB00D6DF03 /* FAQHelper.swift in Sources */,
 				A64A2A6D243A2E0D005D0AC2 /* AuthorizationViewController.swift in Sources */,
 				A6ACCC1623D3BD2C00A55FAE /* MainViewController.swift in Sources */,
 				A65DCD2D2434099500FCD74D /* PlaylistTableViewCell.swift in Sources */,

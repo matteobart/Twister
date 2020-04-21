@@ -12,34 +12,36 @@ class AuthorizationViewController: UIViewController {
 
     @IBOutlet weak var appleMusicStateImageView: UIImageView!
     @IBOutlet weak var spotifyStateImageView: UIImageView!
-    
+
     @IBOutlet weak var authAppleMusicButton: UIButton!
     @IBOutlet weak var authSpotifyButton: UIButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         authSpotifyButton.layer.cornerRadius = 10
         authSpotifyButton.layer.borderWidth = 1
         authAppleMusicButton.layer.cornerRadius = 10
         authAppleMusicButton.layer.borderWidth = 1
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(cloudServiceChanged), name: AuthorizationManager.cloudServiceDidUpdateNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(cloudServiceChanged),
+                                               name: AuthorizationManager.cloudServiceDidUpdateNotification,
+                                               object: nil)
     }
 
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateViews()
     }
-    
-    @objc func cloudServiceChanged(){
+
+    @objc func cloudServiceChanged() {
         DispatchQueue.main.async {
             self.updateViews()
             self.checkIfDismiss()
         }
     }
-    
+
     func updateViews() {
         if authorizationManager.isAuthenticated() {
             appleMusicStateImageView.image = UIImage(systemName: "checkmark.square.fill")
@@ -67,8 +69,8 @@ class AuthorizationViewController: UIViewController {
             authAppleMusicButton.isEnabled = true
             authAppleMusicButton.isUserInteractionEnabled = true
         }
-        
-        if spotifyManager.isAuthorized() {
+
+        if spotifyManager.hasToken {
             spotifyStateImageView.image = UIImage(systemName: "checkmark.square.fill")
             authSpotifyButton.setTitle("Spotify is Authorized", for: .normal)
             authSpotifyButton.backgroundColor = .systemGray
@@ -86,16 +88,22 @@ class AuthorizationViewController: UIViewController {
             authSpotifyButton.isUserInteractionEnabled = true
         }
     }
-    
+
     func checkIfDismiss() {
-        if authorizationManager.isAuthenticated() && spotifyManager.isAuthorized() {
+        if authorizationManager.isAuthenticated() && spotifyManager.hasToken {
             self.dismiss(animated: true, completion: nil)
         }
     }
-    
+
     @IBAction func authAppleMusicPressed(_ sender: UIButton) {
         if authorizationManager.isDenied() {
-            let alert = UIAlertController(title: "Apple Music has been denied", message: "To give access to Twister: go into the Settings app -> open Twister's settings -> find 'Allow Twister to Access' -> make sure 'Media & Apple Music' is turned on", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Apple Music has been denied",
+                                          message: """
+                                                   To give access to Twister: go into the Settings app -> open \
+                                                   Twister's settings -> find 'Allow Twister to Access' -> make sure \
+                                                   'Media & Apple Music' is turned on
+                                                   """,
+                                          preferredStyle: .alert)
             let openAction = UIAlertAction(title: "Open Settings", style: .default) { (_) in
                 guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                     return
@@ -111,7 +119,12 @@ class AuthorizationViewController: UIViewController {
             alert.addAction(openAction)
             present(alert, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: "Twister will Request Access", message: "For Twister to work, we must request access to your music library. The following prompt will ask you to give access to Twister.", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Twister will Request Access",
+                                          message: """
+                                                   For Twister to work, we must request access to your music library. \
+                                                   The following prompt will ask you to give access to Twister.
+                                                   """,
+                                          preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Let's do it!", style: .default) { (_) in
                 authorizationManager.requestMediaLibraryAuthorization()
                 authorizationManager.requestCloudServiceAuthorization()
@@ -123,14 +136,13 @@ class AuthorizationViewController: UIViewController {
         updateViews()
         checkIfDismiss()
     }
-    
+
     @IBAction func authSpotifyPressed(_ sender: UIButton) {
         spotifyManager.authorize()
         updateViews()
         checkIfDismiss()
     }
-    
-    
+
     /*
     // MARK: - Navigation
 

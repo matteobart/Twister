@@ -14,7 +14,6 @@ class SongTableViewCell: UITableViewCell {
     @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var completionImage: UIImageView!
-    
     static let identifier = "SongVC"
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,7 +25,6 @@ class SongTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
     override func prepareForReuse() {
     }
 
