@@ -594,7 +594,6 @@ public class SpotifyManager {
             }
         }
     }
-    ///TODO: Make this into a decodable
     func createPlaylistRequest(playlistName: String,
                                userName: String,
                                token: String,
@@ -614,10 +613,14 @@ public class SpotifyManager {
             if error != nil || data == nil {
                 completionHandler(nil)
             } else {
-                //print(String(data: data!, encoding: .utf8)!)
-                guard let dict = try? JSONSerialization.jsonObject(with: data!,
-                                                                   options: []) as? [String: Any] else {return}
-                completionHandler(dict["id"] as? String)
+                print(String(data: data!, encoding: .utf8)!)
+                guard let playlist = try? JSONDecoder().decode(SpotifyPlaylist.self, from: data!) else {
+                    completionHandler(nil)
+                    return
+                }
+                //guard let dict = try? JSONSerialization.jsonObject(with: data!,
+                //                                                   options: []) as? [String: Any] else {return}
+                completionHandler(playlist.id)
             }
         }
         task.resume()

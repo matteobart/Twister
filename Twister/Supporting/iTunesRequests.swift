@@ -9,7 +9,7 @@
 import Foundation
 
 //will search for a songId given the song name and artist name
-func sendiTunesRequest(songName: String,
+/*func sendiTunesRequest(songName: String,
                        artistName: String,
                        completionHandler: @escaping ((String?, [[String: Any]]) -> Void)) {
     let searchTerm = (songName + " " + artistName)
@@ -41,7 +41,7 @@ func sendiTunesRequest(songName: String,
         } else { completionHandler(nil, []); return }
     }
     task.resume()
-}
+}*/
 func sendiTunesSongRequest(songName: String,
                            artistName: String,
                            completionHandler: @escaping (((AppleSongRequest?) -> Void))) {

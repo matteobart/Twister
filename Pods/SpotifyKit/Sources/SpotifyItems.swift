@@ -151,12 +151,12 @@ SpotifySearchItem, SpotifyTrackCollection, SpotifyLibraryItem, PageItems {
         return tracks?.total ?? 0
     }
     public static let type: SpotifyItemType = .playlist
-    init(playlist: SpotifyPlaylist, tracks: Tracks) {
+    /*init(playlist: SpotifyPlaylist, tracks: Tracks) {
         self.id = playlist.id
         self.uri = playlist.uri
         self.name = playlist.name
         self.tracks = tracks
-    }
+    }*/
 }
 
 public struct SpotifyArtist: SpotifySearchItem {
