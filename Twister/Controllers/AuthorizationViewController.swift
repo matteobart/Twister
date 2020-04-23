@@ -42,7 +42,7 @@ class AuthorizationViewController: UIViewController {
         }
     }
 
-    func updateViews() {
+    func updateViews() { //swiftlint:disable:this function_body_length
         if authorizationManager.isAuthenticated() {
             appleMusicStateImageView.image = UIImage(systemName: "checkmark.square.fill")
             authAppleMusicButton.setTitle("Apple Music is Authorized", for: .normal)
@@ -69,7 +69,6 @@ class AuthorizationViewController: UIViewController {
             authAppleMusicButton.isEnabled = true
             authAppleMusicButton.isUserInteractionEnabled = true
         }
-
         if spotifyManager.hasToken {
             spotifyStateImageView.image = UIImage(systemName: "checkmark.square.fill")
             authSpotifyButton.setTitle("Spotify is Authorized", for: .normal)

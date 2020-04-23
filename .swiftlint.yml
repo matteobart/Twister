@@ -3,3 +3,9 @@ identifier_name:
       - id
       - me
     
+type_body_length:
+  - 300 # warning
+  - 400 # error
+
+excluded:
+  - Pods

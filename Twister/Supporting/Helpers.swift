@@ -27,6 +27,14 @@ enum SongValue: Equatable {
     case appleId(String)
     case spotifyTrack(SpotifyTrack)
 }
+
+enum SongProgress {
+    case processing
+    case matchFound
+    case songsFound
+    case notFound
+}
+
 struct SongInformation {
     var name: String
     var artist: String

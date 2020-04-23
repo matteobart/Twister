@@ -23,6 +23,7 @@ class MainViewController: UIViewController {
     var authController: AuthorizationViewController? // ideally this will be able to be removed
     ///a 2D array (where numCols is the number of services eg. spotify)
     var allPlaylists: [[(playlistName: String, playlistId: String)]] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self,
@@ -37,6 +38,7 @@ class MainViewController: UIViewController {
         twistButton.backgroundColor = .systemGray
         twistButton.layer.borderColor = UIColor.systemGray.cgColor
     }
+
     override func viewWillAppear(_ animated: Bool) {
         twistButton.backgroundColor = .systemGray
         twistButton.layer.borderColor = UIColor.systemGray.cgColor
@@ -75,6 +77,7 @@ class MainViewController: UIViewController {
             }
         }
     }
+
     func checkForMoreSpotifyPlaylists(nextPage: String?) {
         if nextPage != nil {
             spotifyManager.get(SpotifyLibraryResponse<SpotifyPlaylist>.self, url: nextPage!) { (pagingObject) in
@@ -86,6 +89,7 @@ class MainViewController: UIViewController {
             }
         }
     }
+
     @IBAction func segContolChanged(_ sender: UISegmentedControl) {
         let changedSegControl = sender
         let otherSegContol = (sender.tag != toSegControl.tag ? toSegControl : fromSegControl)!
@@ -103,6 +107,7 @@ class MainViewController: UIViewController {
             self.twistButton.layer.borderColor = UIColor.systemGray.cgColor
         }
     }
+
     @IBAction func twistButtonPressed(_ sender: UIButton) {
         guard let selectedRow = availablePlaylistsTableView.indexPathForSelectedRow else {
             //throw a pop up
@@ -125,12 +130,11 @@ class MainViewController: UIViewController {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         guard let nextViewController =
             storyBoard.instantiateViewController(withIdentifier: "resultsVC") as? ResultsViewController else { return }
-
-        nextViewController.fromService = fromService
-        nextViewController.toService = toService
-        nextViewController.playlistName = playlistName
-        nextViewController.playlistId = playlistId
-        nextViewController.newPlaylistName = newPlaylistName
+        nextViewController.model = ResultsModel(fromService: fromService,
+                                                toService: toService,
+                                                playlistName: playlistName,
+                                                playlistId: playlistId,
+                                                newPlaylistName: newPlaylistName)
         nextViewController.title = "Finding Songs"
         self.show(nextViewController, sender: nil)
     }
@@ -151,6 +155,7 @@ extension MainViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+
     //not required to be here, but related to text field
     @objc func keyboardNotification(notification: NSNotification) {
         if let userInfo = notification.userInfo {
