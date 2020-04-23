@@ -22,7 +22,9 @@ class MainViewController: UIViewController {
 
     var authController: AuthorizationViewController? // ideally this will be able to be removed
     ///a 2D array (where numCols is the number of services eg. spotify)
-    var allPlaylists: [[(playlistName: String, playlistId: String)]] = []
+    var allPlaylists: [[(playlistName: String, playlistId: String)]] = [[], []]
+
+    let model = MainModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,50 +45,21 @@ class MainViewController: UIViewController {
         twistButton.backgroundColor = .systemGray
         twistButton.layer.borderColor = UIColor.systemGray.cgColor
         playlistNameTextField.text = ""
-        allPlaylists = []
-        for _ in StreamingService.allCases {
-            allPlaylists.append([])
-        }
-        if !spotifyManager.hasToken || !authorizationManager.isAuthenticated() {
+        if !model.servicesAuthenticated() {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "authVC")
             nextViewController.modalPresentationStyle = .fullScreen
             authController = nextViewController as? AuthorizationViewController
             self.present(nextViewController, animated: true, completion: nil)
         }
-        guard spotifyManager.hasToken else { return }
-        guard authorizationManager.isAuthenticated() else { return }
-        //add spotify playlists
-        spotifyManager.library(SpotifyPlaylist.self) { (libraryItems, response) in
-            for item in libraryItems {
-                self.allPlaylists[1].append((item.name, item.id ?? ""))
-            }
+        guard model.servicesAuthenticated() else { return }
+        model.getSpotifyPlaylists { (spotifyPlaylists) in
+            self.allPlaylists[1] = spotifyPlaylists
             self.availablePlaylistsTableView.reloadData()
-            self.checkForMoreSpotifyPlaylists(nextPage: response.next)
         }
-        //add apple music playlists
-        if authorizationManager.isAuthenticated() {
-            let myPlaylistQuery = MPMediaQuery.playlists()
-            guard let playlists = myPlaylistQuery.collections else { return }
-            for playlist in playlists {
-                guard let playlistName = playlist.value(forProperty: MPMediaPlaylistPropertyName) as? String else {
-                    continue
-                }
-                let playlistUUID = String(describing: playlist.value(forProperty: MPMediaPlaylistPropertyPersistentID)!)
-                self.allPlaylists[0].append((playlistName, playlistUUID))
-            }
-        }
-    }
-
-    func checkForMoreSpotifyPlaylists(nextPage: String?) {
-        if nextPage != nil {
-            spotifyManager.get(SpotifyLibraryResponse<SpotifyPlaylist>.self, url: nextPage!) { (pagingObject) in
-                for item in pagingObject.items ?? [] {
-                    self.allPlaylists[1].append((item.name, item.id ?? ""))
-                }
-                self.availablePlaylistsTableView.reloadData()
-                self.checkForMoreSpotifyPlaylists(nextPage: pagingObject.nextURL)
-            }
+        model.getAppleMusicPlaylists { (applePlaylists) in
+            self.allPlaylists[0] = applePlaylists
+            self.availablePlaylistsTableView.reloadData()
         }
     }
 

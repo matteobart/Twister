@@ -18,6 +18,7 @@
 		424E9D661EBBC9F2006C2C82 /* AppleMusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424E9D651EBBC9F2006C2C82 /* AppleMusicManager.swift */; };
 		42C9B1991EDF5D7B009A9DE7 /* AppleMusicRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C9B1981EDF5D7B009A9DE7 /* AppleMusicRequestFactory.swift */; };
 		42EDDE671E9AE0B10012EDD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDDE661E9AE0B10012EDD0 /* AppDelegate.swift */; };
+		A6329D43245138DF00D21060 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6329D42245138DF00D21060 /* MainModel.swift */; };
 		A643FE252434176C0065247B /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A643FE242434176C0065247B /* Keys.swift */; };
 		A643FE27243654DF0065247B /* FAQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A643FE26243654DF0065247B /* FAQView.swift */; };
 		A64A2A6D243A2E0D005D0AC2 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64A2A6C243A2E0D005D0AC2 /* AuthorizationViewController.swift */; };
@@ -56,6 +57,7 @@
 		7A423584CF0C96CBCD6DD920 /* Pods-Adding-Content-to-Apple-Music.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adding-Content-to-Apple-Music.release.xcconfig"; path = "Target Support Files/Pods-Adding-Content-to-Apple-Music/Pods-Adding-Content-to-Apple-Music.release.xcconfig"; sourceTree = "<group>"; };
 		7D4983CD4395E5828F81D4AD /* SampleCode.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		8D09AB42E99653918C08824C /* Pods-Twister.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twister.release.xcconfig"; path = "Target Support Files/Pods-Twister/Pods-Twister.release.xcconfig"; sourceTree = "<group>"; };
+		A6329D42245138DF00D21060 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		A643FE242434176C0065247B /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		A643FE26243654DF0065247B /* FAQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQView.swift; sourceTree = "<group>"; };
 		A64A2A6C243A2E0D005D0AC2 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				A6988DA8244E876700D6DF03 /* ResultsModel.swift */,
+				A6329D42245138DF00D21060 /* MainModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				A643FE27243654DF0065247B /* FAQView.swift in Sources */,
 				424BE3E11EBAEAA60034DB00 /* MediaLibraryManager.swift in Sources */,
 				4249C3FB1EDB8D3000CC40AE /* JSONKeys.swift in Sources */,
+				A6329D43245138DF00D21060 /* MainModel.swift in Sources */,
 				A65DCD22243405DC00FCD74D /* SerializationError.swift in Sources */,
 				4213F0AA1EC2CE250014E741 /* MediaItem.swift in Sources */,
 				A6DCD83A23D606110072012F /* Helpers.swift in Sources */,
