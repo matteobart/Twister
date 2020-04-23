@@ -16,6 +16,7 @@ class ResultsModel {
     var playlistId: String
     var playlistName: String
     var newPlaylistName: String
+    var description: String
     var readyToCreatePlaylist = false
     var songResponse: [[Song]] = []
     var toAddSongs: [SongValue?] = []
@@ -30,6 +31,14 @@ class ResultsModel {
         self.playlistName = playlistName
         self.playlistId = playlistId
         self.newPlaylistName = newPlaylistName
+
+        // description
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd, yyyy h:mm a"
+        description = """
+                      This playlist was added via the Twister app. This playlist was entitled \
+                      '\(playlistName)' from \(fromService.rawValue). Twisted on \(dateFormatter.string(from: Date()))
+                      """
     }
 
     func getPlaylist(dataHandler: @escaping (SongInformation) -> Void,
@@ -213,13 +222,7 @@ class ResultsModel {
                                           completionHandler: @escaping (Bool) -> Void) {
         let playlistUUID = UUID()
         let playlistMetadata = MPMediaPlaylistCreationMetadata(name: newPlaylistName)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM dd, yyyy h:mm a"
-        playlistMetadata.descriptionText = """
-        This playlist was added via the Twister app. This playlist was entitled \
-        '\(playlistName)' from \(fromService.rawValue). \
-        Twisted on \(dateFormatter.string(from: Date()))
-        """
+        playlistMetadata.descriptionText = description
         group.enter() // A
         MPMediaLibrary.default().getPlaylist(with: playlistUUID, creationMetadata: playlistMetadata) { (playlist, error)
             in
@@ -265,7 +268,7 @@ class ResultsModel {
     private func createSpotifyPlaylist(dataHandler: @escaping (String, Bool) -> Void,
                                        completionHandler: @escaping (Bool) -> Void) {
         group.enter() // C
-        spotifyManager.createPlaylist(playlistName: newPlaylistName) { (playlistId) in
+        spotifyManager.createPlaylist(playlistName: newPlaylistName, description: description) { (playlistId) in
             guard let playlistId = playlistId else {
                 print("Playlist could not be made")
                 completionHandler(false)
