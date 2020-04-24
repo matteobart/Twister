@@ -629,11 +629,15 @@ public class SpotifyManager {
         }
         task.resume()
     }
+
+    // recursive function, as tracks are only processed 100 at a time
     public func addSongsToPlaylist(playlistId: String,
                                    tracks: [SpotifyTrack],
                                    completionHandler: @escaping (Bool) -> Void) {
         tokenQuery { (token) in
             //TODO: Limit to 100 songs at a time
+            let trackToAdd = Array(tracks[0..<min(100, tracks.count)]) //100 at a time
+            let leftoverTracks = Array(tracks[min(100, tracks.count)..<tracks.count])
             let body = AddPlaylistSongs(tracks: tracks)
             let postData = try! JSONEncoder().encode(body)
             var request = URLRequest(url:
@@ -649,7 +653,14 @@ public class SpotifyManager {
                     completionHandler(false)
                 } else {
                     //print(String(data: data!, encoding: .utf8)!)
-                    completionHandler(true)
+                    if !trackToAdd.isEmpty { // if more to process
+                        self.addSongsToPlaylist(playlistId: playlistId,
+                                                tracks: leftoverTracks,
+                                                completionHandler: completionHandler)
+
+                    } else {
+                        completionHandler(true)
+                    }
                 }
             }
             task.resume()
