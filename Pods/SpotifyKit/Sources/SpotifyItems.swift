@@ -151,13 +151,33 @@ SpotifySearchItem, SpotifyTrackCollection, SpotifyLibraryItem, PageItems {
         return tracks?.total ?? 0
     }
     public static let type: SpotifyItemType = .playlist
-    /*init(playlist: SpotifyPlaylist, tracks: Tracks) {
-        self.id = playlist.id
-        self.uri = playlist.uri
-        self.name = playlist.name
-        self.tracks = tracks
-    }*/
 }
+
+public struct NewSpotifyPlaylist: Codable {
+    var name: String
+    var isPublic: Bool
+    var collaborative: Bool
+    var description: String
+
+    enum CodingKeys: String, CodingKey {
+        case isPublic = "public"
+        case name
+        case collaborative
+        case description
+    }
+}
+
+public struct AddPlaylistSongs: Codable {
+    var uris: [String]
+
+    init(tracks: [SpotifyTrack]) {
+        uris = []
+        for track in tracks where track.uri != nil {
+            uris.append(track.uri!)
+        }
+    }
+}
+
 
 public struct SpotifyArtist: SpotifySearchItem {
     public var id: String?

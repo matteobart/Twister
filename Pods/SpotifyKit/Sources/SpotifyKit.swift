@@ -583,11 +583,13 @@ public class SpotifyManager {
         }
     }
     public func createPlaylist(playlistName: String,
+                               description: String,
                                completionHandler: @escaping (String?) -> Void) {
         tokenQuery { (token) in
             self.myProfile { (user) in
                 guard let id = user.id else { return }
                 self.createPlaylistRequest(playlistName: playlistName,
+                                           description: description,
                                            userName: id,
                                            token: token.accessToken,
                                            completionHandler: completionHandler)
@@ -595,11 +597,15 @@ public class SpotifyManager {
         }
     }
     func createPlaylistRequest(playlistName: String,
+                               description: String,
                                userName: String,
                                token: String,
                                completionHandler: @escaping (String?) -> Void) {
-        let parameters = "{\n    \"name\": \""+playlistName+"\"\n}"
-        let postData = parameters.data(using: .utf8)
+        let body = NewSpotifyPlaylist(name: playlistName,
+                                      isPublic: false,
+                                      collaborative: false,
+                                      description: description)
+        let postData = try! JSONEncoder().encode(body)
 
         var request = URLRequest(url: URL(string: "https://api.spotify.com/v1/users/"+userName+"/playlists")!,
                                  timeoutInterval: Double.infinity)
@@ -618,36 +624,43 @@ public class SpotifyManager {
                     completionHandler(nil)
                     return
                 }
-                //guard let dict = try? JSONSerialization.jsonObject(with: data!,
-                //                                                   options: []) as? [String: Any] else {return}
                 completionHandler(playlist.id)
             }
         }
         task.resume()
     }
+
+    // recursive function, as tracks are only processed 100 at a time
     public func addSongsToPlaylist(playlistId: String,
                                    tracks: [SpotifyTrack],
                                    completionHandler: @escaping (Bool) -> Void) {
         tokenQuery { (token) in
-            var trackUrl = ""
-            for track in tracks {
-                guard let trackUri = track.uri else { continue }
-                trackUrl += trackUri + ","
-            }
-            trackUrl = trackUrl.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? trackUrl
+            //TODO: Limit to 100 songs at a time
+            let trackToAdd = Array(tracks[0..<min(100, tracks.count)]) //100 at a time
+            let leftoverTracks = Array(tracks[min(100, tracks.count)..<tracks.count])
+            let body = AddPlaylistSongs(tracks: tracks)
+            let postData = try! JSONEncoder().encode(body)
             var request = URLRequest(url:
-                            URL(string: "https://api.spotify.com/v1/playlists/"+playlistId+"/tracks?uris="+trackUrl)!,
+                            URL(string: "https://api.spotify.com/v1/playlists/"+playlistId+"/tracks")!,
                                 timeoutInterval: Double.infinity)
-            //request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("Bearer " + token.accessToken, forHTTPHeaderField: "Authorization")
             request.httpMethod = "POST"
+            request.httpBody = postData
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
                 if error != nil || data == nil {
                     print(error!)
                     completionHandler(false)
                 } else {
                     //print(String(data: data!, encoding: .utf8)!)
-                    completionHandler(true)
+                    if !trackToAdd.isEmpty { // if more to process
+                        self.addSongsToPlaylist(playlistId: playlistId,
+                                                tracks: leftoverTracks,
+                                                completionHandler: completionHandler)
+
+                    } else {
+                        completionHandler(true)
+                    }
                 }
             }
             task.resume()
