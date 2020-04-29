@@ -560,6 +560,7 @@
 				INFOPLIST_FILE = Twister/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MatteoBartalini.Twister;
 				PRODUCT_NAME = Twister;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -577,6 +578,7 @@
 				INFOPLIST_FILE = Twister/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MatteoBartalini.Twister;
 				PRODUCT_NAME = Twister;
 				PROVISIONING_PROFILE_SPECIFIER = "";
